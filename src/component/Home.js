@@ -3,6 +3,8 @@ import logo from '../logo.svg';
 import '../App.css';
 import {useNavigate} from "react-router-dom"
 
+const Settings = require("../settings");
+
 
 const Home = () => {
 
