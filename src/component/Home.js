@@ -22,7 +22,7 @@ return (
         </div> 
 
 		<div>
-        <button onClick={()=>navigate("/operation")}>Navigate to Operation Panel</button>
+        <button onClick={()=>navigate("/operation")}>Navigate to Operator Panel</button>
         </div> 
         
         </header>
