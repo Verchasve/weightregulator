@@ -12,7 +12,7 @@ return (
 <>
 	<div className="App">
     <header className="App-header">  
-    <h1 style={{color:"green"}}>Welcome To Admin Portal</h1>
+    <h1 style={{color:"yellow"}}>Welcome To Admin Portal</h1>
 	<body>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid title">

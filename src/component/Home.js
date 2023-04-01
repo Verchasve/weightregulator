@@ -14,7 +14,7 @@ return (
 	<>
      <div className="App">
         <header className="App-header">  
-        <h1 style={{color:"green"}}>Welcome To Weight Controller</h1>
+        <h1 style={{color:"yellow"}}>Welcome To Weight Controller</h1>
         <img src={logo} className="App-logo" alt="logo" />
 
         <div>

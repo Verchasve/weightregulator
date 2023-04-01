@@ -1,6 +1,6 @@
 
 import React from "react";
-import {BrowserRouter,Routes,Route,Link} from "react-router-dom";
+import {BrowserRouter,Routes,Route,} from "react-router-dom";
 
 import Home from "./component/Home";
 import About from "./component/About";
@@ -14,6 +14,7 @@ import SetProdEntries from "./component/SetProdEntries";
 import Correction from "./component/Correction";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
+import List from "./component/List";
 
 function App() {
     
@@ -34,10 +35,10 @@ function App() {
         <Route exact path="/correction" element={<Correction/>}/>
         <Route exact path="/header" element={<Header/>}/>
         <Route exact path="/footer" element={<Footer/>}/>
-
-
       </Routes>
+      {/* <List/> */}
       </BrowserRouter>
+      
       {/* <Setting/> */}
       {/* <BSLC/> */}
       {/* <ProdTable/> */}
