@@ -43,7 +43,7 @@ export default function Header () {
             />
           </div>
           <div>
-            <input type='submit' value='Save' id='headerSaveBtn' />
+            <input type='submit' value='Save' id='headerSaveBtn' className='mx-2'/>
             {/* <input type='submit' value='Back' id='headerBackBtn' /> */}
             <button onClick={() => navigate(-1)}>Back</button>
           </div>

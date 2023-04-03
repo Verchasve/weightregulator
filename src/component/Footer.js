@@ -24,7 +24,8 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <input type="submit"
+                        <input className="mx-2"
+                        type="submit"
                             value="Save"
                             id="footerSaveBtn" />
                         <input type="submit"

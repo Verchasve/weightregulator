@@ -1,0 +1,44 @@
+.bslcEntryTable {
+    background-color: rgb(182, 172, 172);
+    margin-block-start: 6em;
+    margin-bottom: auto;
+    width: fit-content;
+    height: max-content;
+    align-self: center;
+    align-items: stretch;
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 40px ;
+
+}
+
+.form-select {
+    align-items: stretch;
+}
+
+.osd {
+    background-color: #fff;
+    border-radius: 1mm;
+    margin-block-start: 3em;
+    vertical-align: auto;
+    width: fit-content;
+    height: max-content;
+    align-self: center;
+    align-items: stretch;
+    padding: 3px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+}
+
+.inputOsd {
+    border-radius: .3em;
+    height: 2.3em;
+}
+
+/* .osdMain{
+    display:flex;
+    align-items: center;
+    justify-items: center;
+    
+    
+} */
