@@ -14,7 +14,12 @@ import SetProdEntries from "./component/SetProdEntries";
 import Correction from "./component/Correction";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-import List from "./component/List";
+//import List from "./component/List";
+import SetBrandList from "./component/SetBrandList";
+import SetSizeList from "./component/SetSizeList";
+import SetLayerList from "./component/SetLayerList";
+import SetColorList from "./component/SetColorList";
+import SetOperatorList from "./component/SetOperatorList";
 
 function App() {
     
@@ -35,10 +40,16 @@ function App() {
         <Route exact path="/correction" element={<Correction/>}/>
         <Route exact path="/header" element={<Header/>}/>
         <Route exact path="/footer" element={<Footer/>}/>
+        <Route exact path="/setBrandList/*" element={<SetBrandList/>}/>
+        <Route exact path="/setSizeList/*" element={<SetSizeList/>}/>
+        <Route exact path="/setLayerList/*" element={<SetLayerList/>}/>
+        <Route exact path="/setColorList/*" element={<SetColorList/>}/>
+        <Route exact path="/setOperatorList/*" element={<SetOperatorList/>}/>
       </Routes>
-      {/* <List/> */}
+      {/* <SetBrand/> */}
       </BrowserRouter>
       
+      {/* <List/> */}
       {/* <Setting/> */}
       {/* <BSLC/> */}
       {/* <ProdTable/> */}
