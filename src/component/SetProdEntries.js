@@ -142,71 +142,7 @@ export default function SetProdEntries () {
               </div>
             </fieldset>
 
-            <div id='operatorsDiv' className='setProdEntriesBox'>
-              <div id='operatorsBox' style={{ display: 'none' }}>
-                <div className='row'>
-                  <label htmlFor='url' className='col-sm-2 col-form-label'>
-                    Set Operators Name 1
-                  </label>
-                  <div className='col-md-2'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      id='setOperators1'
-                      placeholder='Set Operators1'
-                    />
-                  </div>
-                  <button
-                    className='btn btn-primary col-md-1'
-                    style={{ width: 'auto' }}
-                    id='addOperators'
-                  >
-                    +
-                  </button>
-                  <button
-                    className='btn btn-secondary col-md-1 mx-2'
-                    style={{ width: 'auto' }}
-                    id='saveOperators'
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-              <div id='paramsOperators'></div>
-            </div>
-
-            <div id='shiftsDiv' className='setProdEntriesBox'>
-              <div id='shiftsBox' style={{ display: 'none' }}>
-                <div className='row'>
-                  <label htmlFor='url' className='col-sm-2 col-form-label'>
-                    Set Shifts
-                  </label>
-                  <div className='col-md-2'>
-                    <input
-                      type='text'
-                      className='form-control'
-                      id='setShifts'
-                      placeholder='Set Shifts'
-                    />
-                  </div>
-                  <button
-                    className='btn btn-primary col-md-1'
-                    style={{ width: 'auto' }}
-                    id='addShifts'
-                  >
-                    +
-                  </button>
-                  <button
-                    className='btn btn-secondary col-md-1 mx-2'
-                    style={{ width: 'auto' }}
-                    id='saveOperators'
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-              <div id='paramsShifts'></div>
-            </div>
+           
           </div>
           <hr />
 
