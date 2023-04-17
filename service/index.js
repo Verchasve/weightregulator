@@ -4,7 +4,17 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const Users = require("../service/db/users");
 const Settings = require("../service/Settings");
-app.use(cors());
+app.use(cors()); 
+
+const bodyParser = require('body-parser')
+ 
+ 
+ 
+// create application/json parser
+var jsonParser = bodyParser.json()
+ 
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const serviceURL = `${Settings.host}:${Settings.port}`;
 
@@ -19,10 +29,19 @@ connection.once("open", function() {
 
 app.use("/", router);
 
+
 router.route("/getData").get(async function(req, res) {
     const users = await Users.find({});
     try {
         res.send(users);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+  });
+
+  router.route("/setHeader").get(jsonParser , async function(req, res) {
+    try {
+      res.send(req?.body);
     } catch (error) {
         res.status(500).send(error);
     }
