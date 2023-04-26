@@ -83,7 +83,7 @@ function SetBrandList () {
                 className='btn btn-block btn-danger my-2 mx-2'
                 onClick={() => handleBrandDelete(brand.id)}
               >
-                <span class='fa fa-trash'> </span> Delete{' '}
+                <span className='fa fa-trash'> </span> Delete{' '}
               </button>
             </li>
           ))}
