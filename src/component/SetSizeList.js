@@ -23,6 +23,26 @@ const SetSizeList = () => {
     const handleSizeDelete = (id) => {
       setSize(sizes.filter((size) => size.id !== id));
     };
+
+    const handleSaveSize = () => {  
+      const reqBody = {
+        "sizes": sizes,
+        
+      }; 
+      console.log(`Body ${JSON.stringify(reqBody)}`) 
+      const options = {
+        method: 'POST',
+        sizes: {
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(reqBody),  
+      };
+      const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setSize`;  
+      fetch(apiUrl, options)  
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+     };
   
     let sizeStyle={
       border: "2px red"
@@ -46,7 +66,7 @@ const SetSizeList = () => {
           </li>
         ))}
       </ul>
-      <button className='mx-2'>Save</button>
+      <button className='mx-2'onClick={handleSaveSize}>Save</button>
       </div>
     </div>
   )

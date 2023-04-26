@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
+const Settings = require('../settings')
 
 function SetBrandList () {
   const navigate = useNavigate()
@@ -23,6 +24,26 @@ function SetBrandList () {
   const handleBrandDelete = id => {
     setBrands(brands.filter(brand => brand.id !== id))
   }
+
+  const handleSaveBrand = () => {  
+    const reqBody = {
+      "brands": brands,
+      
+    }; 
+    console.log(`Body ${JSON.stringify(reqBody)}`) 
+    const options = {
+      method: 'POST',
+      brands: {
+          'Content-Type': 'application/json' 
+      },
+      body: JSON.stringify(reqBody),  
+    };
+    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;  
+    fetch(apiUrl, options)  
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+   };
 
   let brandStyle = {
     border: '2px red'
@@ -67,7 +88,7 @@ function SetBrandList () {
             </li>
           ))}
         </ul>
-        <button className='mx-2'>Save</button>
+        <button className='mx-2' onClick={handleSaveBrand}>Save</button>
       </div>
     </div>
   )

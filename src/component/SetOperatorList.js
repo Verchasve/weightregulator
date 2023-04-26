@@ -23,6 +23,26 @@ const SetOperatorList = () => {
     const handleOperatorDelete = (id) => {
       setOperator(operators.filter((operator) => operator.id !== id));
     };
+
+    const handleSaveOperator = () => {
+      const reqBody = {
+        "operators": operators,
+  
+      };
+      console.log(`Body ${JSON.stringify(reqBody)}`)
+      const options = {
+        method: 'POST',
+        operators: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reqBody),
+      };
+      const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setOperator`;
+      fetch(apiUrl, options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
+    };
   
     let operatorStyle={
       border: "2px red"
@@ -46,7 +66,7 @@ const SetOperatorList = () => {
           </li>
         ))}
       </ul>
-      <button className='mx-2'>Save</button>
+      <button className='mx-2' onClick={handleSaveOperator} >Save</button>
       </div>
     </div>
   )
