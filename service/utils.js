@@ -11,9 +11,7 @@ const setProductHeader = (data, db) => {
     return true;
 }
 
-module.exports = {
-  setProductHeader
-}
+
 
 // setting brands 
 const setProductBrands = (data, db) => { 
@@ -28,10 +26,7 @@ const setProductBrands = (data, db) => {
   });
   return true;
 }
-
-module.exports = {
-  setProductBrands
-}
+ 
 
 // setting sizes
 
@@ -47,10 +42,7 @@ const setProductSizes = (data, db) => {
   });
   return true;
 }
-
-module.exports = {
-  setProductSizes
-}
+ 
 
 // setting colors
 
@@ -66,10 +58,7 @@ const setProductColors = (data, db) => {
   });
   return true;
 }
-
-module.exports = {
-  setProductColors
-}
+ 
 
 // setting layers
 
@@ -86,9 +75,7 @@ const setProductLayers = (data, db) => {
   return true;
 }
 
-module.exports = {
-  setProductLayers
-}
+ 
 
 // setting operator
 
@@ -105,7 +92,13 @@ const setProductOperators = (data, db) => {
   return true;
 }
 
+
 module.exports = {
+  setProductBrands,
+  setProductSizes,
+  setProductColors,
+  setProductLayers,
+  setProductHeader ,
   setProductOperators
 }
  

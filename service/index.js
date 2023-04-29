@@ -4,11 +4,12 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const Users = require("../service/db/users");
 const Settings = require("../service/Settings");
-const { setProductHeader }= require("./utils");
-const { setProductBrands }= require("./utils");
-const { setProductLayers }= require("./utils");
-const { setProductColors }= require("./utils");
-const { setProductOperators }= require("./utils");
+const { setProductHeader ,
+  setProductBrands , 
+  setProductLayers ,
+  setProductColors ,
+  setProductOperators , 
+  setProductSizes }= require("./utils");
 
 app.use(cors()); 
 
@@ -76,6 +77,7 @@ router.route("/getData").get(async function(req, res) {
      }
     } catch (error) {
         res.status(500).send(error);
+        console.error(error?.message)
     }
   });
 
