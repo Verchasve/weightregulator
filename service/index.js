@@ -69,7 +69,9 @@ router.route("/getData").get(async function(req, res) {
 // brand parameters 
   router.route("/setBrand").post(jsonParser , async function(req, res) {
     try {
+    
      const check = setProductBrands(req?.body , connection);
+     console.log(req)
      if (check){
       res.send(JSON.stringify("Brands added"));
      }else{

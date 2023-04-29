@@ -5,11 +5,19 @@ import './OperationPanel.css'
 import List from './List'
 import withListLoading from './withListLoading'
 const Settings = require('../settings')
+let brands = [];
+
+const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;  
+fetch(apiUrl)  
+.then(response => response.json())
+.then(response => brands = response)
+.catch(err => console.error(err));
+
+
 
 const OperationPanel = () => {
-  const navigate = useNavigate()
-
-  const ListLoading = withListLoading(List)
+  const navigate = useNavigate() 
+  const ListLoading = withListLoading(List)   
 
   const [appState, setAppState] = useState({
     loading: false,
@@ -123,16 +131,17 @@ const OperationPanel = () => {
                           >
                             <option selected id='selectBrand'>
                               Select Brand
-                            </option>
-                            <option value='brand-1' id='brand-1'>
-                              Brand-1
-                            </option>
-                            <option value='brand-2' id='brand-2'>
-                              Brand-2
-                            </option>
-                            <option value='brand-3' id='brand-3'>
-                              Brand-3
-                            </option>
+                            </option> 
+                          {
+                          
+                          brands.map((brand, index) => (
+                            
+                          <option value={brand?.text} id={`brand-${brand?._id}`}>
+                            {brand?.text}
+                          </option>
+                          ))
+                          
+                          } 
                           </select>
                         </div>
                         <div className='size'>

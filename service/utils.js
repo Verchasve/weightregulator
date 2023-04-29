@@ -11,20 +11,23 @@ const setProductHeader = (data, db) => {
     return true;
 }
 
-
-
 // setting brands 
 const setProductBrands = (data, db) => { 
-    
-  const brandsCollection = db.collection('brands');
-  brandsCollection.insertOne(data, (err, result) => {
-    if (err) {
-      console.error(err);
-      return false;
-    }  
   
-  });
-  return true;
+ const brandsCollection = db.collection('brands');
+ 
+ if (data.length > 0){
+ const brandNames = data.map(item => ({ text: item.text }));
+ 
+ brandsCollection.insertMany(brandNames, (err, result) => {
+  
+   if (err) {
+     console.error(err);
+     return false;
+   }  
+ }); 
+}
+ return true;
 }
  
 

@@ -25,18 +25,13 @@ function SetBrandList () {
     setBrands(brands.filter(brand => brand.id !== id))
   }
 
-  const handleSaveBrand = () => {  
-    const reqBody = {
-      "brands": brands,
-      
-    }; 
-    console.log(`Body ${JSON.stringify(reqBody)}`) 
+  const handleSaveBrand = () => {   
     const options = {
       method: 'POST',
-      brands: {
+      headers: {
           'Content-Type': 'application/json' 
       },
-      body: JSON.stringify(reqBody),  
+      body: JSON.stringify(brands),  
     };
     const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;  
     fetch(apiUrl, options)  
