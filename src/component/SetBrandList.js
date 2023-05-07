@@ -1,12 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 const Settings = require('../settings')
 
 function SetBrandList () {
   const navigate = useNavigate()
-  const [brands, setBrands] = useState([])
+  //const [brands, setBrands] = useState([initBrand])
   const [newBrand, setNewBrand] = useState('')
+
+  // Brand Entry Storing start
+
+  let initBrand;
+  if (localStorage.getItem("brands") === null) {
+    initBrand = [];
+  }
+  else {
+    initBrand = JSON.parse(localStorage.getItem("brands"));
+  }
+
+
+  // const onDelete = (todo) => {
+  //   console.log("I am ondelete of todo", todo);
+  //   // Deleting this way in react does not work
+  //   // let index = todos.indexOf(todo);
+  //   // todos.splice(index, 1);
+
+  //   setTodos(todos.filter((e) => {
+  //     return e !== todo;
+  //   }));
+  //   console.log("deleted", todos)
+  //   localStorage.setItem("todos", JSON.stringify(todos));
+  // }
+
+ const [brands, setBrands] = useState(initBrand);
+  useEffect(() => {
+    localStorage.setItem("brands", JSON.stringify(brands));
+  }, [brands])
+
+  // Brand Entry Storing end
+
 
   const handleInputChange = event => {
     setNewBrand(event.target.value)
@@ -23,6 +55,8 @@ function SetBrandList () {
 
   const handleBrandDelete = id => {
     setBrands(brands.filter(brand => brand.id !== id))
+    localStorage.setItem("brands", JSON.stringify(brands)); 
+
   }
 
   const handleSaveBrand = () => {   
