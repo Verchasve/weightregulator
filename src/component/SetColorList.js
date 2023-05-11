@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 const Settings = require('../settings')
@@ -6,8 +6,40 @@ const Settings = require('../settings')
 
 const SetColorList = () => {
   const navigate = useNavigate()
-  const [colors, setColor] = useState([]);
+  //const [colors, setColors] = useState([]);
   const [newColor, setNewColor] = useState('');
+
+  // Color Entry Storing start
+
+  let initColor;
+  if (localStorage.getItem("colors") === null) {
+    initColor = [];
+  }
+  else {
+    initColor = JSON.parse(localStorage.getItem("colors"));
+  }
+
+
+  // const onDelete = (todo) => {
+  //   console.log("I am ondelete of todo", todo);
+  //   // Deleting this way in react does not work
+  //   // let index = todos.indexOf(todo);
+  //   // todos.splice(index, 1);
+
+  //   setTodos(todos.filter((e) => {
+  //     return e !== todo;
+  //   }));
+  //   console.log("deleted", todos)
+  //   localStorage.setItem("todos", JSON.stringify(todos));
+  // }
+
+ const [colors, setColors] = useState(initColor);
+  useEffect(() => {
+    localStorage.setItem("colors", JSON.stringify(colors));
+  }, [colors])
+
+  // Color Entry Storing end
+
 
   const handleInputChange = (event) => {
     setNewColor(event.target.value);
@@ -18,12 +50,13 @@ const SetColorList = () => {
     if (newColor.trim() === '') {
       return;
     }
-    setColor([...colors, { id: Date.now(), text: newColor }]);
+    setColors([...colors, { id: Date.now(), text: newColor }]);
     setNewColor('');
   };
 
   const handlecolorDelete = (id) => {
-    setColor(colors.filter((color) => color.id !== id));
+    setColors(colors.filter((color) => color.id !== id));
+    localStorage.setItem("colors", JSON.stringify(colors));
   };
 
   const handleSaveColor = () => {
@@ -39,12 +72,13 @@ const SetColorList = () => {
       },
       body: JSON.stringify(reqBody),
     };
-    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setColor`;
-    fetch(apiUrl, options)
+    const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/setColor`;
+    fetch(apiUrlColor, options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => console.error(err));
   };
+  
 
   let colorStyle = {
     border: "2px red"

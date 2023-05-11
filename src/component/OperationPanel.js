@@ -6,14 +6,40 @@ import List from './List'
 import withListLoading from './withListLoading'
 const Settings = require('../settings')
 let brands = [];
+let sizes = [];
+let colors = [];
+let layers = [];
+let operators = []
 
-const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;  
-fetch(apiUrl)  
+const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;  
+fetch(apiUrlBrand)  
 .then(response => response.json())
 .then(response => brands = response)
 .catch(err => console.error(err));
 
+const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getSize`;  
+fetch(apiUrlSize)  
+.then(response => response.json())
+.then(response => sizes = response)
+.catch(err => console.error(err));
 
+const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getColor`;  
+fetch(apiUrlColor)  
+.then(response => response.json())
+.then(response => colors = response)
+.catch(err => console.error(err));
+
+const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getLayer`;  
+fetch(apiUrlLayer)  
+.then(response => response.json())
+.then(response => layers = response)
+.catch(err => console.error(err));
+
+const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;  
+fetch(apiUrlOperator)  
+.then(response => response.json())
+.then(response => operators = response)
+.catch(err => console.error(err));
 
 const OperationPanel = () => {
   const navigate = useNavigate() 
@@ -26,8 +52,48 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/getData`
-    fetch(apiUrl)
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    fetch(apiUrlBrand)
+      .then(res => res.json())
+      .then(users => {
+        setAppState({ loading: false, users: users })
+      })
+  }, [setAppState])
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    fetch(apiUrlSize)
+      .then(res => res.json())
+      .then(users => {
+        setAppState({ loading: false, users: users })
+      })
+  }, [setAppState])
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    fetch(apiUrlColor)
+      .then(res => res.json())
+      .then(users => {
+        setAppState({ loading: false, users: users })
+      })
+  }, [setAppState])
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    fetch(apiUrlLayer)
+      .then(res => res.json())
+      .then(users => {
+        setAppState({ loading: false, users: users })
+      })
+  }, [setAppState])
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    fetch(apiUrlOperator)
       .then(res => res.json())
       .then(users => {
         setAppState({ loading: false, users: users })
@@ -84,9 +150,16 @@ const OperationPanel = () => {
                               >
                                 operator present
                               </option>
-                              <option value='operator-1'>operator-1</option>
-                              <option value='operator-2'>operator-2</option>
-                              <option value='operator-3'>operator-3</option>
+                              {
+                          
+                          operators.map((operator, index) => (
+                            
+                          <option value={operator?.text} id={`brand-${operator?._id}`}>
+                            {operator?.text}
+                          </option>
+                          ))
+                          
+                          } 
                             </select>
                           </label>
                         </div>
@@ -150,15 +223,16 @@ const OperationPanel = () => {
                             aria-label='Default select example'
                           >
                             <option selected>Select Size</option>
-                            <option value='size-1' id='size-1'>
-                              Size-1
-                            </option>
-                            <option value='size-2' id='size-2'>
-                              Size-2
-                            </option>
-                            <option value='size-3' id='size-3'>
-                              Size-3
-                            </option>
+                            {
+                          
+                          sizes.map((size, index) => (
+                            
+                          <option value={size?.text} id={`brand-${size?._id}`}>
+                            {size?.text}
+                          </option>
+                          ))
+                          
+                          } 
                           </select>
                         </div>
                         <div className='layer'>
@@ -167,15 +241,16 @@ const OperationPanel = () => {
                             aria-label='Default select example'
                           >
                             <option selected>Select Layer</option>
-                            <option value='layer-1' id='layer-1'>
-                              Layer-1
-                            </option>
-                            <option value='layer-2' id='layer-2'>
-                              Layer-2
-                            </option>
-                            <option value='layer-3' id='layer-3'>
-                              Layer-3
-                            </option>
+                            {
+                          
+                          layers.map((layer, index) => (
+                            
+                          <option value={layer?.text} id={`brand-${layer?._id}`}>
+                            {layer?.text}
+                          </option>
+                          ))
+                          
+                          } 
                           </select>
                         </div>
                         <div className='color'>
@@ -184,15 +259,16 @@ const OperationPanel = () => {
                             aria-label='Default select example'
                           >
                             <option selected>Select Color</option>
-                            <option value='color-1' id='color-1'>
-                              Color-1
-                            </option>
-                            <option value='color-2' id='color-2'>
-                              Color-2
-                            </option>
-                            <option value='color-3' id='color-3'>
-                              Color-3
-                            </option>
+                            {
+                          
+                          colors.map((color, index) => (
+                            
+                          <option value={color?.text} id={`brand-${color?._id}`}>
+                            {color?.text}
+                          </option>
+                          ))
+                          
+                          } 
                           </select>
                         </div>
                         <br />

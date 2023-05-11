@@ -10,14 +10,12 @@ function SetBrandList () {
 
   // Brand Entry Storing start
 
-  let initBrand;
-  if (localStorage.getItem("brands") === null) {
-    initBrand = [];
+  let initBrand
+  if (localStorage.getItem('brands') === null) {
+    initBrand = []
+  } else {
+    initBrand = JSON.parse(localStorage.getItem('brands'))
   }
-  else {
-    initBrand = JSON.parse(localStorage.getItem("brands"));
-  }
-
 
   // const onDelete = (todo) => {
   //   console.log("I am ondelete of todo", todo);
@@ -32,13 +30,12 @@ function SetBrandList () {
   //   localStorage.setItem("todos", JSON.stringify(todos));
   // }
 
- const [brands, setBrands] = useState(initBrand);
+  const [brands, setBrands] = useState(initBrand)
   useEffect(() => {
-    localStorage.setItem("brands", JSON.stringify(brands));
+    localStorage.setItem('brands', JSON.stringify(brands))
   }, [brands])
 
   // Brand Entry Storing end
-
 
   const handleInputChange = event => {
     setNewBrand(event.target.value)
@@ -55,24 +52,27 @@ function SetBrandList () {
 
   const handleBrandDelete = id => {
     setBrands(brands.filter(brand => brand.id !== id))
-    localStorage.setItem("brands", JSON.stringify(brands)); 
-
+    localStorage.setItem('brands', JSON.stringify(brands))
   }
 
-  const handleSaveBrand = () => {   
+  const handleSaveBrand = () => {
+    const reqBody = {
+      brands: brands
+    }
+    console.log(`Body ${JSON.stringify(reqBody)}`)
     const options = {
       method: 'POST',
-      headers: {
-          'Content-Type': 'application/json' 
+      brands: {
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(brands),  
-    };
-    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;  
-    fetch(apiUrl, options)  
+      body: JSON.stringify(brands)
+    }
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`
+    fetch(apiUrlBrand, options)
       .then(response => response.json())
       .then(response => console.log(response))
-      .catch(err => console.error(err));
-   };
+      .catch(err => console.error(err))
+  }
 
   let brandStyle = {
     border: '2px red'
@@ -117,7 +117,9 @@ function SetBrandList () {
             </li>
           ))}
         </ul>
-        <button className='mx-2' onClick={handleSaveBrand}>Save</button>
+        <button className='mx-2' onClick={handleSaveBrand}>
+          Save
+        </button>
       </div>
     </div>
   )

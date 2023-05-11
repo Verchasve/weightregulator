@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 const Settings = require('../settings')
@@ -6,8 +6,38 @@ const Settings = require('../settings')
 
 const SetLayerList = () => {
     const navigate = useNavigate()
-    const [layers, setLayer] = useState([]);
+    //const [layers, setLayer] = useState([]);
     const [newLayer, setNewLayer] = useState('');
+
+     // Layer Entry Storing start layer
+
+  let initLayer
+  if (localStorage.getItem('layers') === null) {
+    initLayer = []
+  } else {
+    initLayer = JSON.parse(localStorage.getItem('layers'))
+  }
+
+  // const onDelete = (todo) => {
+  //   console.log("I am ondelete of todo", todo);
+  //   // Deleting this way in react does not work
+  //   // let index = todos.indexOf(todo);
+  //   // todos.splice(index, 1);
+
+  //   setTodos(todos.filter((e) => {
+  //     return e !== todo;
+  //   }));
+  //   console.log("deleted", todos)
+  //   localStorage.setItem("todos", JSON.stringify(todos));
+  // }
+
+  const [layers, setLayers] = useState(initLayer)
+  useEffect(() => {
+    localStorage.setItem('layers', JSON.stringify(layers))
+  }, [layers])
+
+  // Layer Entry Storing end
+
   
     const handleInputChange = (event) => {
       setNewLayer(event.target.value);
@@ -18,12 +48,12 @@ const SetLayerList = () => {
       if (newLayer.trim() === '') {
         return;
       }
-      setLayer([...layers, { id: Date.now(), text: newLayer }]);
+      setLayers([...layers, { id: Date.now(), text: newLayer }]);
       setNewLayer('');
     };
   
     const handlelayerDelete = (id) => {
-      setLayer(layers.filter((layer) => layer.id !== id));
+      setLayers(layers.filter((layer) => layer.id !== id));
     };
 
     // 
@@ -41,8 +71,8 @@ const SetLayerList = () => {
         },
         body: JSON.stringify(reqBody),  
       };
-      const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setLayer`;  
-      fetch(apiUrl, options)  
+      const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/setLayer`;  
+      fetch(apiUrlLayer, options)  
         .then(response => response.json())
         .then(response => console.log(response))
         .catch(err => console.error(err));
