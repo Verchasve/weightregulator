@@ -11,11 +11,11 @@ const SetSizeList = () => {
 
   // Size Entry Storing start layer
 
-     let initSIze
+     let initSize
      if (localStorage.getItem('sizes') === null) {
-       initSIze = []
+       initSize = []
      } else {
-       initSIze = JSON.parse(localStorage.getItem('sizes'))
+       initSize = JSON.parse(localStorage.getItem('sizes'))
      }
    
      // const onDelete = (todo) => {
@@ -31,7 +31,7 @@ const SetSizeList = () => {
      //   localStorage.setItem("todos", JSON.stringify(todos));
      // }
    
-     const [sizes, setSizes] = useState(initSIze)
+     const [sizes, setSizes] = useState(initSize)
      useEffect(() => {
        localStorage.setItem('sizes', JSON.stringify(sizes))
      }, [sizes])
