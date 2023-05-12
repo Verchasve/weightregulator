@@ -52,7 +52,7 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`
     fetch(apiUrlBrand)
       .then(res => res.json())
       .then(users => {
@@ -62,7 +62,7 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getSize`
     fetch(apiUrlSize)
       .then(res => res.json())
       .then(users => {
@@ -72,7 +72,7 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getColor`
     fetch(apiUrlColor)
       .then(res => res.json())
       .then(users => {
@@ -82,7 +82,7 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getLayer`
     fetch(apiUrlLayer)
       .then(res => res.json())
       .then(users => {

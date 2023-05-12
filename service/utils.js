@@ -34,7 +34,8 @@ const setProductBrands = (data, db) => {
 // setting sizes
 
 const setProductSizes = (data, db) => { 
-    
+
+  console.log(data);
   const sizesCollection = db.collection('sizes');
   sizesCollection.insertOne(data, (err, result) => {
     if (err) {
