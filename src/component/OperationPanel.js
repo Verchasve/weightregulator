@@ -154,7 +154,7 @@ const OperationPanel = () => {
                           
                           operators.map((operator, index) => (
                             
-                          <option value={operator?.text} id={`brand-${operator?._id}`}>
+                          <option value={operator?.text} id={`operator-${operator?._id}`}>
                             {operator?.text}
                           </option>
                           ))
@@ -227,7 +227,7 @@ const OperationPanel = () => {
                           
                           sizes.map((size, index) => (
                             
-                          <option value={size?.text} id={`brand-${size?._id}`}>
+                          <option value={size?.text} id={`size-${size?._id}`}>
                             {size?.text}
                           </option>
                           ))
@@ -245,7 +245,7 @@ const OperationPanel = () => {
                           
                           layers.map((layer, index) => (
                             
-                          <option value={layer?.text} id={`brand-${layer?._id}`}>
+                          <option value={layer?.text} id={`layer-${layer?._id}`}>
                             {layer?.text}
                           </option>
                           ))
@@ -263,7 +263,7 @@ const OperationPanel = () => {
                           
                           colors.map((color, index) => (
                             
-                          <option value={color?.text} id={`brand-${color?._id}`}>
+                          <option value={color?.text} id={`color-${color?._id}`}>
                             {color?.text}
                           </option>
                           ))

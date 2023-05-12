@@ -9,7 +9,7 @@ const SetLayerList = () => {
     //const [layers, setLayer] = useState([]);
     const [newLayer, setNewLayer] = useState('');
 
-     // Layer Entry Storing start layer
+  // Layer Entry Storing start layer
 
   let initLayer
   if (localStorage.getItem('layers') === null) {
