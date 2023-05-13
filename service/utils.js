@@ -15,53 +15,53 @@ const setProductHeader = (data, db) => {
 const setProductBrands = (data, db) => { 
   
  const brandsCollection = db.collection('brands');
- 
  if (data.length > 0){
  const brandNames = data.map(item => ({ text: item.text }));
- 
  brandsCollection.insertMany(brandNames, (err, result) => {
-  
    if (err) {
      console.error(err);
      return false;
-   }  
- }); 
-}
+      }  
+    }); 
+  }
  return true;
-}
+};
  
 
 // setting sizes
-
 const setProductSizes = (data, db) => { 
-
-  console.log(data);
   const sizesCollection = db.collection('sizes');
-  sizesCollection.insertOne(data, (err, result) => {
-    if (err) {
-      console.error(err);
-      return false;
-    }  
-  
-  });
-  return true;
-}
+  if (data){ 
+    const brandNames = data?.sizes.map(item => ({ text: item.text })); 
+    sizesCollection.insertMany(brandNames, (err, result) => { 
+      if (err) {
+        console.error(err);
+        return false;
+         }  
+     
+      if (result?.insertedCount > 0){
+        return true;
+      }
+     }); 
+     }
+    return true;
+   };
  
 
 // setting colors
-
 const setProductColors = (data, db) => { 
-    
-  const colorsCollection = db.collection('colors');
-  colorsCollection.insertOne(data, (err, result) => {
-    if (err) {
-      console.error(err);
-      return false;
-    }  
-  
-  });
-  return true;
-}
+  const colorsCollection = db.collection('colors'); 
+  if (data.length > 0){
+    const brandNames = data.map(item => ({ text: item.text })); 
+    colorsCollection.insertMany(brandNames, (err, result) => { 
+      if (err) {
+        console.error(err);
+        return false;
+         }  
+       }); 
+     }
+    return true;
+   };
  
 
 // setting layers
@@ -69,15 +69,17 @@ const setProductColors = (data, db) => {
 const setProductLayers = (data, db) => { 
     
   const layersCollection = db.collection('layers');
-  layersCollection.insertOne(data, (err, result) => {
-    if (err) {
-      console.error(err);
-      return false;
-    }  
-  
-  });
-  return true;
-}
+  if (data.length > 0){
+    const brandNames = data.map(item => ({ text: item.text })); 
+    layersCollection.insertMany(brandNames, (err, result) => { 
+      if (err) {
+        console.error(err);
+        return false;
+         }  
+       }); 
+     }
+    return true;
+};
 
  
 
@@ -86,15 +88,17 @@ const setProductLayers = (data, db) => {
 const setProductOperators = (data, db) => { 
     
   const operatorsCollection = db.collection('operators');
-  operatorsCollection.insertOne(data, (err, result) => {
-    if (err) {
-      console.error(err);
-      return false;
-    }  
-  
-  });
-  return true;
-}
+  if (data.length > 0){
+    const brandNames = data.map(item => ({ text: item.text })); 
+    operatorsCollection.insertMany(brandNames, (err, result) => { 
+      if (err) {
+        console.error(err);
+        return false;
+         }  
+       }); 
+     }
+    return true;
+};
 
 
 module.exports = {

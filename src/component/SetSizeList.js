@@ -30,7 +30,7 @@ const SetSizeList = () => {
      //   console.log("deleted", todos)
      //   localStorage.setItem("todos", JSON.stringify(todos));
      // }
-   
+
      const [sizes, setSizes] = useState(initSize)
      useEffect(() => {
        localStorage.setItem('sizes', JSON.stringify(sizes))
@@ -59,15 +59,14 @@ const SetSizeList = () => {
     const reqBody = {
       "sizes": sizes,
 
-    };
-    console.log(`Body ${JSON.stringify(reqBody)}`)
+    }; 
     const options = {
       method: 'POST',
-      sizes: {
+      headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(reqBody),
-    };
+    }; 
     const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/setSize`;
     fetch(apiUrlSize, options)
       .then(response => response.json())

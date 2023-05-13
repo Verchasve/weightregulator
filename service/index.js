@@ -36,7 +36,7 @@ router.route("/getData").get(async function(req, res) {
         res.status(500).send(error);
     }
   });
-//iske aage
+
 // header entries code
   router.route("/setHeader").post(jsonParser , async function(req, res) {
     try {
@@ -101,6 +101,7 @@ router.route("/getData").get(async function(req, res) {
 // size parameters 
 router.route("/setSize").post(jsonParser , async function(req, res) {
   try {
+
    const check = setProductSizes(req?.body , connection);
    if (check){
     res.send(JSON.stringify("Sizes added"));

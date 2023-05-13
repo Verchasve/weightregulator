@@ -62,7 +62,7 @@ function SetBrandList () {
     console.log(`Body ${JSON.stringify(reqBody)}`)
     const options = {
       method: 'POST',
-      brands: {
+      headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(brands)
