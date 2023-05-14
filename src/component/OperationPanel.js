@@ -92,7 +92,7 @@ const OperationPanel = () => {
 
   useEffect(() => {
     setAppState({ loading: true })
-    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getData`
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`
     fetch(apiUrlOperator)
       .then(res => res.json())
       .then(users => {

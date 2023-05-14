@@ -67,7 +67,7 @@ const SetColorList = () => {
     console.log(`Body ${JSON.stringify(reqBody)}`)
     const options = {
       method: 'POST',
-      colors: {
+      headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(reqBody),

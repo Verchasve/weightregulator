@@ -66,7 +66,7 @@ const SetLayerList = () => {
       console.log(`Body ${JSON.stringify(reqBody)}`) 
       const options = {
         method: 'POST',
-        layers: {
+        headers: {
             'Content-Type': 'application/json' 
         },
         body: JSON.stringify(reqBody),  
