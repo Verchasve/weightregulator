@@ -17,18 +17,7 @@ function SetBrandList () {
     initBrand = JSON.parse(localStorage.getItem('brands'))
   }
 
-  // const onDelete = (todo) => {
-  //   console.log("I am ondelete of todo", todo);
-  //   // Deleting this way in react does not work
-  //   // let index = todos.indexOf(todo);
-  //   // todos.splice(index, 1);
-
-  //   setTodos(todos.filter((e) => {
-  //     return e !== todo;
-  //   }));
-  //   console.log("deleted", todos)
-  //   localStorage.setItem("todos", JSON.stringify(todos));
-  // }
+  
 
   const [brands, setBrands] = useState(initBrand)
   useEffect(() => {

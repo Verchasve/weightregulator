@@ -61,7 +61,7 @@ const SetColorList = () => {
 
   const handleSaveColor = () => {
     const reqBody = {
-      "colors": colors,
+      colors: colors
 
     };
     console.log(`Body ${JSON.stringify(reqBody)}`)
@@ -70,7 +70,7 @@ const SetColorList = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(reqBody),
+      body: JSON.stringify(colors),
     };
     const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/setColor`;
     fetch(apiUrlColor, options)
