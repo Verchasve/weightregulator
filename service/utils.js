@@ -1,23 +1,42 @@
+const { ObjectId } = require("mongodb");
+
 const setProductHeader = (data, db) => { 
-    
     const productsCollection = db.collection('products');
     productsCollection.insertOne(data, (err, result) => {
       if (err) {
         console.error(err);
         return false;
-      }  
-    
+      }
     });
     return true;
 }
 
+
+const removeProductHeader = async(data, db) => { 
+  const productsCollection = db.collection('products');
+  let deleted = false;
+  
+  if (data.length > 0){
+ 
+    const ids = data.map(item => (new ObjectId(item))); 
+    const query = {_id: { $in: ids}}; 
+    const check = await productsCollection.deleteMany(query);
+  
+     if (check?.deletedCount > 0){
+      deleted = true;
+     }
+  }
+  return deleted;
+}
+
 // setting brands 
-const setProductBrands = (data, db) => { 
+const setProductBrands = async(data, db) => { 
   
  const brandsCollection = db.collection('brands');
  if (data.length > 0){
+ 
  const brandNames = data.map(item => ({ text: item.text }));
- brandsCollection.insertMany(brandNames, (err, result) => {
+ await brandsCollection.insertMany(brandNames, (err, result) => {
    if (err) {
      console.error(err);
      return false;
@@ -30,6 +49,20 @@ const setProductBrands = (data, db) => {
   }
  return true;
 };
+
+const removeProductBrands = async(data, db) => { 
+  const brandsCollection = db.collection('brands');
+  let deleted = false; 
+  if (data.length > 0){  
+    const brands = data.map(item => (item.text)); 
+    const query = {text: { $in: brands}}; 
+    const check = await brandsCollection.deleteMany(query); 
+     if (check?.deletedCount > 0){
+      deleted = true;
+     }
+  }
+  return deleted;
+}
  
 
 // setting sizes
@@ -124,7 +157,9 @@ module.exports = {
   setProductColors,
   setProductLayers,
   setProductHeader ,
-  setProductOperators
+  setProductOperators,
+  removeProductHeader,
+  removeProductBrands,
 }
  
 

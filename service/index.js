@@ -9,13 +9,15 @@ const { setProductHeader ,
   setProductLayers ,
   setProductColors ,
   setProductOperators , 
-  setProductSizes }= require("./utils");
+  setProductSizes,
+  removeProductHeader,
+  removeProductBrands, }= require("./utils");
 
 app.use(cors()); 
 
 const bodyParser = require('body-parser')
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+const jsonParser = bodyParser.json()
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 const serviceURL = `${Settings.host}:${Settings.port}`;
 
@@ -66,11 +68,25 @@ router.route("/getData").get(async function(req, res) {
     }
   });
 
+  router.route("/deleteHeader").delete(jsonParser , async function(req, res) {
+    try {
+     const check =  await removeProductHeader(req?.body , connection);
+     if (check){
+      res.send(JSON.stringify("Data delete"));
+     }else{
+      res.send(JSON.stringify("Unable to delete Data"));
+     }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+  });
+
 // brand parameters 
   router.route("/setBrand").post(jsonParser , async function(req, res) {
     try {
     
-     const check = setProductBrands(req?.body , connection);
+     const check = await setProductBrands(req?.body , connection);
      console.log(req)
      if (check){
       res.send(JSON.stringify("Brands added"));
@@ -94,6 +110,21 @@ router.route("/getData").get(async function(req, res) {
      }
      res.send(data); 
     } catch (error) {
+        res.status(500).send(error);
+    }
+  });
+
+  router.route("/deleteBrand").delete(jsonParser , async function(req, res) {
+    try {
+     const check =  await removeProductBrands(req?.body , connection);
+     console.log(`check  : ${check}`);
+     if (check){
+      res.send(JSON.stringify("Data delete"));
+     }else{
+      res.send(JSON.stringify("Unable to delete Data"));
+     }
+    } catch (error) {
+        console.log(error);
         res.status(500).send(error);
     }
   });

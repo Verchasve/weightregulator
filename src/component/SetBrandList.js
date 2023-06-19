@@ -51,8 +51,22 @@ function SetBrandList () {
   }
 
   const handleBrandDelete = id => {
-    setBrands(brands.filter(brand => brand.id !== id))
-    localStorage.setItem('brands', JSON.stringify(brands))
+    // setBrands(brands.filter(brand => brand.id !== id))
+    // localStorage.setItem('brands', JSON.stringify(brands))
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(brands)
+    }
+
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/deleteBrand`
+    fetch(apiUrlBrand, options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
+    console.log(`Brand : ${id}`);
   }
 
   const handleSaveBrand = () => {
@@ -110,7 +124,7 @@ function SetBrandList () {
               {brand.text}
               <button
                 className='btn btn-block btn-danger my-2 mx-2'
-                onClick={() => handleBrandDelete(brand.id)}
+                onClick={() => handleBrandDelete(brand.text)}
               >
                 <span className='fa fa-trash'> </span> Delete{' '}
               </button>
