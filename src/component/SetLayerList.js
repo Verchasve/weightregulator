@@ -60,7 +60,7 @@ const SetLayerList = () => {
 
     const handleSaveLayer = () => {  
       const reqBody = {
-        "layers": layers,
+        layers: layers
         
       }; 
       console.log(`Body ${JSON.stringify(reqBody)}`) 
@@ -69,7 +69,7 @@ const SetLayerList = () => {
         headers: {
             'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(reqBody),  
+        body: JSON.stringify(layers),  
       };
       const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/setLayer`;  
       fetch(apiUrlLayer, options)  
