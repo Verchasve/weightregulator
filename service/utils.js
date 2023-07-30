@@ -31,11 +31,12 @@ const removeProductHeader = async(data, db) => {
 
 // setting brands 
 const setProductBrands = async(data, db) => { 
-  
  const brandsCollection = db.collection('brands');
- if (data.length > 0){
- 
- const brandNames = data.map(item => ({ text: item.text }));
+
+ if (data?.text){
+  console.log( `Adding item : ${JSON.stringify(data)}`);
+ //const brandNames = data.map(item => ({ text: item.text }));
+ const brandNames = [{ text: data?.text }];
  await brandsCollection.insertMany(brandNames, (err, result) => {
    if (err) {
      console.error(err);
@@ -53,9 +54,10 @@ const setProductBrands = async(data, db) => {
 const removeProductBrands = async(data, db) => { 
   const brandsCollection = db.collection('brands');
   let deleted = false; 
-  if (data.length > 0){  
-    const brands = data.map(item => (item.text)); 
-    const query = {text: { $in: brands}}; 
+
+  if (data){  
+    const query = {_id:new ObjectId(data?.id)};  
+    console.log( `Removing item : ${JSON.stringify(query)}`);
     const check = await brandsCollection.deleteMany(query); 
      if (check?.deletedCount > 0){
       deleted = true;

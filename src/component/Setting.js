@@ -21,7 +21,7 @@ export default function Setting () {
               type='submit'
               value='Set Header'
               name='hfpEntries'
-              //onclick="hfpEntries()"
+              //onClick="hfpEntries()"
               //onClick={hfpEntries()}
               id='headerBtn'
               onClick={() => navigate("/header")}
@@ -34,7 +34,7 @@ export default function Setting () {
               type='submit'
               value='Set Footer'
               name='hfpEntries'
-              onclick='hfpEntries()'
+             // onClick='hfpEntries()'
               id='footerBtn'
               onClick={() => navigate("/footer")}
             />
@@ -44,7 +44,7 @@ export default function Setting () {
               type='submit'
               value='Set Production Entries'
               name='hfpEntries'
-              onclick='hfpEntries()'
+              onClick='hfpEntries()'
               id='productionEntriesBtn'
             /> */}
              <button onClick={() => navigate("/setProdEntries")}>Set Production Entries</button>

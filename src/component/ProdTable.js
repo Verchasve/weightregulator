@@ -38,7 +38,7 @@ export default function ProdTable () {
               </label>
 
               {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
-              <button className='addBtn mx-2' id='ptAddBtn' onclick='AddRow()'>
+              <button className='addBtn mx-2' id='ptAddBtn' onClick='AddRow()'>
                 ADD
               </button>
 

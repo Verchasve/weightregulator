@@ -87,7 +87,7 @@ router.route("/getData").get(async function(req, res) {
     try {
     
      const check = await setProductBrands(req?.body , connection);
-     console.log(req)
+     console.log(`Brand Added Check : ${check}`);
      if (check){
       res.send(JSON.stringify("Brands added"));
      }else{
@@ -117,7 +117,7 @@ router.route("/getData").get(async function(req, res) {
   router.route("/deleteBrand").delete(jsonParser , async function(req, res) {
     try {
      const check =  await removeProductBrands(req?.body , connection);
-     console.log(`check  : ${check}`);
+     console.log(`deleteBrand  : ${check}`);
      if (check){
       res.send(JSON.stringify("Data delete"));
      }else{
@@ -132,7 +132,6 @@ router.route("/getData").get(async function(req, res) {
 // size parameters 
 router.route("/setSize").post(jsonParser , async function(req, res) {
   try {
-
    const check = setProductSizes(req?.body , connection);
    if (check){
     res.send(JSON.stringify("Sizes added"));

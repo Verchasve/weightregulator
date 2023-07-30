@@ -1,100 +1,129 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../App.css'
-const Settings = require('../settings')
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../App.css';
+import Settings from '../settings'; // If Settings is a regular object, import it directly
 
-function SetBrandList () {
-  const navigate = useNavigate()
-  //const [brands, setBrands] = useState([initBrand])
-  const [newBrand, setNewBrand] = useState('')
+function SetBrandList() {
+  const navigate = useNavigate();
+  const [brands, setBrands] = useState([]);
+  const [newBrand, setNewBrand] = useState('');
 
-  // Brand Entry Storing start
-
-  let initBrand
-  if (localStorage.getItem('brands') === null) {
-    initBrand = []
-  } else {
-    initBrand = JSON.parse(localStorage.getItem('brands'))
-  }
-
-  
-
-  const [brands, setBrands] = useState(initBrand)
   useEffect(() => {
-    localStorage.setItem('brands', JSON.stringify(brands))
-  }, [brands])
+    retrieveBrands();
+  }, []);
 
-  // Brand Entry Storing end
+  const retrieveBrands = () => {
+    axios
+      .get(`${Settings.serviceHost}:${Settings.servicePort}/getBrand`)
+      .then(function (response) {
+        const ls = response?.data;
+        setBrands(ls || []);
+        console.log(`List of Brands : ${JSON.stringify(ls)}`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-  const handleInputChange = event => {
-    setNewBrand(event.target.value)
-  }
+  const handleInputChange = (event) => {
 
-  const handleFormSubmit = event => {
-    event.preventDefault()
-    if (newBrand.trim() === '') {
-      return
-    }
-    setBrands([...brands, { id: Date.now(), text: newBrand }])
-    setNewBrand('')
-  }
+    setNewBrand(event.target.value);
 
-  const handleBrandDelete = id => {
-    // setBrands(brands.filter(brand => brand.id !== id))
-    // localStorage.setItem('brands', JSON.stringify(brands))
-    const options = {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(brands)
-    }
-
-    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/deleteBrand`
-    fetch(apiUrlBrand, options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err));
-    console.log(`Brand : ${id}`);
-  }
-
-  const handleSaveBrand = () => {
-    const reqBody = {
-      brands: brands
-    }
-    console.log(`Body ${JSON.stringify(reqBody)}`)
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(brands)
-    }
-    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`
+      body: JSON.stringify(brands),
+    };
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;
     fetch(apiUrlBrand, options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err))
-  }
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  
 
-  let brandStyle = {
-    border: '2px red'
-  }
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (newBrand.trim() === '') {
+      return;
+    }
+    const newBrandObj = { id: Date.now(), text: newBrand };
+    setBrands([...brands, newBrandObj]);
+    setNewBrand('');
+    // Update the API with the new brand
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newBrandObj),
+    };
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;
+    fetch(apiUrlBrand, options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
+
+  const handleBrandDelete = (id) => {
+  
+    // Update the API with the updated brands list
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }), // Send the ID of the brand to be deleted
+    };
+    const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/deleteBrand`;
+    fetch(apiUrlBrand, options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(`Deleted Check : ${response}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    const updatedBrands = brands.filter((data) => data?._id !== id); 
+    console.log(  `Update list : ${JSON.stringify(updatedBrands)}`); 
+    setBrands(updatedBrands); 
+    setNewBrand('');
+  };
+
+  // const handleSaveBrand = () => {
+  //   // Update the API with the entire brands list
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(brands),
+  //   };
+  //   const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;
+  //   fetch(apiUrlBrand, options)
+  //     .then((response) => response.json())
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.error(err));
+  // };
 
   return (
     <div>
-      <form className='container my-3' onSubmit={handleFormSubmit}>
-        <label htmlFor='title' className='form-label mx-3'>
+      <form className="container my-3" onSubmit={handleFormSubmit}>
+        <label htmlFor="title" className="form-label mx-3">
           <strong> Set Brand </strong>
         </label>
-        <input type='text' value={newBrand} onChange={handleInputChange} />
-        <button className='mx-2' type='submit'>
+        <input type="text" value={newBrand} onChange={handleInputChange} />
+        <button className="mx-2" type="submit">
           Add
         </button>
         <button onClick={() => navigate(-1)}> Back </button>
       </form>
 
-      <div className='container'>
+      <div className="container my-3">
         <ul
           style={{
             verticalAlign: 'auto',
@@ -105,27 +134,27 @@ function SetBrandList () {
             borderColor: 'beige',
             borderWidth: '1px',
             borderStyle: 'solid',
-            borderRadius: '5%'
+            borderRadius: '5%',
           }}
         >
-          {brands.map(brand => (
-            <li key={brand.id}>
-              {brand.text}
+          {brands.map((data) => (
+            <li key ={data._id}>
+              {data.text} 
               <button
-                className='btn btn-block btn-danger my-2 mx-2'
-                onClick={() => handleBrandDelete(brand.text)}
+                className="btn btn-block btn-danger my-2 mx-2"
+                onClick={() => handleBrandDelete(data._id)}
               >
-                <span className='fa fa-trash'> </span> Delete{' '}
+                <span className="fa fa-trash"> </span> Delete{' '}
               </button>
             </li>
           ))}
         </ul>
-        <button className='mx-2' onClick={handleSaveBrand}>
+        {/* <button className="mx-2" onClick={handleSaveBrand}>
           Save
-        </button>
+        </button> */}
       </div>
     </div>
-  )
+  );
 }
 
-export default SetBrandList
+export default SetBrandList;
