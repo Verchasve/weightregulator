@@ -1,86 +1,132 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import '../App.css'
-const Settings = require('../settings')
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../App.css';
+import Settings from '../settings'; // If Settings is a regular object, import it directly
 
-function SetOperatorList () {
-  const navigate = useNavigate()
-  //const [brands, setBrands] = useState([initBrand])
-  const [newOperator, setNewOperator] = useState('')
 
-  // Brand Entry Storing start
+// Operator operator
 
-  let initOperator
-  if (localStorage.getItem('operators') === null) {
-    initOperator = []
-  } else {
-    initOperator = JSON.parse(localStorage.getItem('operators'))
-  }
+function SetOperatorList() {
+  const navigate = useNavigate();
+  const [operators, setOperators] = useState([]);
+  const [newOperator, setNewOperator] = useState('');
 
-  
-
-  const [operators, setOperators] = useState(initOperator)
   useEffect(() => {
-    localStorage.setItem('operators', JSON.stringify(operators))
-  }, [operators])
+    retrieveOperators();
+  }, []);
 
-  // Brand Entry Storing end
+  const retrieveOperators = () => {
+    axios
+      .get(`${Settings.serviceHost}:${Settings.servicePort}/getOperator`)
+      .then(function (response) {
+        const ls = response?.data;
+        setOperators(ls || []);
+        console.log(`List of Operators : ${JSON.stringify(ls)}`);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-  const handleInputChange = event => {
-    setNewOperator(event.target.value)
-  }
+  const handleInputChange = (event) => {
 
-  const handleFormSubmit = event => {
-    event.preventDefault()
-    if (newOperator.trim() === '') {
-      return
-    }
-    setOperators([...operators, { id: Date.now(), text: newOperator }])
-    setNewOperator('')
-  }
+    setNewOperator(event.target.value);
 
-  const handleOperatorDelete = id => {
-    setOperators(operators.filter(operator => operator.id !== id))
-    localStorage.setItem('operators', JSON.stringify(operators))
-  }
-
-  const handleSaveOperator = () => {
-    const reqBody = {
-      operators: operators
-    }
-    console.log(`Body ${JSON.stringify(reqBody)}`)
     const options = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(operators)
-    }
-    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/setOperator`
+      body: JSON.stringify(operators),
+    };
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/setOperator`;
     fetch(apiUrlOperator, options)
-      .then(response => response.json())
-      .then(response => console.log(response))
-      .catch(err => console.error(err))
-  }
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
 
-  // let operatorStyle = {
-  //   border: '2px red'
-  // }
+
+  };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (newOperator.trim() === '') {
+      return;
+    }
+    const newOperatorObj = { id: Date.now(), text: newOperator };
+    setOperators([...operators, newOperatorObj]);
+    setNewOperator('');
+    // Update the API with the new operator
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newOperatorObj),
+    };
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/setOperator`;
+    fetch(apiUrlOperator, options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  };
+
+  const handleOperatorDelete = (id) => {
+
+    // Update the API with the updated operators list
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id }), // Send the ID of the operator to be deleted
+    };
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/deleteOperator`;
+    fetch(apiUrlOperator, options)
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(`Deleted Check : ${response}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    const updatedOperators = operators.filter((data) => data?._id !== id);
+    console.log(`Update list : ${JSON.stringify(updatedOperators)}`);
+    setOperators(updatedOperators);
+    setNewOperator('');
+  };
+
+  // const handleSaveoperator = () => {
+  //   // Update the API with the entire operators list
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify(operators),
+  //   };
+  //   const apiUrloperator = `${Settings.serviceHost}:${Settings.servicePort}/setoperator`;
+  //   fetch(apiUrloperator, options)
+  //     .then((response) => response.json())
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.error(err));
+  // };
 
   return (
     <div>
-      <form className='container my-3' onSubmit={handleFormSubmit}>
-        <label htmlFor='title' className='form-label mx-3'>
+      <form className="container my-3" onSubmit={handleFormSubmit}>
+        <label htmlFor="title" className="form-label mx-3">
           <strong> Set Operator </strong>
         </label>
-        <input type='text' value={newOperator} onChange={handleInputChange} />
-        <button className='mx-2' type='submit'>
+        <input type="text" value={newOperator} onChange={handleInputChange} />
+        <button className="mx-2" type="submit">
           Add
         </button>
         <button onClick={() => navigate(-1)}> Back </button>
       </form>
 
-      <div className='container'>
+      <div className="container my-3">
         <ul
           style={{
             verticalAlign: 'auto',
@@ -91,30 +137,27 @@ function SetOperatorList () {
             borderColor: 'beige',
             borderWidth: '1px',
             borderStyle: 'solid',
-            borderRadius: '5%'
+            borderRadius: '5%',
           }}
         >
-          {operators.map(operator => (
-            <li key={operator.id}>
-              {operator.text}
+          {operators.map((data) => (
+            <li key={data._id}>
+              {data.text}
               <button
-                className='btn btn-block btn-danger my-2 mx-2'
-                onClick={() => handleOperatorDelete(operator.id)}
+                className="btn btn-block btn-danger my-2 mx-2"
+                onClick={() => handleOperatorDelete(data._id)}
               >
-                <span className='fa fa-trash'> </span> Delete{' '}
+                <span className="fa fa-trash"> </span> Delete{' '}
               </button>
             </li>
           ))}
         </ul>
-        <button className='mx-2' onClick={handleSaveOperator}>
+        {/* <button className="mx-2" onClick={handleSaveoperator}>
           Save
-        </button>
+        </button> */}
       </div>
     </div>
-  )
+  );
 }
 
-
-
-
-export default SetOperatorList
+export default SetOperatorList;

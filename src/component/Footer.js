@@ -4,7 +4,7 @@ import '../App.css'
 
 export default function Footer() {
     const navigate = useNavigate();
-    return (  
+    return (
         <>
             <div>
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,7 +25,7 @@ export default function Footer() {
 
                     <div>
                         <input className="mx-2"
-                        type="submit"
+                            type="submit"
                             value="Save"
                             id="footerSaveBtn" />
                         <input type="submit"

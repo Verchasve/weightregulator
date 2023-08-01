@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 
 
-export default function SetProdEntries () {
+export default function SetProdEntries() {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ export default function SetProdEntries () {
           </div>
         </nav>
 
-        <div className='mainDiv my-4 mx-4' style={{backgroundColor: "beige"}}>
+        <div className='mainDiv my-4 mx-4' style={{ backgroundColor: "beige" }}>
           <div>
             <fieldset className='row mb-3'>
               <legend className='col-form-label col-sm-2 pt-0'>
@@ -32,7 +32,7 @@ export default function SetProdEntries () {
                     name='SetProductEntries'
                     id='brandRadio'
                     value='brandValue'
-                    onClick ={() => navigate('/setBrandList')}
+                    onClick={() => navigate('/setBrandList')}
                   />
                   <label className='form-check-label' htmlFor='brandValue'>
                     Set Brand
@@ -45,7 +45,7 @@ export default function SetProdEntries () {
                     name='SetProductEntries'
                     id='sizeRadio'
                     value='sizeValue'
-                    onClick ={() => navigate('/setSizeList')}
+                    onClick={() => navigate('/setSizeList')}
                   />
                   <label className='form-check-label' htmlFor='sizeValue'>
                     Set Size
@@ -59,7 +59,7 @@ export default function SetProdEntries () {
                     name='SetProductEntries'
                     id='layerRadio'
                     value='layerValue'
-                    onClick ={() => navigate('/setLayerList')}
+                    onClick={() => navigate('/setLayerList')}
                   />
                   <label className='form-check-label' htmlFor='layerValue'>
                     Set Layer
@@ -73,7 +73,7 @@ export default function SetProdEntries () {
                     name='SetProductEntries'
                     id='colorRadio'
                     value='colorValue'
-                    onClick ={() => navigate('/setColorList')}
+                    onClick={() => navigate('/setColorList')}
                   />
                   <label className='form-check-label' htmlFor='colorValue'>
                     Set Color
@@ -121,7 +121,7 @@ export default function SetProdEntries () {
                     name='SetProductEntries'
                     id='operatorsRadio'
                     value='operatorsValue'
-                    onClick ={() => navigate('/setOperatorList')}
+                    onClick={() => navigate('/setOperatorList')}
                   />
                   <label className='form-check-label' htmlFor='operatorsValue'>
                     Set Operators Names
@@ -142,7 +142,7 @@ export default function SetProdEntries () {
               </div>
             </fieldset>
 
-           
+
           </div>
           <hr />
 

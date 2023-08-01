@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 
 
-export default function Setting () {
+export default function Setting() {
   const navigate = useNavigate();
   return (
     <>
@@ -27,14 +27,14 @@ export default function Setting () {
               onClick={() => navigate("/header")}
             />
             {/* <button onClick={() => navigate("/header")}>Set Header </button> */}
-            
+
           </div>
           <div className='my-4'>
             <input
               type='submit'
               value='Set Footer'
               name='hfpEntries'
-             // onClick='hfpEntries()'
+              // onClick='hfpEntries()'
               id='footerBtn'
               onClick={() => navigate("/footer")}
             />
@@ -47,7 +47,7 @@ export default function Setting () {
               onClick='hfpEntries()'
               id='productionEntriesBtn'
             /> */}
-             <button onClick={() => navigate("/setProdEntries")}>Set Production Entries</button>
+            <button onClick={() => navigate("/setProdEntries")}>Set Production Entries</button>
           </div>
           <div className='my-4'>
             {/* <input type='submit' value='Back' name='hfpBack' id='hfpBackBtn' /> */}

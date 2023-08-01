@@ -42,7 +42,7 @@ function SetBrandList() {
       .then((response) => response.json())
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
-  
+
 
   };
 
@@ -70,7 +70,7 @@ function SetBrandList() {
   };
 
   const handleBrandDelete = (id) => {
-  
+
     // Update the API with the updated brands list
     const options = {
       method: 'DELETE',
@@ -88,9 +88,9 @@ function SetBrandList() {
       .catch((err) => {
         console.error(err);
       });
-    const updatedBrands = brands.filter((data) => data?._id !== id); 
-    console.log(  `Update list : ${JSON.stringify(updatedBrands)}`); 
-    setBrands(updatedBrands); 
+    const updatedBrands = brands.filter((data) => data?._id !== id);
+    console.log(`Update list : ${JSON.stringify(updatedBrands)}`);
+    setBrands(updatedBrands);
     setNewBrand('');
   };
 
@@ -138,8 +138,8 @@ function SetBrandList() {
           }}
         >
           {brands.map((data) => (
-            <li key ={data._id}>
-              {data.text} 
+            <li key={data._id}>
+              {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
                 onClick={() => handleBrandDelete(data._id)}

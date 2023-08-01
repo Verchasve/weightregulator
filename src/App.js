@@ -1,6 +1,6 @@
 
 import React from "react";
-import {BrowserRouter,Routes,Route,} from "react-router-dom";
+import { BrowserRouter, Routes, Route, } from "react-router-dom";
 
 import Home from "./component/Home";
 import About from "./component/About";
@@ -22,38 +22,38 @@ import SetColorList from "./component/SetColorList";
 import SetOperatorList from "./component/SetOperatorList";
 
 function App() {
-    
+
   return (
-      <>
-     
-      
+    <>
+
+
       <BrowserRouter>
-      <Routes>
-        <Route exact path="/" element={<Home/>}/>
-        <Route exact path="/about" element={<About/>}/>
-        <Route exact path="/operation" element={<OperationPanel/>}/>
-        <Route exact path="/admin" element={<AdminPortal/>}/>
-        <Route exact path="/prodTable" element={<ProdTable/>}/>
-        <Route exact path="/adminServerPortal" element={<AdminServerPortal/>}/>
-        <Route exact path="/settingss" element={<Setting/>}/>
-        <Route exact path="/setProdEntries" element={<SetProdEntries/>}/>
-        <Route exact path="/correction" element={<Correction/>}/>
-        <Route exact path="/header" element={<Header/>}/>
-        <Route exact path="/footer" element={<Footer/>}/>
-        <Route exact path="/setBrandList/*" element={<SetBrandList/>}/>
-        <Route exact path="/setSizeList/*" element={<SetSizeList/>}/>
-        <Route exact path="/setLayerList/*" element={<SetLayerList/>}/>
-        <Route exact path="/setColorList/*" element={<SetColorList/>}/>
-        <Route exact path="/setOperatorList/*" element={<SetOperatorList/>}/>
-      </Routes>
-      {/* <SetBrand/> */}
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/about" element={<About />} />
+          <Route exact path="/operation" element={<OperationPanel />} />
+          <Route exact path="/admin" element={<AdminPortal />} />
+          <Route exact path="/prodTable" element={<ProdTable />} />
+          <Route exact path="/adminServerPortal" element={<AdminServerPortal />} />
+          <Route exact path="/settingss" element={<Setting />} />
+          <Route exact path="/setProdEntries" element={<SetProdEntries />} />
+          <Route exact path="/correction" element={<Correction />} />
+          <Route exact path="/header" element={<Header />} />
+          <Route exact path="/footer" element={<Footer />} />
+          <Route exact path="/setBrandList/*" element={<SetBrandList />} />
+          <Route exact path="/setSizeList/*" element={<SetSizeList />} />
+          <Route exact path="/setLayerList/*" element={<SetLayerList />} />
+          <Route exact path="/setColorList/*" element={<SetColorList />} />
+          <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
+        </Routes>
+        {/* <SetBrand/> */}
       </BrowserRouter>
-      
+
       {/* <List/> */}
       {/* <Setting/> */}
       {/* <BSLC/> */}
       {/* <ProdTable/> */}
-      </>
+    </>
   );
 }
 

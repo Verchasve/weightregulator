@@ -17,7 +17,7 @@ const Home = () => {
           </a>
         </div>
       </nav>
-      <div className='App' style={{widows:'initial'}}>
+      <div className='App' style={{ widows: 'initial' }}>
         <header className='App-header'>
           <h1 style={{ color: 'yellow' }}>Welcome To Weight Controller</h1>
           <img src={logo} className='App-logo' alt='logo' />

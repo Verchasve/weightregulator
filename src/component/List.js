@@ -7,15 +7,15 @@ const List = (props) => {
       <h2 className='list-head'>User Records</h2>
       {users.map((user) => {
         return (
-        
-            <div key={user.id} >
-            <h1 style={{color:"green"}}>{user?.Fname} {user?.Lname}</h1>                
+
+          <div key={user.id} >
+            <h1 style={{ color: "green" }}>{user?.Fname} {user?.Lname}</h1>
             <li className='list'>
-            <span className='repo-text'>Email:{user?.Email} </span>
-            <span className='repo-description'>Phone:{user?.Phone}</span> 
+              <span className='repo-text'>Email:{user?.Email} </span>
+              <span className='repo-description'>Phone:{user?.Phone}</span>
             </li>
-            </div>
-   
+          </div>
+
         );
       })}
     </ul>

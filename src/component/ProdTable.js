@@ -1,13 +1,13 @@
 import React from 'react'
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import '../App.css';
 
 
-export default function ProdTable () {
+export default function ProdTable() {
 
   const navigate = useNavigate();
 
-  
+
   return (
     <>
       <body onload="updateClock(); setInterval('updateClock()', 1000), updateDate(); setInterval('updateDate()',10000)">
@@ -54,7 +54,7 @@ export default function ProdTable () {
             <div className='my-3'>
               <div className='osdtTable'>
                 <input
-                className='mx-2'
+                  className='mx-2'
                   type='text'
                   name=''
                   id='print-op-name'
@@ -62,7 +62,7 @@ export default function ProdTable () {
                   disabled
                 />
                 <input
-                className='mx-2'
+                  className='mx-2'
                   type='text'
                   name=''
                   id='print-op-shift'
@@ -81,7 +81,7 @@ export default function ProdTable () {
 
             <div className='my-2'>
               <input
-              className='mx-2'
+                className='mx-2'
                 type='text'
                 name=''
                 id='print-brand'
@@ -89,7 +89,7 @@ export default function ProdTable () {
                 disabled
               />
               <input
-              className='mx-2'
+                className='mx-2'
                 type='text'
                 name=''
                 id='print-size'
@@ -97,7 +97,7 @@ export default function ProdTable () {
                 disabled
               />
               <input
-              className='mx-2'
+                className='mx-2'
                 type='text'
                 name=''
                 id='print-layer'
@@ -105,7 +105,7 @@ export default function ProdTable () {
                 disabled
               />
               <input
-              className='mx-2'
+                className='mx-2'
                 type='text'
                 name=''
                 id='print-color'

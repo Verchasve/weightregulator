@@ -79,7 +79,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 
-
 ### Install MongoDB Compass GUI
 
 https://www.mongodb.com/try/download/compass

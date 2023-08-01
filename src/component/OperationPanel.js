@@ -11,39 +11,39 @@ let colors = [];
 let layers = [];
 let operators = []
 
-const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;  
-fetch(apiUrlBrand)  
-.then(response => response.json())
-.then(response => brands = response)
-.catch(err => console.error(err));
+const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;
+fetch(apiUrlBrand)
+  .then(response => response.json())
+  .then(response => brands = response)
+  .catch(err => console.error(err));
 
-const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getSize`;  
-fetch(apiUrlSize)  
-.then(response => response.json())
-.then(response => sizes = response)
-.catch(err => console.error(err));
+const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getSize`;
+fetch(apiUrlSize)
+  .then(response => response.json())
+  .then(response => sizes = response)
+  .catch(err => console.error(err));
 
-const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getColor`;  
-fetch(apiUrlColor)  
-.then(response => response.json())
-.then(response => colors = response)
-.catch(err => console.error(err));
+const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getColor`;
+fetch(apiUrlColor)
+  .then(response => response.json())
+  .then(response => colors = response)
+  .catch(err => console.error(err));
 
-const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getLayer`;  
-fetch(apiUrlLayer)  
-.then(response => response.json())
-.then(response => layers = response)
-.catch(err => console.error(err));
+const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getLayer`;
+fetch(apiUrlLayer)
+  .then(response => response.json())
+  .then(response => layers = response)
+  .catch(err => console.error(err));
 
-const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;  
-fetch(apiUrlOperator)  
-.then(response => response.json())
-.then(response => operators = response)
-.catch(err => console.error(err));
+const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;
+fetch(apiUrlOperator)
+  .then(response => response.json())
+  .then(response => operators = response)
+  .catch(err => console.error(err));
 
 const OperationPanel = () => {
-  const navigate = useNavigate() 
-  const ListLoading = withListLoading(List)   
+  const navigate = useNavigate()
+  const ListLoading = withListLoading(List)
 
   const [appState, setAppState] = useState({
     loading: false,
@@ -103,19 +103,19 @@ const OperationPanel = () => {
   return (
 
     <>
-      
-        <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-          <div className=''>
-            <a
-              className='navbar-brand title'
-              href='#'
-              style={{ color: 'white' }}
-            >
-              <h1>Select The Production Parameters</h1>
-            </a>
-          </div>
-        </nav>
-        <div >
+
+      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+        <div className=''>
+          <a
+            className='navbar-brand title'
+            href='#'
+            style={{ color: 'white' }}
+          >
+            <h1>Select The Production Parameters</h1>
+          </a>
+        </div>
+      </nav>
+      <div >
         <div className='App'>
           <header className='App-header'>
             <h1 style={{ color: 'yellow' }}>Welcome To Operation Panel </h1>
@@ -136,7 +136,7 @@ const OperationPanel = () => {
                       <div className='mx-3 my-4 osd'>
                         <div className='osdMain'>
                           <label action='#'>
-                            
+
                             Operator Name:
                             <select
                               name='operator-name'
@@ -151,15 +151,15 @@ const OperationPanel = () => {
                                 operator present
                               </option>
                               {
-                          
-                          operators.map((operator, index) => (
-                            
-                          <option value={operator?.text} id={`operator-${operator?._id}`}>
-                            {operator?.text}
-                          </option>
-                          ))
-                          
-                          } 
+
+                                operators.map((operator, index) => (
+
+                                  <option value={operator?.text} id={`operator-${operator?._id}`}>
+                                    {operator?.text}
+                                  </option>
+                                ))
+
+                              }
                             </select>
                           </label>
                         </div>
@@ -204,17 +204,17 @@ const OperationPanel = () => {
                           >
                             <option selected id='selectBrand'>
                               Select Brand
-                            </option> 
-                          {
-                          
-                          brands.map((brand, index) => (
-                            
-                          <option value={brand?.text} id={`brand-${brand?._id}`}>
-                            {brand?.text}
-                          </option>
-                          ))
-                          
-                          } 
+                            </option>
+                            {
+
+                              brands.map((brand, index) => (
+
+                                <option value={brand?.text} id={`brand-${brand?._id}`}>
+                                  {brand?.text}
+                                </option>
+                              ))
+
+                            }
                           </select>
                         </div>
                         <div className='size'>
@@ -224,15 +224,15 @@ const OperationPanel = () => {
                           >
                             <option selected>Select Size</option>
                             {
-                          
-                          sizes.map((size, index) => (
-                            
-                          <option value={size?.text} id={`size-${size?._id}`}>
-                            {size?.text}
-                          </option>
-                          ))
-                          
-                          } 
+
+                              sizes.map((size, index) => (
+
+                                <option value={size?.text} id={`size-${size?._id}`}>
+                                  {size?.text}
+                                </option>
+                              ))
+
+                            }
                           </select>
                         </div>
                         <div className='layer'>
@@ -242,15 +242,15 @@ const OperationPanel = () => {
                           >
                             <option selected>Select Layer</option>
                             {
-                          
-                          layers.map((layer, index) => (
-                            
-                          <option value={layer?.text} id={`layer-${layer?._id}`}>
-                            {layer?.text}
-                          </option>
-                          ))
-                          
-                          } 
+
+                              layers.map((layer, index) => (
+
+                                <option value={layer?.text} id={`layer-${layer?._id}`}>
+                                  {layer?.text}
+                                </option>
+                              ))
+
+                            }
                           </select>
                         </div>
                         <div className='color'>
@@ -260,15 +260,15 @@ const OperationPanel = () => {
                           >
                             <option selected>Select Color</option>
                             {
-                          
-                          colors.map((color, index) => (
-                            
-                          <option value={color?.text} id={`color-${color?._id}`}>
-                            {color?.text}
-                          </option>
-                          ))
-                          
-                          } 
+
+                              colors.map((color, index) => (
+
+                                <option value={color?.text} id={`color-${color?._id}`}>
+                                  {color?.text}
+                                </option>
+                              ))
+
+                            }
                           </select>
                         </div>
                         <br />

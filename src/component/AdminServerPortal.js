@@ -2,13 +2,13 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 
-export default function AdminServerPortal () {
+export default function AdminServerPortal() {
   const navigate = useNavigate()
   return (
     <>
       <div>
         <body>
-          <nav className='navbar navbar-expand-lg navbar-dark bg-dark' style={{ alignContent:'center' }}>
+          <nav className='navbar navbar-expand-lg navbar-dark bg-dark' style={{ alignContent: 'center' }}>
             <div className='container-fluid title'>
               <a className='navbar-brand title' href='#'>
                 <h1>MP&AD ENTERPRISES</h1>
@@ -26,7 +26,7 @@ export default function AdminServerPortal () {
                   <table
                     border='2'
                     className='table table-success table-striped'
-                    
+
                   >
                     <thead>
                       <tr >
