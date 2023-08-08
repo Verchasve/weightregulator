@@ -202,7 +202,7 @@ const OperationPanel = () => {
                             className='form-select'
                             aria-label='Default select example'
                           >
-                            <option selected id='selectBrand'>
+                            <option defaultValue id='selectBrand'>
                               Select Brand
                             </option>
                             {
@@ -222,7 +222,7 @@ const OperationPanel = () => {
                             className='form-select mx-2'
                             aria-label='Default select example'
                           >
-                            <option selected>Select Size</option>
+                            <option defaultValue>Select Size</option>
                             {
 
                               sizes.map((size, index) => (
@@ -240,7 +240,7 @@ const OperationPanel = () => {
                             className='form-select mx-3'
                             aria-label='Default select example'
                           >
-                            <option selected>Select Layer</option>
+                            <option defaultValue>Select Layer</option>
                             {
 
                               layers.map((layer, index) => (
@@ -258,7 +258,7 @@ const OperationPanel = () => {
                             className='form-select mx-4'
                             aria-label='Default select example'
                           >
-                            <option selected>Select Color</option>
+                            <option defaultValue>Select Color</option>
                             {
 
                               colors.map((color, index) => (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import '../App.css'
 
 
@@ -10,9 +10,9 @@ export default function Setting() {
       <body>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
           <div className='container-fluid title'>
-            <a className='navbar-brand title' href='#'>
+            <Link className='navbar-brand title' to='/'>
               <h1>setting Section To Set Entries And Other Parameters</h1>
-            </a>
+            </Link>
           </div>
         </nav>
         <div className='my-4 mx-4 setting'>
