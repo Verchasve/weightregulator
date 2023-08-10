@@ -1,12 +1,34 @@
-import React from 'react'
-import { useNavigate } from "react-router-dom"
+import React from 'react';
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
 import '../App.css';
 
 
 export default function ProdTable() {
 
   const navigate = useNavigate();
+  const [currentDate, setCurrentDate] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
 
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
+
+      setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
+      setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+    };
+
+    const intervalId = setInterval(updateDateTime, 1000);
+
+    // Clear interval on component unmount
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
+
+let operator 
 
   return (
     <>
@@ -18,11 +40,7 @@ export default function ProdTable() {
             </a>
           </div>
         </nav>
-        {/* <!-- <div id="clock"></div>
-    <div id="date">
-        <div onload="updateDate();"></div>
-    </div> -->
-    <!-- <script src="clock.js"></script> --> */}
+
 
         <center>
           <div className='container my-3'>
@@ -58,7 +76,7 @@ export default function ProdTable() {
                   type='text'
                   name=''
                   id='print-op-name'
-                  placeholder='Operator Name'
+                  placeholder={operator?.text}
                   disabled
                 />
                 <input
@@ -69,13 +87,35 @@ export default function ProdTable() {
                   placeholder='Shift'
                   disabled
                 />
+                {/* <div>
+                  <h2>Current Date:</h2>
+                  <p>{currentDate}</p>
+                </div> */}
 
-                {/* <!-- <div className="dateClock"
-                         onload="updateClock(); setInterval('updateClock()', 1000), updateDate(); setInterval('updateDate()',10000)">
-                        <div id="clock"
-                             onload="updateClock();"></div>
-                        <div id="date"
-                             onload="updateDate();"></div> --> */}
+
+                <input
+                  className='mx-2'
+                  type='text'
+                  name=''
+                  id='print-op-shift'
+                  placeholder={currentDate}
+                  disabled
+
+                />
+
+                <input
+                  className='mx-2'
+                  type='text'
+                  name=''
+                  id='print-op-shift'
+                  placeholder={currentTime}
+                  disabled
+
+                />
+                {/* <div>
+                  <h2>Current Time:</h2>
+                  <p>{currentTime}</p>
+                </div> */}
               </div>
             </div>
 
