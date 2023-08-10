@@ -41,7 +41,7 @@ fetch(apiUrlOperator)
   .then(response => operators = response)
   .catch(err => console.error(err));
 
-const OperationPanel = () => {
+const OperationPanel = ({onSubmit}) => {
   const navigate = useNavigate()
   const ListLoading = withListLoading(List)
 
@@ -99,6 +99,12 @@ const OperationPanel = () => {
         setAppState({ loading: false, users: users })
       })
   }, [setAppState])
+// change done
+let operator, brand
+  const handleSubmit = ()=>{
+    onSubmit(operator?.text,brand?.text)
+  };
+
 
   return (
 
@@ -275,9 +281,10 @@ const OperationPanel = () => {
                       </div>
 
                       <div className='my-1'>
-                        <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick={() => navigate('/prodTable')} />
+                        <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick={() => navigate('/prodTable')} />  
 
                         <button className='my-2' onClick={() => navigate(-1)}>Go Back Home</button>
+                        <button className='my-2' onSubmit={handleSubmit}>submit</button>
                       </div>
                     </div>
                   </center>
