@@ -41,7 +41,7 @@ fetch(apiUrlOperator)
   .then(response => operators = response)
   .catch(err => console.error(err));
 
-const OperationPanel = ({onSubmit}) => {
+const OperationPanel = ({ onSubmit }) => {
   const navigate = useNavigate()
   const ListLoading = withListLoading(List)
 
@@ -99,17 +99,16 @@ const OperationPanel = ({onSubmit}) => {
         setAppState({ loading: false, users: users })
       })
   }, [setAppState])
-// change done
-let operator, brand
-  const handleSubmit = ()=>{
-    onSubmit(operator?.text,brand?.text)
+  // change done
+  let operator, brand
+  const handleSubmit = () => {
+    onSubmit(operator?.text, brand?.text)
   };
 
 
   return (
 
     <>
-
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
         <div className=''>
           <a
@@ -126,23 +125,13 @@ let operator, brand
           <header className='App-header'>
             <h1 style={{ color: 'yellow' }}>Welcome To Operation Panel </h1>
             <div className='App'>
-              {/* <div className='container'>
-			<h1>User DB Collection</h1>
-		</div> */}
               <div className='repo-container'>
-                {/* <ListLoading
-                isLoading={appState.loading}
-                users={appState.users}
-              /> */}
-
                 <div>
-
                   <center>
                     <div className='op-sh-dt' >
                       <div className='mx-3 my-4 osd'>
                         <div className='osdMain'>
                           <label action='#'>
-
                             Operator Name:
                             <select
                               name='operator-name'
@@ -157,14 +146,11 @@ let operator, brand
                                 operator present
                               </option>
                               {
-
                                 operators.map((operator, index) => (
-
                                   <option value={operator?.text} id={`operator-${operator?._id}`}>
                                     {operator?.text}
                                   </option>
                                 ))
-
                               }
                             </select>
                           </label>
@@ -181,7 +167,6 @@ let operator, brand
                             />
                           </label>
                         </div>
-
                         <div className='osdMain mx-5'>
                           <label action='#' className='mx-4'>
                             Date:{' '}
@@ -196,8 +181,6 @@ let operator, brand
                         </div>
                       </div>
                     </div>
-
-
                     <div>
                       <div
                         className='br-si-la-co  mx-5 bslcEntryTable'
@@ -212,14 +195,11 @@ let operator, brand
                               Select Brand
                             </option>
                             {
-
                               brands.map((brand, index) => (
-
                                 <option value={brand?.text} id={`brand-${brand?._id}`}>
                                   {brand?.text}
                                 </option>
                               ))
-
                             }
                           </select>
                         </div>
@@ -281,7 +261,7 @@ let operator, brand
                       </div>
 
                       <div className='my-1'>
-                        <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick={() => navigate('/prodTable')} />  
+                        <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick={() => navigate('/prodTable')} />
 
                         <button className='my-2' onClick={() => navigate(-1)}>Go Back Home</button>
                         <button className='my-2' onSubmit={handleSubmit}>submit</button>
@@ -300,7 +280,6 @@ let operator, brand
                 </div>
               </footer>
             </div>
-            {/* <button onClick={() => navigate(-1)}>Go Back Home</button> */}
           </header>
         </div>
       </div>
