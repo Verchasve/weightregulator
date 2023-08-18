@@ -1,6 +1,6 @@
-import React from 'react';
+//import  from 'react';
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 
 
@@ -28,11 +28,11 @@ export default function ProdTable() {
     };
   }, []);
 
-let operator 
+  let operator
 
   return (
     <>
-      <body onload="updateClock(); setInterval('updateClock()', 1000), updateDate(); setInterval('updateDate()',10000)">
+      <body>
         <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
           <div className='container-fluid title'>
             <a className='navbar-brand title' href='#'>
@@ -155,24 +155,26 @@ let operator
             </div>
           </div>
 
-          <div className='containerTable' id='productionTable'>
-            <br />
-            <table
-              border='2'
-              id='ptTable'
-              className='table table-success table-striped'
-            >
-              <thead>
-                <tr>
-                  <th scope='col' id='sName'>
-                    #
-                  </th>
-                  <th scope='col'>UBIN</th>
-                  <th scope='col'>Tank Weight</th>
-                  <th scope='col'>Time</th>
-                </tr>
-              </thead>
-            </table>
+          <div className="container">
+            <div className='containerTable' id='productionTable'>
+              <br />
+              <table
+                border='2'
+                id='ptTable'
+                className='table table-success table-striped'
+              >
+                <thead>
+                  <tr>
+                    <th scope='col' id='sName'>
+                      #
+                    </th>
+                    <th scope='col'>UBIN</th>
+                    <th scope='col'>Tank Weight</th>
+                    <th scope='col'>Time</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
           </div>
         </center>
       </body>
