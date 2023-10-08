@@ -1,9 +1,16 @@
 const { SerialPort } = require('serialport');
-//const readline = require('readline');
+const { ByteLengthParser } = require('@serialport/parser-byte-length');
+
+
+
+const { PacketLengthParser } = require('@serialport/parser-packet-length')
+
+
+
 const port = new SerialPort({
-  path: 'COM3',
+  path: 'COM4',
   baudRate: 9600,
-  autoOpen: false,
+  autoOpen: false
 });
 
 port.open(function (err) {
@@ -12,23 +19,51 @@ port.open(function (err) {
   }
   // Because there's no callback to write, write errors will be emitted on the port:
   port.write('main screen turn on')
-});
+})
 
+//const parser = port.pipe(new ByteLengthParser({ length: 1 }));
+
+const parser = port.pipe(new PacketLengthParser({
+  delimiter: 0xbc,
+  packetOverhead: 5,
+  lengthBytes: 2,
+  lengthOffset: 2,
+}))
+
+parser.on('data', function (){
+  const dataW = port.read();
+  console.log(dataW);
+}) ;
 // The open event is always emitted
-port.on('open', function() {
+port.on('open', function () {
   // open logic
 });
 
-// Read data that is available but keep the stream in "paused mode"
 port.on('readable', function () {
-  console.log('Data:', port.read());
-})
+  const dataW = port.read()
+  const decodedData = new TextDecoder().decode(dataW)
+  const regexPattern = /(\d+\.\d+)\s*KG/g;
 
-// Switches the port into "flowing mode"
-port.on('data', function (data) {
-  console.log('Data:', data);
-})
+  let serialData = matchAll(decodedData,regexPattern)
+  console.log("Data:",serialData)
+});
 
-// Pipe the data into another stream (like a parser or standard out)
-//const lineStream = port.pipe(new readline());
-//console.log(lineStream);
+  // Approach 1
+  // Step1 - Parse every single packet.
+  //  Step 2 -Add every character into String
+  // Output const data = {ST, ,GS, 17.0,KG  }
+  // Step 3 -  Regex -> data {Remove ST , space and comma}
+  // Final result - > {17.0 KG}
+
+  // Approach 2
+  //  regex - String Start with ST and end with KG chracter
+  // Output const data = {ST, ,GS, 17.0,KG  }
+  // String.replace -  ST KG , - "" }
+ // if (decodedData.length > 1 ){
+    //console.log( 'Data:', decodedData);
+   
+
+
+
+
+//   node serialComm/senderTest.js

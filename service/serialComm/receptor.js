@@ -1,14 +1,24 @@
-const SerialPort = require("serialport");
-const port = "COM2";
-
-const serialPort = new SerialPort(
-  port, {
-  baudRate: 9600
+const { SerialPort } = require('serialport')
+const { ByteLengthParser } = require('@serialport/parser-byte-length')
+const port = new SerialPort({
+  path: 'COM4',
+  baudRate: 9600,
+  autoOpen: false
 });
 
-serialPort.on("open", function() {
-  console.log("-- Connection opened --");
-  serialPort.on("data", function(data) {
-    console.log("Data received: " + data);
-  });
+port.on('open', () => {
+  port.port.emitData('data');
 });
+
+port.on('readable', function () {
+  const dataW = port.read()
+  const decodedData = new TextDecoder().decode(dataW);
+  console.log(decodedData);
+});
+
+const parser = port.pipe(new ByteLengthParser({ length: 8 }));
+
+parser.on('data', function (){
+  const dataW = port.read();
+  //console.log(dataW);
+}) ;
