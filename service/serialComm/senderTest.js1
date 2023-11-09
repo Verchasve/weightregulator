@@ -3,7 +3,7 @@ const { ByteLengthParser } = require('@serialport/parser-byte-length');
 
 
 
-const { PacketLengthParser } = require('@serialport/parser-packet-length')
+const { PacketLengthParser } = require('@serialport/parser-packet-length');
 
 
 
@@ -32,7 +32,7 @@ const parser = port.pipe(new PacketLengthParser({
 
 parser.on('data', function (){
   const dataW = port.read();
-  console.log(dataW);
+ // console.log(dataW);
 }) ;
 // The open event is always emitted
 port.on('open', function () {

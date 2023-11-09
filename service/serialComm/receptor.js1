@@ -13,7 +13,7 @@ port.on('open', () => {
 port.on('readable', function () {
   const dataW = port.read()
   const decodedData = new TextDecoder().decode(dataW);
-  console.log(decodedData);
+  //console.log(decodedData);
 });
 
 const parser = port.pipe(new ByteLengthParser({ length: 8 }));

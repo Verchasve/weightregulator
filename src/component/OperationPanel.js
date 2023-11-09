@@ -5,11 +5,19 @@ import './OperationPanel.css'
 import List from './List'
 import withListLoading from './withListLoading'
 const Settings = require('../settings')
+let operators = [];
 let brands = [];
 let sizes = [];
 let colors = [];
 let layers = [];
-let operators = []
+
+
+const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;
+fetch(apiUrlOperator)
+.then(response => response.json())
+.then(response => operators = response)
+  .catch(err => console.error(err));
+  
 
 const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;
 fetch(apiUrlBrand)
@@ -35,20 +43,29 @@ fetch(apiUrlLayer)
   .then(response => layers = response)
   .catch(err => console.error(err));
 
-const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;
-fetch(apiUrlOperator)
-  .then(response => response.json())
-  .then(response => operators = response)
-  .catch(err => console.error(err));
+
 
 const OperationPanel = ({ onSubmit }) => {
   const navigate = useNavigate()
   const ListLoading = withListLoading(List)
+  let operator, brand;
 
   const [appState, setAppState] = useState({
     loading: false,
     repos: null
   })
+
+  console.log(appState)
+
+  useEffect(() => {
+    setAppState({ loading: true })
+    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`
+    fetch(apiUrlOperator)
+      .then(res => res.json())
+      .then(users => {
+        setAppState({ loading: false, users: users })
+      })
+  }, [setAppState])
 
   useEffect(() => {
     setAppState({ loading: true })
@@ -90,17 +107,9 @@ const OperationPanel = ({ onSubmit }) => {
       })
   }, [setAppState])
 
-  useEffect(() => {
-    setAppState({ loading: true })
-    const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`
-    fetch(apiUrlOperator)
-      .then(res => res.json())
-      .then(users => {
-        setAppState({ loading: false, users: users })
-      })
-  }, [setAppState])
+  
   // change done
-  let operator, brand
+  
   const handleSubmit = () => {
     onSubmit(operator?.text, brand?.text)
   };

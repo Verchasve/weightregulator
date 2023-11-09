@@ -1,3 +1,3 @@
 npm run sender
 
-npm run receptor
+#npm run receptor

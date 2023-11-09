@@ -17,6 +17,8 @@ const { setProductHeader,
   removeProductColors,
   removeProductOperators} = require("./utils");
 
+//const {collectData } = require("./serialComm/serialTestFile");
+
 app.use(cors());
 
 const bodyParser = require('body-parser')
@@ -312,7 +314,15 @@ router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
   }
 });
 
-// 
+router.route("/getSerialData").get(jsonParser, async function (req, res) {
+  try {
+    let data = {};
+     
+    res.send(data);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 
 app.listen(Settings.port, function () {
   console.log("Server is running on Port: " + serviceURL);

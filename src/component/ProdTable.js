@@ -1,7 +1,13 @@
 //import  from 'react';
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
+ 
 import '../App.css';
+ 
+
+ 
+
+
 
 
 export default function ProdTable() {
@@ -52,20 +58,27 @@ export default function ProdTable() {
                   id='weightScreen'
                   className='weightScreen'
                   placeholder='Tank Weight in Kg Screen'
+                  style = {{ 
+                    height: "2.5em",
+                    fontSize: "xx-large",
+                    textAlign: "center",
+                    borderRadius:".3em"
+                  }}
+                    
                 />
               </label>
 
               {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
-              <button className='addBtn mx-2' id='ptAddBtn' onClick='AddRow()'>
+              <button className='primary addBtn mx-2' id='ptAddBtn' onClick='AddRow()'>
                 ADD
               </button>
 
               {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
-              <button className='reject mx-2' id='ptReject'>
+              <button className='danger reject mx-2' id='ptReject'>
                 Reject
               </button>
 
-              <button className='mx-2' onClick={() => navigate(-1)}>Back </button>
+              <button className='btn-primary mx-2' onClick={() => navigate(-1)}>Back </button>
               <button className='mx-2' id='ptFinishBtn'>Finish</button>
             </div>
 
