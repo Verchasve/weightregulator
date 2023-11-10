@@ -17,7 +17,7 @@ const { setProductHeader,
   removeProductColors,
   removeProductOperators} = require("./utils");
 
-//const {collectData } = require("./serialComm/serialTestFile");
+const {collectScaletData } = require("./serialComm/serialScaleGen");
 
 app.use(cors());
 
@@ -316,9 +316,7 @@ router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
 
 router.route("/getSerialData").get(jsonParser, async function (req, res) {
   try {
-    let data = {};
-     
-    res.send(data);
+    //res.send(data);
   } catch (error) {
     res.status(500).send(error);
   }
