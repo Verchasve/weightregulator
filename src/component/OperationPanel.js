@@ -4,12 +4,14 @@ import '../App.css'
 import './OperationPanel.css'
 import List from './List'
 import withListLoading from './withListLoading'
+import ProdTable from './ProdTable'
 const Settings = require('../settings')
 let operators = [];
 let brands = [];
 let sizes = [];
 let colors = [];
 let layers = [];
+
 
 
 const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;
@@ -53,7 +55,13 @@ const OperationPanel = ({ onSubmit }) => {
   const [appState, setAppState] = useState({
     loading: false,
     repos: null
-  })
+  });
+
+  const [brandValue , setBrandValue] = useState('');
+  const [sizeValue , setSizeValue] = useState('');
+  const [colorValue , setColorValue] = useState("");
+  const [layerValue , setLayerValue] = useState("");
+
 
   console.log(appState)
 
@@ -108,10 +116,16 @@ const OperationPanel = ({ onSubmit }) => {
   }, [setAppState])
 
   
+
+
   // change done
-  
   const handleSubmit = () => {
-    onSubmit(operator?.text, brand?.text)
+    onSubmit(operator?.text, brand?.text);
+  };
+
+  const handleChanges = (event) => { 
+    console.log("Brand " + event.target.value);
+    setBrandValue(event.target.value);
   };
 
 
@@ -199,6 +213,7 @@ const OperationPanel = ({ onSubmit }) => {
                           <select
                             className='form-select'
                             aria-label='Default select example'
+                            onChange={handleChanges}
                           >
                             <option defaultValue id='selectBrand'>
                               Select Brand

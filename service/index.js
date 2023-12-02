@@ -17,7 +17,7 @@ const { setProductHeader,
   removeProductColors,
   removeProductOperators} = require("./utils");
 
-const {collectScaletData } = require("./serialComm/serialScaleGen");
+const { startSerialConnection, collectScaletData } = require("./serialComm/serialScaleGen");
 
 app.use(cors());
 
@@ -44,6 +44,7 @@ router.route("/getData").get(async function (req, res) {
     res.status(500).send(error);
   }
 });
+
 
 // header entries code
 router.route("/setHeader").post(jsonParser, async function (req, res) {
@@ -314,9 +315,46 @@ router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
   }
 });
 
+// serial connection data code
+let isConnected = false;
 router.route("/getSerialData").get(jsonParser, async function (req, res) {
   try {
-    //res.send(data);
+
+    const serialPortInstance =  startSerialConnection();
+
+    if (isConnected === true){
+      serialPortInstance.close();
+    }
+      let decodedData ,distinctVal = "";
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Connection', 'keep-alive'); 
+      if (serialPortInstance){
+        serialPortInstance.open(function (err) {
+          if (err) {
+              return console.log('Error opening port: ', err.message)
+          }
+          isConnected = true;
+          console.log(`Serial Connection Started in index.js....`); 
+      });
+  
+        // Initialize an empty array to collect data
+        serialPortInstance.on('readable', function () {
+            const data = serialPortInstance.read(); 
+            if (data != null){
+              decodedData = new TextDecoder().decode(data);
+              const latestData = collectScaletData(decodedData);
+              //console.log(`Serial data1.... ${decodedData}`);
+              if (latestData != undefined && latestData != distinctVal){
+                console.log(`Serial data.... ${latestData}`); 
+                distinctVal =  latestData;
+                res.write(distinctVal); 
+                //console.log("DisVal:", distinctVal);
+              } 
+            }
+          
+        }); 
+      }
   } catch (error) {
     res.status(500).send(error);
   }

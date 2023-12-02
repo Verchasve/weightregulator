@@ -1,40 +1,68 @@
 //import  from 'react';
 import { useNavigate } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
- 
+import React, { useState, useEffect , useContext } from 'react';
+import axios from 'axios';
 import '../App.css';
- 
+import Settings from '../settings';
 
- 
-
-
-
-
-export default function ProdTable() {
+export default function ProdTable(props) {
 
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
 
+  const [socket, setSocket] = useState(null);
+  const [message, setMessage] = useState('');
+  const [receivedMessage, setReceivedMessage] = useState('');
+
+  console.log("brandValue " + JSON.stringify(props));
+
   useEffect(() => {
+
     const updateDateTime = () => {
       const now = new Date();
       const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
       const timeOptions = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
-
       setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
       setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
     };
 
+    // Connect to the WebSocket server
+    const socket = new WebSocket('ws://localhost:4001'); // Replace with your server address
+    socket.onmessage = (event) => {
+      setReceivedMessage(event.data);
+      console.log(event);
+    };
+
+    // Set up event listeners
+    socket.onopen = () => {
+      console.log('Connected to WebSocket server');
+    };
+
+
+    // socket.onclose = () => {
+    //   console.log('Disconnected from WebSocket server');
+    // };
+
+    // Save the socket instance in the state
+    setSocket(socket);
+   
+
     const intervalId = setInterval(updateDateTime, 1000);
 
-    // Clear interval on component unmount
     return () => {
       clearInterval(intervalId);
+      //socket.close();
     };
   }, []);
 
-  let operator
+  let operator;
+  const sendMessage = () => {
+    if (socket && message) {
+      socket.send(message);
+      setMessage('');
+    }
+  };
 
   return (
     <>
@@ -58,13 +86,15 @@ export default function ProdTable() {
                   id='weightScreen'
                   className='weightScreen'
                   placeholder='Tank Weight in Kg Screen'
-                  style = {{ 
+                  value= {receivedMessage}
+                  style={{
                     height: "2.5em",
-                    fontSize: "xx-large",
+                    fontSize: "2.5em",
+                    fontWeight: "bolder",
                     textAlign: "center",
-                    borderRadius:".3em"
+                    borderRadius: ".3em"
                   }}
-                    
+
                 />
               </label>
 
@@ -189,6 +219,24 @@ export default function ProdTable() {
               </table>
             </div>
           </div>
+
+          <div>
+      <h1>WebSocket Client</h1>
+      <div>
+        <strong>Received Message:</strong> {receivedMessage}
+      </div>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <button onClick={sendMessage}>Send</button>
+      </div>
+    </div>
+
+
         </center>
       </body>
     </>
