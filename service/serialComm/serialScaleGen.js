@@ -50,7 +50,7 @@ const getWeightData = (str) => {
     const data =  match.split(",");
 
     // oldDataValue
-    console.log( "oldData001...",  match)
+    console.log( "oldData001...", match)
 
     const distinctVal =  [...new Set(data)];
         const valuesArray = distinctVal[0].split('\n');

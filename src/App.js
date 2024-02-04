@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter, Routes, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 
 import Home from "./component/Home";
 import About from "./component/About";
@@ -27,7 +27,7 @@ function App() {
     <>
 
 
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
@@ -45,9 +45,10 @@ function App() {
           <Route exact path="/setLayerList/*" element={<SetLayerList />} />
           <Route exact path="/setColorList/*" element={<SetColorList />} />
           <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
+          {/* <Route path="*" element={<MatchAllRoute />} /> */}
         </Routes>
         {/* <SetBrand/> */}
-      </BrowserRouter>
+      </Router>
 
       {/* <List/> */}
       {/* <Setting/> */}
@@ -58,3 +59,4 @@ function App() {
 }
 
 export default App;
+

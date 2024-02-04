@@ -4,8 +4,8 @@ import '../App.css'
 import './OperationPanel.css'
 import List from './List'
 import withListLoading from './withListLoading'
-import ProdTable from './ProdTable'
-const Settings = require('../settings')
+
+const Settings = require('../settings');
 let operators = [];
 let brands = [];
 let sizes = [];
@@ -14,12 +14,13 @@ let layers = [];
 
 
 
+
 const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`;
 fetch(apiUrlOperator)
-.then(response => response.json())
-.then(response => operators = response)
+  .then(response => response.json())
+  .then(response => operators = response)
   .catch(err => console.error(err));
-  
+
 
 const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`;
 fetch(apiUrlBrand)
@@ -47,20 +48,76 @@ fetch(apiUrlLayer)
 
 
 
-const OperationPanel = ({ onSubmit }) => {
+const OperationPanel = ({ onSubmit , props}) => {
   const navigate = useNavigate()
   const ListLoading = withListLoading(List)
-  let operator, brand;
+  //let operator, brand;
 
   const [appState, setAppState] = useState({
     loading: false,
     repos: null
   });
 
-  const [brandValue , setBrandValue] = useState('');
-  const [sizeValue , setSizeValue] = useState('');
-  const [colorValue , setColorValue] = useState("");
-  const [layerValue , setLayerValue] = useState("");
+  // Passing the Operator value to ProdTable
+
+  const [operators, setOperators] = useState([]);
+  const [selectedOperatorvalue, setSelectedOperatorValue] = useState("");
+  const handleOperatorChange = (event) => {
+    setSelectedOperatorValue(event.target.value);
+  }
+  
+  // Passing The Brand value to prodTable
+  
+  const [brands, setBrands] = useState([]);
+  const [selectedBrandValue, setSelectedBrandValue] = useState("");
+  const handleBrandChange = (event) => {
+    setSelectedBrandValue(event.target.value);
+  };
+
+  
+  // Passing the Size value to prodTable
+  
+  
+  const [sizes, setSizes] = useState([]);
+  const [selectedSizeValue, setSelectedSizeValue] = useState("");
+  const handleSizeChange = (event) => {
+    setSelectedSizeValue(event.target.value);
+  }
+  
+  
+  // Passing the Color value to prodtable
+  const [colors, setColors] = useState([]);
+  const [selectedColorValue, setSelectedColorValue] = useState("");
+  const handleColorChnage = (event) => {
+    setSelectedColorValue(event.target.value);
+  }
+  
+
+  // Passing the Layer value to prodtable
+
+  const [layers, setLayers] = useState([]);
+  const [slelectedLayerValue, setSelectedLayerValue] = useState("");
+  const handleLayerChange = (event) => {
+    setSelectedLayerValue(event.target.value);
+  }
+
+  // Passing the Color value to prodtable
+
+ 
+
+  const handleBrandContinue = () => {
+    navigate('/prodTable', { 
+      state:  {
+        selectedOperatorvalue,
+        selectedBrandValue,
+        selectedSizeValue,
+        selectedColorValue,
+        slelectedLayerValue 
+      }})
+  };
+
+  
+
 
 
   console.log(appState)
@@ -70,29 +127,46 @@ const OperationPanel = ({ onSubmit }) => {
     const apiUrlOperator = `${Settings.serviceHost}:${Settings.servicePort}/getOperator`
     fetch(apiUrlOperator)
       .then(res => res.json())
+      .then(data => setOperators(data))
       .then(users => {
         setAppState({ loading: false, users: users })
       })
+      .catch(error => console.error('Error fetching operators:', error));
   }, [setAppState])
+
+  // useEffect(() => {
+  //   setAppState({ loading: true })
+  //   const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`
+  //   fetch(apiUrlBrand)
+  //     .then(res => res.json())
+  //     .then(users => {
+  //       setAppState({ loading: false, users: users })
+  //     })
+  // }, [setAppState])
 
   useEffect(() => {
     setAppState({ loading: true })
     const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`
     fetch(apiUrlBrand)
       .then(res => res.json())
+      .then(data => setBrands(data))
       .then(users => {
         setAppState({ loading: false, users: users })
       })
-  }, [setAppState])
+      .catch(error => console.error('Error fetching brands:', error));
+  
+  }, [setAppState]);
 
   useEffect(() => {
     setAppState({ loading: true })
     const apiUrlSize = `${Settings.serviceHost}:${Settings.servicePort}/getSize`
     fetch(apiUrlSize)
       .then(res => res.json())
+      .then(data => setSizes(data))
       .then(users => {
         setAppState({ loading: false, users: users })
       })
+      .catch(error => console.error('Error fetching sizes:', error))
   }, [setAppState])
 
   useEffect(() => {
@@ -100,9 +174,11 @@ const OperationPanel = ({ onSubmit }) => {
     const apiUrlColor = `${Settings.serviceHost}:${Settings.servicePort}/getColor`
     fetch(apiUrlColor)
       .then(res => res.json())
+      .then(data => setColors(data))
       .then(users => {
         setAppState({ loading: false, users: users })
       })
+      .catch(error => console.error('Error fetching colors:', error))
   }, [setAppState])
 
   useEffect(() => {
@@ -110,23 +186,25 @@ const OperationPanel = ({ onSubmit }) => {
     const apiUrlLayer = `${Settings.serviceHost}:${Settings.servicePort}/getLayer`
     fetch(apiUrlLayer)
       .then(res => res.json())
+      .then(data => setLayers(data))
       .then(users => {
         setAppState({ loading: false, users: users })
       })
   }, [setAppState])
 
-  
+
 
 
   // change done
-  const handleSubmit = () => {
-    onSubmit(operator?.text, brand?.text);
-  };
+  // const handleSubmit = () => {
+  //   onSubmit(operator?.text, brand?.text);
+  // };
 
-  const handleChanges = (event) => { 
-    console.log("Brand " + event.target.value);
-    setBrandValue(event.target.value);
-  };
+  // const handleChanges = (event) => {
+  //   console.log("Brand " + event.target.value);
+  //   props.history.push('/prodTable/' + event.target.value);
+  //   setBrandValue(event.target.value);
+  // };
 
 
   return (
@@ -161,6 +239,8 @@ const OperationPanel = ({ onSubmit }) => {
                               id='operator-name'
                               className='form-select'
                               aria-label='Default select example'
+                              value={selectedOperatorvalue}
+                              onChange={handleOperatorChange}
                             >
                               <option
                                 value='operator-present'
@@ -213,7 +293,8 @@ const OperationPanel = ({ onSubmit }) => {
                           <select
                             className='form-select'
                             aria-label='Default select example'
-                            onChange={handleChanges}
+                            value={selectedBrandValue}
+                            onChange={handleBrandChange}
                           >
                             <option defaultValue id='selectBrand'>
                               Select Brand
@@ -231,6 +312,8 @@ const OperationPanel = ({ onSubmit }) => {
                           <select
                             className='form-select mx-2'
                             aria-label='Default select example'
+                            value={selectedSizeValue}
+                            onChange={handleSizeChange}
                           >
                             <option defaultValue>Select Size</option>
                             {
@@ -249,6 +332,8 @@ const OperationPanel = ({ onSubmit }) => {
                           <select
                             className='form-select mx-3'
                             aria-label='Default select example'
+                            value={slelectedLayerValue}
+                            onChange={handleLayerChange}
                           >
                             <option defaultValue>Select Layer</option>
                             {
@@ -267,6 +352,8 @@ const OperationPanel = ({ onSubmit }) => {
                           <select
                             className='form-select mx-4'
                             aria-label='Default select example'
+                            value={selectedColorValue}
+                            onChange={handleColorChnage}
                           >
                             <option defaultValue>Select Color</option>
                             {
@@ -285,10 +372,10 @@ const OperationPanel = ({ onSubmit }) => {
                       </div>
 
                       <div className='my-1'>
-                        <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick={() => navigate('/prodTable')} />
+                        {/* <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick= {() => navigate('/prodTable')} /> */}
 
                         <button className='my-2' onClick={() => navigate(-1)}>Go Back Home</button>
-                        <button className='my-2' onSubmit={handleSubmit}>submit</button>
+                        <button className='my-2' onClick={handleBrandContinue}>submit</button>
                       </div>
                     </div>
                   </center>

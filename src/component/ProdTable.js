@@ -1,11 +1,11 @@
 //import  from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import React, { useState, useEffect , useContext } from 'react';
 import axios from 'axios';
 import '../App.css';
 import Settings from '../settings';
 
-export default function ProdTable(props) {
+const ProdTable = (props) => {
 
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState('');
@@ -14,8 +14,22 @@ export default function ProdTable(props) {
   const [socket, setSocket] = useState(null);
   const [message, setMessage] = useState('');
   const [receivedMessage, setReceivedMessage] = useState('');
+  //const location = useLocation();
+  const {state} = useLocation();
 
-  console.log("brandValue " + JSON.stringify(props));
+  const selectedOperatorvalue = state?.selectedOperatorvalue ;
+  const selectedBrandValue = state?.selectedBrandValue ;
+  const selectedSizeValue = state?.selectedSizeValue ;
+  const selectedLayerValue = state?.slelectedLayerValue;
+  const selectedColorValue = state?.selectedColorValue;
+
+  //const selectedBrandValue = brandLocation ? brandLocation.selectedBrandValue : '';
+
+  console.log("selected Brand =", selectedBrandValue);
+
+
+  //console.log("brandValue " + props.match.params.brand);
+ 
 
   useEffect(() => {
 
@@ -117,9 +131,9 @@ export default function ProdTable(props) {
                 <input
                   className='mx-2'
                   type='text'
-                  name=''
+                  value={selectedOperatorvalue}
                   id='print-op-name'
-                  placeholder={operator?.text}
+                  placeholder='Operator'
                   disabled
                 />
                 <input
@@ -166,7 +180,7 @@ export default function ProdTable(props) {
               <input
                 className='mx-2'
                 type='text'
-                name=''
+                value= {selectedBrandValue} 
                 id='print-brand'
                 placeholder='Brand'
                 disabled
@@ -174,7 +188,7 @@ export default function ProdTable(props) {
               <input
                 className='mx-2'
                 type='text'
-                name=''
+                value={selectedSizeValue}
                 id='print-size'
                 placeholder='Size'
                 disabled
@@ -182,7 +196,7 @@ export default function ProdTable(props) {
               <input
                 className='mx-2'
                 type='text'
-                name=''
+                value={selectedLayerValue}
                 id='print-layer'
                 placeholder='Layer'
                 disabled
@@ -190,7 +204,7 @@ export default function ProdTable(props) {
               <input
                 className='mx-2'
                 type='text'
-                name=''
+                value={selectedColorValue}
                 id='print-color'
                 placeholder='Colour'
                 disabled
@@ -209,7 +223,7 @@ export default function ProdTable(props) {
                 <thead>
                   <tr>
                     <th scope='col' id='sName'>
-                      #
+                      Serial Number
                     </th>
                     <th scope='col'>UBIN</th>
                     <th scope='col'>Tank Weight</th>
@@ -242,3 +256,9 @@ export default function ProdTable(props) {
     </>
   )
 }
+
+
+export default ProdTable;
+
+
+
