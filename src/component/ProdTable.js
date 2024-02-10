@@ -1,9 +1,10 @@
 //import  from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
-import React, { useState, useEffect , useContext } from 'react';
 import axios from 'axios';
 import '../App.css';
 import Settings from '../settings';
+import md5 from 'md5';
 
 const ProdTable = (props) => {
 
@@ -15,21 +16,26 @@ const ProdTable = (props) => {
   const [message, setMessage] = useState('');
   const [receivedMessage, setReceivedMessage] = useState('');
   //const location = useLocation();
-  const {state} = useLocation();
+  const { state } = useLocation();
 
-  const selectedOperatorvalue = state?.selectedOperatorvalue ;
-  const selectedBrandValue = state?.selectedBrandValue ;
-  const selectedSizeValue = state?.selectedSizeValue ;
-  const selectedLayerValue = state?.slelectedLayerValue;
-  const selectedColorValue = state?.selectedColorValue;
+  const [serialNumber, setSerialNumber] = useState(1); // Initialize serial number
+  const [ubin, setUbin] = useState(''); // Unique Batch Identification Number
+  //const [tankWeight, setTankWeight] = useState(''); // Tank Weight
+  const [tableData, setTableData] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
+
+
+  // const selectedOperatorvalue = state?.selectedOperatorvalue;
+  // const selectedBrandValue = state?.selectedBrandValue;
+  // const selectedSizeValue = state?.selectedSizeValue;
+  // const selectedLayerValue = state?.slelectedLayerValue;
+  // const selectedColorValue = state?.selectedColorValue;
   //const selectedBrandValue = brandLocation ? brandLocation.selectedBrandValue : '';
-
-  console.log("selected Brand =", selectedBrandValue);
-
+  //console.log("selected Brand =", selectedBrandValue);
 
   //console.log("brandValue " + props.match.params.brand);
- 
+
 
   useEffect(() => {
 
@@ -40,6 +46,8 @@ const ProdTable = (props) => {
       setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
       setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
     };
+    // Change done 05-02-2024
+
 
     // Connect to the WebSocket server
     const socket = new WebSocket('ws://localhost:4001'); // Replace with your server address
@@ -60,7 +68,7 @@ const ProdTable = (props) => {
 
     // Save the socket instance in the state
     setSocket(socket);
-   
+
 
     const intervalId = setInterval(updateDateTime, 1000);
 
@@ -70,6 +78,64 @@ const ProdTable = (props) => {
     };
   }, []);
 
+  // change done 05-02-2024 generate ubin code
+
+  const generateUbin = () => {
+    // Generate UBIN based on selected values and current data/time
+    const selectedOperatorValue = state?.selectedOperatorvalue || '';
+    const selectedBrandValue = state?.selectedBrandValue || '';
+    const selectedSizeValue = state?.selectedSizeValue || '';
+    const selectedLayerValue = state?.selectedLayerValue || '';
+    const selectedColorValue = state?.selectedColorValue || '';
+    // Combine selected values and current date/time to generate UBIN
+    const combinedData = `${selectedOperatorValue}-${selectedBrandValue}-${selectedSizeValue}-${selectedLayerValue}-${selectedColorValue}-${receivedMessage}-${currentDate}-${currentTime}`;
+
+    console.log("combinedData =", combinedData);
+
+    // const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+    // const charactersLength = characters.length;
+    //   for (let i = 0; i < 6; i++) {
+    //      ubin += characters.charAt(Math.floor(Math.random() * charactersLength));
+    //    }
+
+    // Hash the combinedData to a unique alphanumeric string using md5
+    const hashedData = md5(combinedData);
+    console.log("hashedData",hashedData)
+
+    // Extract the first six characters from the hashedData as the UBIN
+    const ubin = hashedData.substring(0, 6);
+
+    // Set the generated UBIN
+    setUbin(combinedData);
+    //setUbin(newUbin);
+
+  };
+
+  const handleSearch = () => {
+    if (inputValue === ubin) {
+      alert(`UBIN: ${generateUbin().combinedData}`);
+    } else {
+      alert('Invalid UBIN');
+    }
+  };
+
+
+  const addRow = () => {
+    // Add row to table when ADD button is clicked
+    generateUbin();
+    const newRow = {
+      serialNumber: serialNumber,
+      ubin: Date.parse(new Date),
+      receivedMessage: receivedMessage,
+      time: currentTime,
+    };
+    setTableData([...tableData, newRow]);
+    setSerialNumber(serialNumber + 1); // Increment serial number
+    setReceivedMessage(receivedMessage);
+  };
+
+
   let operator;
   const sendMessage = () => {
     if (socket && message) {
@@ -77,6 +143,8 @@ const ProdTable = (props) => {
       setMessage('');
     }
   };
+
+  //Change
 
   return (
     <>
@@ -94,13 +162,22 @@ const ProdTable = (props) => {
           <div className='container my-3'>
             <div className='weight-container'>
               <label for='RealTimeweightScreen' className='weightScreen'>
+
+                <input
+                  type="text"
+                  placeholder="Enter UBIN"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                />
+                <button className="mx-3" onClick={handleSearch}>search</button>
+
                 <input
                   type='text'
                   name='weight-screen'
                   id='weightScreen'
                   className='weightScreen'
                   placeholder='Tank Weight in Kg Screen'
-                  value= {receivedMessage}
+                  value={receivedMessage}
                   style={{
                     height: "2.5em",
                     fontSize: "2.5em",
@@ -113,7 +190,7 @@ const ProdTable = (props) => {
               </label>
 
               {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
-              <button className='primary addBtn mx-2' id='ptAddBtn' onClick='AddRow()'>
+              <button className='primary addBtn mx-2' id='ptAddBtn' onClick={addRow}>
                 ADD
               </button>
 
@@ -131,7 +208,7 @@ const ProdTable = (props) => {
                 <input
                   className='mx-2'
                   type='text'
-                  value={selectedOperatorvalue}
+                  value={state?.selectedOperatorvalue || ''}
                   id='print-op-name'
                   placeholder='Operator'
                   disabled
@@ -180,7 +257,7 @@ const ProdTable = (props) => {
               <input
                 className='mx-2'
                 type='text'
-                value= {selectedBrandValue} 
+                value={state?.selectedBrandValue || ''}
                 id='print-brand'
                 placeholder='Brand'
                 disabled
@@ -188,7 +265,7 @@ const ProdTable = (props) => {
               <input
                 className='mx-2'
                 type='text'
-                value={selectedSizeValue}
+                value={state?.selectedSizeValue || ''}
                 id='print-size'
                 placeholder='Size'
                 disabled
@@ -196,7 +273,7 @@ const ProdTable = (props) => {
               <input
                 className='mx-2'
                 type='text'
-                value={selectedLayerValue}
+                value={state?.selectedLayerValue || ''}
                 id='print-layer'
                 placeholder='Layer'
                 disabled
@@ -204,7 +281,7 @@ const ProdTable = (props) => {
               <input
                 className='mx-2'
                 type='text'
-                value={selectedColorValue}
+                value={state?.selectedColorValue || ''}
                 id='print-color'
                 placeholder='Colour'
                 disabled
@@ -230,25 +307,36 @@ const ProdTable = (props) => {
                     <th scope='col'>Time</th>
                   </tr>
                 </thead>
+                <tbody>
+                  {/* Display table data */}
+                  {tableData.map((row, index) => (
+                    <tr key={index}>
+                      <td>{row?.serialNumber}</td>
+                      <td>{row?.ubin}</td>
+                      <td>{row?.receivedMessage}</td>
+                      <td>{row?.time}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             </div>
           </div>
 
           <div>
-      <h1>WebSocket Client</h1>
-      <div>
-        <strong>Received Message:</strong> {receivedMessage}
-      </div>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div>
-    </div>
+            <h1>WebSocket Client</h1>
+            <div>
+              <strong>Received Message:</strong> {receivedMessage}
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Enter message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+              />
+              <button onClick={sendMessage}>Send</button>
+            </div>
+          </div>
 
 
         </center>

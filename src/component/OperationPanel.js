@@ -96,7 +96,7 @@ const OperationPanel = ({ onSubmit , props}) => {
   // Passing the Layer value to prodtable
 
   const [layers, setLayers] = useState([]);
-  const [slelectedLayerValue, setSelectedLayerValue] = useState("");
+  const [selectedLayerValue, setSelectedLayerValue] = useState("");
   const handleLayerChange = (event) => {
     setSelectedLayerValue(event.target.value);
   }
@@ -112,7 +112,7 @@ const OperationPanel = ({ onSubmit , props}) => {
         selectedBrandValue,
         selectedSizeValue,
         selectedColorValue,
-        slelectedLayerValue 
+        selectedLayerValue 
       }})
   };
 
@@ -332,7 +332,7 @@ const OperationPanel = ({ onSubmit , props}) => {
                           <select
                             className='form-select mx-3'
                             aria-label='Default select example'
-                            value={slelectedLayerValue}
+                            value={selectedLayerValue}
                             onChange={handleLayerChange}
                           >
                             <option defaultValue>Select Layer</option>
