@@ -5,6 +5,7 @@ import axios from 'axios';
 import '../App.css';
 import Settings from '../settings';
 import md5 from 'md5';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 const ProdTable = (props) => {
 
@@ -24,6 +25,21 @@ const ProdTable = (props) => {
   const [tableData, setTableData] = useState([]);
   const [inputValue, setInputValue] = useState('');
 
+  const style = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '500px',
+    border: '1px solid #ccc',
+    marginBottom: '10px'
+  };
+
+  const items = Array.from({ length: 20 });
+
+  const fetchMoreData = () => {
+    // fetch more data here
+  };
+
 
 
   // const selectedOperatorvalue = state?.selectedOperatorvalue;
@@ -35,6 +51,8 @@ const ProdTable = (props) => {
   //console.log("selected Brand =", selectedBrandValue);
 
   //console.log("brandValue " + props.match.params.brand);
+
+
 
 
   useEffect(() => {
@@ -101,7 +119,7 @@ const ProdTable = (props) => {
 
     // Hash the combinedData to a unique alphanumeric string using md5
     const hashedData = md5(combinedData);
-    console.log("hashedData",hashedData)
+    console.log("hashedData", hashedData)
 
     // Extract the first six characters from the hashedData as the UBIN
     const ubin = hashedData.substring(0, 6);
@@ -137,13 +155,34 @@ const ProdTable = (props) => {
 
 
   let operator;
-  const sendMessage = () => {
-    if (socket && message) {
-      socket.send(message);
-      setMessage('');
-    }
+  // const sendMessage = () => {
+  //   if (socket && message) {
+  //     socket.send(message);
+  //     setMessage('');
+  //   }
+  // };
+
+  const handleSave = () => {
+    // Create an array to store table data objects
+    const savedTableData = [];
+
+    // Iterate through the tableData array and construct objects
+    tableData.forEach((row) => {
+      const rowData = {
+        serialNumber: row.serialNumber,
+        ubin: row.ubin,
+        receivedMessage: row.receivedMessage,
+        time: row.time,
+      };
+
+      savedTableData.push(rowData);
+    });
+
+    // Display the constructed object in the console
+    console.log('Saved table Data:', savedTableData);
   };
 
+  
   //Change
 
   return (
@@ -289,37 +328,53 @@ const ProdTable = (props) => {
             </div>
           </div>
 
-          <div className="container">
-            <div className='containerTable' id='productionTable'>
-              <br />
-              <table
-                border='2'
-                id='ptTable'
-                className='table table-success table-striped'
-              >
-                <thead>
-                  <tr>
-                    <th scope='col' id='sName'>
-                      Serial Number
-                    </th>
-                    <th scope='col'>UBIN</th>
-                    <th scope='col'>Tank Weight</th>
-                    <th scope='col'>Time</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {/* Display table data */}
-                  {tableData.map((row, index) => (
-                    <tr key={index}>
-                      <td>{row?.serialNumber}</td>
-                      <td>{row?.ubin}</td>
-                      <td>{row?.receivedMessage}</td>
-                      <td>{row?.time}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+          <div>
+           
+
+            <InfiniteScroll
+              dataLength={items.length}
+              next={fetchMoreData}
+              style={{ display: 'flex', flexDirection: 'column-reverse' }} // To put endMessage and loader to the top.
+              inverse={true}
+              hasMore={true}
+
+              scrollableTarget="scrollableDiv"
+            >
+              <div className='containerTable' id='productionTable'>
+                <br />
+                <div className="table-responsive" style={style} >
+                  <table
+                    border='2'
+                    id='ptTable'
+                    className='table table-success table-striped'
+                    style={{ maxHeight: '400px', overflowY: 'auto' }}
+                  >
+                    <thead>
+                      <tr>
+                        <th scope='col' id='sName'>
+                          Serial Number
+                        </th>
+                        <th scope='col'>UBIN</th>
+                        <th scope='col'>Tank Weight</th>
+                        <th scope='col'>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Display table data */}
+                      {tableData.map((row, index) => (
+                        <tr key={index}>
+                          <td>{row?.serialNumber}</td>
+                          <td>{row?.ubin}</td>
+                          <td>{row?.receivedMessage}</td>
+                          <td>{row?.time}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </InfiniteScroll>
+
           </div>
 
           <div>
@@ -328,13 +383,13 @@ const ProdTable = (props) => {
               <strong>Received Message:</strong> {receivedMessage}
             </div>
             <div>
-              <input
+              {/* <input
                 type="text"
                 placeholder="Enter message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-              />
-              <button onClick={sendMessage}>Send</button>
+              /> */}
+              <button onClick={handleSave}>Save</button>
             </div>
           </div>
 
@@ -348,5 +403,5 @@ const ProdTable = (props) => {
 
 export default ProdTable;
 
-
+// improve the above code such that all the total added entries inside the table should get saved and converted in object displayed in the console when the save button is clicked
 

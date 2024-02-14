@@ -113,9 +113,9 @@ function SetBrandList() {
   return (
     <div>
       <form className="container my-3" onSubmit={handleFormSubmit}>
-        <label htmlFor="title" className="form-label mx-3">
+        <babel htmlFor="title" className="form-label mx-3">
           <strong> Set Brand </strong>
-        </label>
+        </babel>
         <input type="text" value={newBrand} onChange={handleInputChange} />
         <button className="mx-2" type="submit">
           Add
