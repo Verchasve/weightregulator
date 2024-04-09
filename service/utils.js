@@ -189,7 +189,6 @@ const setProductLayers = async(data, db) => {
 
 const setProductOperators = async(data, db) => { 
   const operatorsCollection = db.collection('operators');
- 
   if (data?.text){
    console.log( `Adding item : ${JSON.stringify(data)}`);
   //const operatorNames = data.map(item => ({ text: item.text }));
@@ -221,7 +220,28 @@ const setProductOperators = async(data, db) => {
       }
    }
    return deleted;
- }
+ };
+
+ const setProductTableData = async(data, db) => { 
+  const collection = db.collection('productTableData');
+  console.log( `Adding item : ${JSON.stringify(data)}`);
+  if (data){
+  
+  //const operatorNames = data.map(item => ({ text: item.text }));
+  //c/onst tankData = [{ text: data }];
+  await collection.insertMany(data, (err, result) => {
+    if (err) {
+      console.error(err);
+      return false;
+       }  
+ 
+   if (result?.insertedCount > 0){
+         return true;
+       }
+     }); 
+   }
+  return true;
+ };
   
 
 
@@ -237,7 +257,8 @@ module.exports = {
   removeProductSizes,
   removeProductColors,
   removeProductLayers,
-  removeProductOperators
+  removeProductOperators,
+  setProductTableData
 }
  
 

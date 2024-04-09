@@ -10,7 +10,7 @@ const startSerialConnection = () => {
     if (!serialPortInstance){
 
         serialPortInstance = new SerialPort({
-            path: 'COM4',
+            path: 'COM3',
             baudRate: 9600,
             autoOpen: true
         }); 

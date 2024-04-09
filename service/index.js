@@ -15,7 +15,8 @@ const { setProductHeader,
   removeProductSizes,
   removeProductLayers,
   removeProductColors,
-  removeProductOperators} = require("./utils");
+  removeProductOperators , 
+  setProductTableData} = require("./utils");
 
 const { startSerialConnection, collectScaletData } = require("./serialComm/serialScaleGen");
 
@@ -314,6 +315,21 @@ router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
     res.status(500).send(error);
   }
 });
+
+router.route("/setProductTableData").post(jsonParser, async function (req, res) {
+  try {
+    const check = await setProductTableData(req?.body, connection);
+    if (check) {
+      res.send(JSON.stringify("Operators added"));
+    } else {
+      res.send(JSON.stringify("Unable to add Operators"));
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+
 
 // serial connection data code
 let isConnected = false;

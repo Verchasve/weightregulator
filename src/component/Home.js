@@ -10,6 +10,7 @@ const Home = () => {
 
   return (
     <>
+    <div className='App' style={{ widows: 'fit-content', alignContent: 'center', height: 'fit-content'  }}>
       <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
         <div className='container-fluid title'>
           <a className='navbar-brand title' href='#'>
@@ -34,6 +35,8 @@ const Home = () => {
             </button>
           </div>
         </header>
+      </div>
+
       </div>
     </>
   )

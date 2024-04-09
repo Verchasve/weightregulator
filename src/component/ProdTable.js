@@ -6,6 +6,9 @@ import '../App.css';
 import Settings from '../settings';
 import md5 from 'md5';
 import InfiniteScroll from 'react-infinite-scroll-component';
+//import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+
+import Table from 'react-bootstrap/Table';
 
 const ProdTable = (props) => {
 
@@ -24,14 +27,16 @@ const ProdTable = (props) => {
   //const [tankWeight, setTankWeight] = useState(''); // Tank Weight
   const [tableData, setTableData] = useState([]);
   const [inputValue, setInputValue] = useState('');
+  const [pdfData, setPdfData] = useState([]);
 
   const style = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '500px',
+    height: '300px',
     border: '1px solid #ccc',
-    marginBottom: '10px'
+    marginBottom: '10px',
+    maxWidth: 'fit-content'
   };
 
   const items = Array.from({ length: 20 });
@@ -39,20 +44,69 @@ const ProdTable = (props) => {
   const fetchMoreData = () => {
     // fetch more data here
   };
+// creating pdf
+  // const createPdf = () => {
+  //   const data = tableData.map((row, index) => ({
+  //     serialNumber: row.serialNumber,
+  //     ubin: row.ubin,
+  //     tankWeight: row.receivedMessage,
+  //     time: row.time,
+  //   }));
 
+  //   setPdfData(data);
+  // };
 
+  //console.log("createPdf ="+ createPdf);
 
-  // const selectedOperatorvalue = state?.selectedOperatorvalue;
-  // const selectedBrandValue = state?.selectedBrandValue;
-  // const selectedSizeValue = state?.selectedSizeValue;
-  // const selectedLayerValue = state?.slelectedLayerValue;
-  // const selectedColorValue = state?.selectedColorValue;
-  //const selectedBrandValue = brandLocation ? brandLocation.selectedBrandValue : '';
-  //console.log("selected Brand =", selectedBrandValue);
+  // useEffect(() => {
+  //   if (pdfData.length > 0) {
+  //     const doc = (
+  //       <Document>
+  //         <Page size="A4">
+  //           <View style={styles.header}>
+  //             <Text style={styles.headerText}>Production Table</Text>
+  //           </View>
+  //           <View style={styles.section}>
+  //             <Text>Date: {currentDate}</Text>
+  //             <Text>Time: {currentTime}</Text>
+  //             <Text>Operator: {state?.selectedOperatorvalue}</Text>
+  //             <Text>Brand: {state?.selectedBrandValue}</Text>
+  //             <Text>Size: {state?.selectedSizeValue}</Text>
+  //             <Text>Layer: {state?.selectedLayerValue}</Text>
+  //             <Text>Color: {state?.selectedColorValue}</Text>
+  //           </View>
+  //           <View style={styles.table}>
+  //             <View style={styles.row}>
+  //               <Text style={styles.headerCell}>Serial Number</Text>
+  //               <Text style={styles.headerCell}>UBIN</Text>
+  //               <Text style={styles.headerCell}>Tank Weight</Text>
+  //               <Text style={styles.headerCell}>Time</Text>
+  //             </View>
+  //             {pdfData.map((row, index) => (
+  //               <View style={styles.row} key={index}>
+  //                 <Text style={styles.cell}>{row.serialNumber}</Text>
+  //                 <Text style={styles.cell}>{row.ubin}</Text>
+  //                 <Text style={styles.cell}>{row.tankWeight}</Text>
+  //                 <Text style={styles.cell}>{row.time}</Text>
+  //               </View>
+  //             ))}
+  //           </View>
+  //         </Page>
+  //       </Document>
+  //     );
 
-  //console.log("brandValue " + props.match.params.brand);
+  //     const pdfBlob = PDFViewer.renderToBlob(doc);
 
-
+  //     // Save the PDF blob to the local drive
+  //     const url = window.URL.createObjectURL(pdfBlob);
+  //     const a = document.createElement('a');
+  //     a.href = url;
+  //     a.download = 'production_table.pdf';
+  //     document.body.appendChild(a);
+  //     a.click();
+  //     document.body.removeChild(a);
+  //   }
+  // }, [pdfData]);
 
 
   useEffect(() => {
@@ -79,11 +133,6 @@ const ProdTable = (props) => {
       console.log('Connected to WebSocket server');
     };
 
-
-    // socket.onclose = () => {
-    //   console.log('Disconnected from WebSocket server');
-    // };
-
     // Save the socket instance in the state
     setSocket(socket);
 
@@ -95,6 +144,43 @@ const ProdTable = (props) => {
       //socket.close();
     };
   }, []);
+
+  // Styles for PDF document
+  // const styles = StyleSheet.create({
+  //   header: {
+  //     textAlign: 'center',
+  //     marginBottom: 10,
+  //   },
+  //   headerText: {
+  //     fontSize: 20,
+  //     fontWeight: 'bold',
+  //   },
+  //   section: {
+  //     marginBottom: 10,
+  //   },
+  //   table: {
+  //     display: 'table',
+  //     width: 'auto',
+  //     borderStyle: 'solid',
+  //     borderWidth: 1,
+  //     borderRightWidth: 0,
+  //     borderBottomWidth: 0,
+  //   },
+  //   row: {
+  //     flexDirection: 'row',
+  //     borderBottomWidth: 1,
+  //   },
+  //   headerCell: {
+  //     margin: 5,
+  //     fontSize: 12,
+  //     fontWeight: 'bold',
+  //   },
+  //   cell: {
+  //     margin: 5,
+  //     fontSize: 10,
+  //   },
+  // });
+
 
   // change done 05-02-2024 generate ubin code
 
@@ -155,12 +241,7 @@ const ProdTable = (props) => {
 
 
   let operator;
-  // const sendMessage = () => {
-  //   if (socket && message) {
-  //     socket.send(message);
-  //     setMessage('');
-  //   }
-  // };
+ 
 
   const handleSave = () => {
     // Create an array to store table data objects
@@ -169,9 +250,8 @@ const ProdTable = (props) => {
     // Iterate through the tableData array and construct objects
     tableData.forEach((row) => {
       const rowData = {
-        serialNumber: row.serialNumber,
         ubin: row.ubin,
-        receivedMessage: row.receivedMessage,
+        tankWeight: row.receivedMessage,
         time: row.time,
       };
 
@@ -180,186 +260,199 @@ const ProdTable = (props) => {
 
     // Display the constructed object in the console
     console.log('Saved table Data:', savedTableData);
+
+    const selectedOperatorValue = state?.selectedOperatorvalue || '';
+    const selectedBrandValue = state?.selectedBrandValue || '';
+    const selectedSizeValue = state?.selectedSizeValue || '';
+    const selectedLayerValue = state?.selectedLayerValue || '';
+    const selectedColorValue = state?.selectedColorValue || '';
+
+    const data = [{
+      operator: selectedOperatorValue,
+      color: selectedColorValue,
+      brand: selectedBrandValue,
+      size: selectedSizeValue,
+      layer: selectedLayerValue,
+      tanks: savedTableData
+    }];
+
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setProductTableData`;
+    fetch(apiUrl, options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
   };
 
-  
+
+
   //Change
 
   return (
     <>
-      <body>
-        <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-          <div className='container-fluid title'>
-            <a className='navbar-brand title' href='#'>
-              <h1>WELCOME TO MP&AD ENTERPRISES</h1>
-            </a>
-          </div>
-        </nav>
-
-
-        <center>
-          <div className='container my-3'>
-            <div className='weight-container'>
-              <label for='RealTimeweightScreen' className='weightScreen'>
-
-                <input
-                  type="text"
-                  placeholder="Enter UBIN"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-                <button className="mx-3" onClick={handleSearch}>search</button>
-
-                <input
-                  type='text'
-                  name='weight-screen'
-                  id='weightScreen'
-                  className='weightScreen'
-                  placeholder='Tank Weight in Kg Screen'
-                  value={receivedMessage}
-                  style={{
-                    height: "2.5em",
-                    fontSize: "2.5em",
-                    fontWeight: "bolder",
-                    textAlign: "center",
-                    borderRadius: ".3em"
-                  }}
-
-                />
-              </label>
-
-              {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
-              <button className='primary addBtn mx-2' id='ptAddBtn' onClick={addRow}>
-                ADD
-              </button>
-
-              {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
-              <button className='danger reject mx-2' id='ptReject'>
-                Reject
-              </button>
-
-              <button className='btn-primary mx-2' onClick={() => navigate(-1)}>Back </button>
-              <button className='mx-2' id='ptFinishBtn'>Finish</button>
+      <div className='container-body' style={{ widows: 'full', height: 'fit-content' }}>
+        <body>
+          <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+            <div className='container-fluid title'>
+              <a className='navbar-brand title' href='#'>
+                <h1>WELCOME TO MP&AD ENTERPRISES</h1>
+              </a>
             </div>
+          </nav>
 
-            <div className='my-3'>
-              <div className='osdtTable'>
+
+          <center>
+            <div className='container my-3'>
+              <div className='weight-container'>
+                <label for='RealTimeweightScreen' className='weightScreen'>
+
+                  <input
+                    type="text"
+                    placeholder="Enter UBIN"
+                    value={inputValue}
+                    onChange={(e) => setInputValue(e.target.value)}
+                  />
+                  <button className="mx-3" onClick={handleSearch}>search</button>
+
+                  <input
+                    type='text'
+                    name='weight-screen'
+                    id='weightScreen'
+                    className='weightScreen'
+                    placeholder='Tank Weight in Kg Screen'
+                    value={receivedMessage}
+                    style={{
+                      height: "2.5em",
+                      fontSize: "2.5em",
+                      fontWeight: "bolder",
+                      textAlign: "center",
+                      borderRadius: ".3em"
+                    }}
+
+                  />
+                </label>
+
+                {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
+                <button className='primary addBtn mx-2' id='ptAddBtn' onClick={addRow}>
+                  ADD
+                </button>
+
+                {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
+                <button className='danger reject mx-2' id='ptReject'>
+                  Reject
+                </button>
+
+                <button className='btn-primary mx-2' onClick={() => navigate(-1)}>Back </button>
+                <button className='mx-2' id='ptFinishBtn'>Finish</button>
+              </div>
+
+              <div className='my-3'>
+                <div className='osdtTable'>
+                  <input
+                    className='mx-2'
+                    type='text'
+                    value={state?.selectedOperatorvalue || ''}
+                    id='print-op-name'
+                    placeholder='Operator'
+                    disabled
+                  />
+                  <input
+                    className='mx-2'
+                    type='text'
+                    name=''
+                    id='print-op-shift'
+                    placeholder='Shift'
+                    disabled
+                  />
+
+
+                  <input
+                    className='mx-2'
+                    type='text'
+                    name=''
+                    id='print-op-shift'
+                    placeholder={currentDate}
+                    disabled
+
+                  />
+
+                  <input
+                    className='mx-2'
+                    type='text'
+                    name=''
+                    id='print-op-shift'
+                    placeholder={currentTime}
+                    disabled
+
+                  />
+                 
+                </div>
+              </div>
+
+              <div className='my-2'>
                 <input
                   className='mx-2'
                   type='text'
-                  value={state?.selectedOperatorvalue || ''}
-                  id='print-op-name'
-                  placeholder='Operator'
+                  value={state?.selectedBrandValue || ''}
+                  id='print-brand'
+                  placeholder='Brand'
                   disabled
                 />
                 <input
                   className='mx-2'
                   type='text'
-                  name=''
-                  id='print-op-shift'
-                  placeholder='Shift'
+                  value={state?.selectedSizeValue || ''}
+                  id='print-size'
+                  placeholder='Size'
                   disabled
                 />
-                {/* <div>
-                  <h2>Current Date:</h2>
-                  <p>{currentDate}</p>
-                </div> */}
-
-
                 <input
                   className='mx-2'
                   type='text'
-                  name=''
-                  id='print-op-shift'
-                  placeholder={currentDate}
+                  value={state?.selectedLayerValue || ''}
+                  id='print-layer'
+                  placeholder='Layer'
                   disabled
-
                 />
-
                 <input
                   className='mx-2'
                   type='text'
-                  name=''
-                  id='print-op-shift'
-                  placeholder={currentTime}
+                  value={state?.selectedColorValue || ''}
+                  id='print-color'
+                  placeholder='Colour'
                   disabled
-
                 />
-                {/* <div>
-                  <h2>Current Time:</h2>
-                  <p>{currentTime}</p>
-                </div> */}
               </div>
             </div>
 
-            <div className='my-2'>
-              <input
-                className='mx-2'
-                type='text'
-                value={state?.selectedBrandValue || ''}
-                id='print-brand'
-                placeholder='Brand'
-                disabled
-              />
-              <input
-                className='mx-2'
-                type='text'
-                value={state?.selectedSizeValue || ''}
-                id='print-size'
-                placeholder='Size'
-                disabled
-              />
-              <input
-                className='mx-2'
-                type='text'
-                value={state?.selectedLayerValue || ''}
-                id='print-layer'
-                placeholder='Layer'
-                disabled
-              />
-              <input
-                className='mx-2'
-                type='text'
-                value={state?.selectedColorValue || ''}
-                id='print-color'
-                placeholder='Colour'
-                disabled
-              />
-            </div>
-          </div>
-
-          <div>
-           
-
-            <InfiniteScroll
-              dataLength={items.length}
-              next={fetchMoreData}
-              style={{ display: 'flex', flexDirection: 'column-reverse' }} // To put endMessage and loader to the top.
-              inverse={true}
-              hasMore={true}
-
-              scrollableTarget="scrollableDiv"
-            >
-              <div className='containerTable' id='productionTable'>
+            <div>
+              <div className='container' id='productionTable'>
                 <br />
-                <div className="table-responsive" style={style} >
-                  <table
-                    border='2'
-                    id='ptTable'
-                    className='table table-success table-striped'
-                    style={{ maxHeight: '400px', overflowY: 'auto' }}
+                <div style={{ maxWidth: "100%", height: "300px", overflow: "auto", boxSizing: "border-box" }} >
+                  <Table striped bordered hover
+                    border='2' id='ptTable' className='table table-success table-striped'
+                    style={{ textAlign: "center" }}
+
                   >
-                    <thead>
+                    <thead style={{ maxWidth: "100%" }}>
                       <tr>
-                        <th scope='col' id='sName'>
-                          Serial Number
-                        </th>
-                        <th scope='col'>UBIN</th>
-                        <th scope='col'>Tank Weight</th>
-                        <th scope='col'>Time</th>
+                        <th scope='col' id='sName'><b>Serial Number</b></th>
+                        <th scope='col'><b>UBIN</b></th>
+                        <th scope='col'><b>Tank Weight</b></th>
+                        <th scope='col'><b>Time</b></th>
                       </tr>
                     </thead>
-                    <tbody>
+                 
+                   
+                    <tbody >
+
                       {/* Display table data */}
                       {tableData.map((row, index) => (
                         <tr key={index}>
@@ -370,32 +463,28 @@ const ProdTable = (props) => {
                         </tr>
                       ))}
                     </tbody>
-                  </table>
+
+                  
+                  </Table>
                 </div>
               </div>
-            </InfiniteScroll>
 
-          </div>
 
-          <div>
-            <h1>WebSocket Client</h1>
-            <div>
-              <strong>Received Message:</strong> {receivedMessage}
             </div>
+
             <div>
-              {/* <input
-                type="text"
-                placeholder="Enter message"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-              /> */}
-              <button onClick={handleSave}>Save</button>
+
+              <div>
+            
+                <button className='btn btn-primary mx-2' onClick={handleSave}>Save</button>
+                {/* <button className='btn btn-primary mx-2' onClick={createPdf}>SavePDF</button> */}
+              </div>
             </div>
-          </div>
 
 
-        </center>
-      </body>
+          </center>
+        </body>
+      </div>
     </>
   )
 }
@@ -403,5 +492,8 @@ const ProdTable = (props) => {
 
 export default ProdTable;
 
-// improve the above code such that all the total added entries inside the table should get saved and converted in object displayed in the console when the save button is clicked
+// improve the above code to create pdf file from table data and save it in the local D Drive of the computer and the pdf should contain the table data and other information like date and time and operator name, brand, size, layer and color  
+
+
+
 
