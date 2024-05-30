@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { useLocation } from "react-router-dom";
@@ -7,8 +7,39 @@ import "../App.css";
 const PdfGenerator = ({ children }) => {
   const contentRef = useRef(null);
   const location = useLocation();
-  const { currentDate, currentTime, brand, size, layer, color, operator } =
-    location.state;
+
+  const [currentDate, setCurrentDate] = useState("");
+  const [currentTime, setCurrentTime] = useState("");
+
+  const {
+    selectedBrandValue,
+    selectedSizeValue,
+    selectedLayerValue,
+    selectedColorValue,
+    selectedOperatorvalue,
+  } = location.state;
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+      const timeOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+      };
+      setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
+      setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+    };
+    // Change done 05-02-2024
+
+    const intervalId = setInterval(updateDateTime, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+      //socket.close();
+    };
+  }, []);
 
   const generatePdf = async () => {
     const content = contentRef.current;
@@ -32,17 +63,33 @@ const PdfGenerator = ({ children }) => {
       const xOffset = 50; // Horizontal offset between values
       const lineHeight = 2; // Line height between values
 
+      // Set font weight to bold before rendering other text
       doc.setFont("helvetica", "bold");
+      
       doc.text(" MP & AD Enterprise ", x + 40, y - 20);
 
       doc.setFont("helvetica", "normal");
-      doc.text(`Date: ${currentDate}`, x, y);
-      doc.text(`Time: ${currentTime}`, x + xOffset, y );
-      doc.text(`Operator: ${operator}`, x + 2 * xOffset, y);
-      doc.text(`Brand: ${brand}`, x - 10 , y + 10);
-      doc.text(`Size: ${size}`, x - 15 + xOffset,  y + 10);
-      doc.text(`Layer: ${layer}`, x - 25 + 2 * xOffset, y + 10);
-      doc.text(`Color: ${color}`, x - 35 + 3 * xOffset, y + 10);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Date:", x, y);
+
+      // Reset font weight to normal before rendering other text
+      doc.setFont("helvetica", "normal");
+      doc.text(`${currentDate}`, x-38 + xOffset, y);
+
+      doc.setFont("helvetica", "bold");
+      doc.text("Time:", x - 60 + 2 * xOffset, y);
+
+      // Reset font weight to normal before rendering other text
+      doc.setFont("helvetica", "normal");
+      doc.text(`${currentTime}`, x - 48 + 2 * xOffset, y);
+      // doc.text(`Date: ${currentDate}`, x, y);
+      // doc.text(`Time: ${currentTime}`, x + xOffset, y );
+      doc.text(`Operator: ${selectedOperatorvalue}`, x + 2 * xOffset, y);
+      doc.text(`Brand: ${selectedBrandValue}`, x - 10, y + 10);
+      doc.text(`Size: ${selectedSizeValue}`, x - 15 + xOffset, y + 10);
+      doc.text(`Layer: ${selectedLayerValue}`, x - 25 + 2 * xOffset, y + 10);
+      doc.text(`Color: ${selectedColorValue}`, x - 35 + 3 * xOffset, y + 10);
 
       // Add the table image to the PDF
 
@@ -55,12 +102,12 @@ const PdfGenerator = ({ children }) => {
 
   return (
     <div>
-       <div>
+      <div>
         <h1>PDF Generator</h1>
       </div>
       <button onClick={generatePdf}>Generate PDF</button>
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div className="content">
         <div ref={contentRef}>{children}</div>
       </div>
@@ -70,6 +117,4 @@ const PdfGenerator = ({ children }) => {
 
 export default PdfGenerator;
 
-// Improve the PdfGenerator function to create above code, such that it can save the pdf to the local D drive of the computer, and the pdf should
-//contain all the N number of entries in the table added by the click of ADD button.
-//The pdf should contain only the table data and other information like date and time and operator name, brand, size, layer and color and the generated pdf should hide all the buttons, weight screen
+// how to make the Date: and Time: title in bold in the above code

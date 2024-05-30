@@ -35,6 +35,10 @@
     height: 2.3em;
 }
 
+
+.highlight {
+    color: red;
+  }
 /* .osdMain{
     display:flex;
     align-items: center;

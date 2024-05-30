@@ -11,6 +11,8 @@ import PdfGenerator from "./PdfRenderer";
 
 import Table from "react-bootstrap/Table";
 
+import "../App.css";
+
 const ProdTable = (props) => {
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState("");
@@ -126,6 +128,21 @@ const ProdTable = (props) => {
     setReceivedMessage(receivedMessage);
   };
 
+  const addRejectedRow = () => {
+    // Add row to table when ADD button is clicked
+    generateUbin();
+    const newRow = {
+      serialNumber: serialNumber,
+      ubin: "rejected",
+      receivedMessage: receivedMessage,
+      time: "rejected",
+      rejected: true // This row is rejected
+    };
+    setTableData([...tableData, newRow]);
+    setSerialNumber(serialNumber + 1); // Increment serial number
+    setReceivedMessage(receivedMessage);
+  };
+
   let operator;
 
   const handleSave = () => {
@@ -235,7 +252,7 @@ const ProdTable = (props) => {
                 </button>
 
                 {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
-                <button className="danger reject mx-2" id="ptReject">
+                <button className="danger reject mx-2" id="ptReject"  onClick={addRejectedRow}>
                   Reject
                 </button>
 
@@ -243,11 +260,11 @@ const ProdTable = (props) => {
                   className="btn-primary mx-2"
                   onClick={() => navigate(-1)}
                 >
-                  Back{" "}
+                  Finish{" "}
                 </button>
-                <button className="mx-2" id="ptFinishBtn">
+                {/* <button className="mx-2" id="ptFinishBtn">
                   Finish
-                </button>
+                </button> */}
               </div>
 
               <div className="my-3">
@@ -367,7 +384,7 @@ const ProdTable = (props) => {
                       <tbody>
                         {/* Display table data */}
                         {tableData.map((row, index) => (
-                          <tr key={index}>
+                          <tr key={index} className={row.rejected ? "rejected-row" : ""}>
                             <td>{row?.serialNumber}</td>
                             <td>{row?.ubin}</td>
                             <td>{row?.receivedMessage}</td>
