@@ -128,6 +128,33 @@ const ProdTable = (props) => {
     setReceivedMessage(receivedMessage);
   };
 
+  // // improve the following function such that if the value of the recievedMessage is 0.00 in tank weight screen, then the addRow function should not add the entry in the table if the value of recievedMessage is greatrer than 15.00 then only entry should get added in the table
+ 
+  
+  // const addRow = () => {
+  //   // Check if the receivedMessage value is greater than 15.00
+  //   if (parseFloat(receivedMessage) > 15) {
+  //     // Add row to table when ADD button is clicked
+  //     generateUbin();
+  //     const newRow = {
+  //       serialNumber: serialNumber,
+  //       ubin: Date.parse(new Date()),
+  //       receivedMessage: receivedMessage,
+  //       time: currentTime,
+  //     };
+  //     setTableData([...tableData, newRow]);
+  //     setSerialNumber(serialNumber + 1); // Increment serial number
+  //     setReceivedMessage(receivedMessage);
+  //   } else if (parseFloat(receivedMessage) === 0.00) {
+  //     // Do not add an entry if the receivedMessage value is 0.00
+  //     alert("Tank weight must not be 0.00 to add a new row.");
+  //   } else {
+  //     alert("Tank weight must be greater than 15.00 to add a new row.");
+  //   }
+  // };
+
+  // 
+
   const addRejectedRow = () => {
     // Add row to table when ADD button is clicked
     generateUbin();
