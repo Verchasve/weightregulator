@@ -48,7 +48,7 @@ const PdfGenerator = ({ children }) => {
     }
 
     try {
-      const rows = Array.from(content.querySelectorAll("tbody tr"));
+      const rows = Array.from(content.querySelectorAll("Table, thead tr, tbody tr"));
       const totalRows = rows.length;
       const rowsPerPage = 49;
       const firstPageRows = 44;
@@ -85,7 +85,7 @@ const PdfGenerator = ({ children }) => {
         const pageContent = rows.slice(startRow, endRow);
         const pageElement = document.createElement("div");
         pageElement.innerHTML =
-          "<Table><tbody> " +
+          "<Table><tbody>" +
           pageContent.map((row) => row.outerHTML).join("") +
           "</tbody></Table>";
 
@@ -104,7 +104,7 @@ const PdfGenerator = ({ children }) => {
         if (currentPage > 1) {
           pdf.addPage();
         }
-
+       
         addHeader(pdf, currentPage);
         pdf.addImage(imgData, "PNG", margin, 50, imgWidth, imgHeight);
 
