@@ -14,25 +14,7 @@ const startSerialConnection = () => {
             baudRate: 9600,
             autoOpen: true
         }); 
-        // serialPortInstance.open(function (err) {
-        //     if (err) {
-        //         return console.log('Error opening port: ', err.message)
-        //     }
-        //     console.log(`Serial Connection Started....`);
-        //     // Because there's no callback to write, write errors will be emitted on the port:
-        //     //    port.write('main screen turn on')
-        // });
-        
-        
-        
-        //  // Initialize an empty array to collect data
-        //  serialPortInstance.on('readable', function () {
-        //     const data = serialPortInstance.read();
-        //     const decodedData = new TextDecoder().decode(data);
-        //     // const finalDatas = collectScaletData(decodedData);
-        //      console.log(`Serial data.... ${finalData}`);
-        //     return decodedData;
-        // });
+       
     }
     return serialPortInstance;
 
