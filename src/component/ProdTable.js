@@ -1,16 +1,11 @@
 //import  from 'react';
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import "../App.css";
-import Settings from "../settings";
-import md5 from "md5";
-import InfiniteScroll from "react-infinite-scroll-component";
+import { useNavigate, useLocation } from "react-router-dom"; 
+import "../App.css"; 
+import md5 from "md5"; 
 import PdfGenerator from "./PdfRenderer";
-//import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
-
+import Modal from "react-modal"; 
 import Table from "react-bootstrap/Table";
-
 import "../App.css";
 
 const ProdTable = (props) => {
@@ -30,6 +25,9 @@ const ProdTable = (props) => {
   const [tableData, setTableData] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [pdfData, setPdfData] = useState([]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [preview, setPreview] = useState(null);
 
   const style = {
     display: "flex",
@@ -126,11 +124,13 @@ const ProdTable = (props) => {
     setTableData([...tableData, newRow]);
     setSerialNumber(serialNumber + 1); // Increment serial number
     setReceivedMessage(receivedMessage);
+     // Set the preview and open the modal
+     setPreview(newRow);
+     setIsModalOpen(true);
   };
 
   // // improve the following function such that if the value of the recievedMessage is 0.00 in tank weight screen, then the addRow function should not add the entry in the table if the value of recievedMessage is greatrer than 15.00 then only entry should get added in the table
- 
-  
+
   // const addRow = () => {
   //   // Check if the receivedMessage value is greater than 15.00
   //   if (parseFloat(receivedMessage) > 15) {
@@ -153,75 +153,26 @@ const ProdTable = (props) => {
   //   }
   // };
 
-  // 
+  //
 
   const addRejectedRow = () => {
     // Add row to table when ADD button is clicked
     generateUbin();
     const newRow = {
       serialNumber: serialNumber,
-      ubin: "rejected",
+      ubin: "Rejected",
       receivedMessage: receivedMessage,
-      time: "rejected",
-      rejected: true // This row is rejected
+      time: "Rejected",
+      rejected: true, // This row is rejected
     };
     setTableData([...tableData, newRow]);
     setSerialNumber(serialNumber + 1); // Increment serial number
     setReceivedMessage(receivedMessage);
+
+     // Set the preview and open the modal
+     setPreview(newRow);
+     setIsModalOpen(true);
   };
-
-  let operator;
-
-  const handleSave = () => {
-    // Create an array to store table data objects
-    const savedTableData = [];
-
-    // Iterate through the tableData array and construct objects
-    tableData.forEach((row) => {
-      const rowData = {
-        ubin: row.ubin,
-        tankWeight: row.receivedMessage,
-        time: row.time,
-      };
-
-      savedTableData.push(rowData);
-    });
-
-    // Display the constructed object in the console
-    console.log("Saved table Data:", savedTableData);
-
-    const selectedOperatorValue = state?.selectedOperatorvalue || "";
-    const selectedBrandValue = state?.selectedBrandValue || "";
-    const selectedSizeValue = state?.selectedSizeValue || "";
-    const selectedLayerValue = state?.selectedLayerValue || "";
-    const selectedColorValue = state?.selectedColorValue || "";
-
-    const data = [
-      {
-        operator: selectedOperatorValue,
-        color: selectedColorValue,
-        brand: selectedBrandValue,
-        size: selectedSizeValue,
-        layer: selectedLayerValue,
-        tanks: savedTableData,
-      },
-    ];
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    const apiUrl = `${Settings.serviceHost}:${Settings.servicePort}/setProductTableData`;
-    fetch(apiUrl, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
-
-  //Change
 
   return (
     <>
@@ -279,7 +230,11 @@ const ProdTable = (props) => {
                 </button>
 
                 {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
-                <button className="danger reject mx-2" id="ptReject"  onClick={addRejectedRow}>
+                <button
+                  className="danger reject mx-2"
+                  id="ptReject"
+                  onClick={addRejectedRow}
+                >
                   Reject
                 </button>
 
@@ -289,9 +244,6 @@ const ProdTable = (props) => {
                 >
                   Finish{" "}
                 </button>
-                {/* <button className="mx-2" id="ptFinishBtn">
-                  Finish
-                </button> */}
               </div>
 
               <div className="my-3">
@@ -299,7 +251,7 @@ const ProdTable = (props) => {
                   <input
                     className="mx-2"
                     type="text"
-                    value={state?.selectedOperatorvalue || ""}
+                    value={state?.selectedOperatorValue || ""}
                     id="print-op-name"
                     placeholder="Operator"
                     disabled
@@ -381,7 +333,10 @@ const ProdTable = (props) => {
                     boxSizing: "border-box",
                   }}
                 >
-                  <PdfGenerator>
+                  <PdfGenerator
+                  
+                  data={tableData}
+                  >
                     <Table
                       striped
                       bordered
@@ -411,7 +366,10 @@ const ProdTable = (props) => {
                       <tbody>
                         {/* Display table data */}
                         {tableData.map((row, index) => (
-                          <tr key={index} className={row.rejected ? "rejected-row" : ""}>
+                          <tr
+                            key={index}
+                            className={row.rejected ? "rejected-row" : ""}
+                          >
                             <td>{row?.serialNumber}</td>
                             <td>{row?.ubin}</td>
                             <td>{row?.receivedMessage}</td>
@@ -421,15 +379,46 @@ const ProdTable = (props) => {
                       </tbody>
                     </Table>
                   </PdfGenerator>
+
+                  <Modal
+                   style={{
+                    overlay: {
+                      width: 'fit-content',
+                      height: 'fit-content',
+                      
+                    },
+                    content: {
+                      width: '300px',
+                      height: 'fit-content',
+                      backgroundColor: 'yellow',
+                      borderRadius: '10px',
+                      position: 'relative',
+                    }
+                  }}
+                  isOpen={isModalOpen}
+                  onRequestClose={() => setIsModalOpen(false)}
+                  contentLabel="Contact Preview"
+                  >
+                    {preview && (
+                      <div>
+                        <h2>Print Preview</h2>
+                        
+                        <p>UBIN: {preview?.ubin}</p>
+                        <p>Tank Weight: {preview?.receivedMessage}</p>
+                        <p>Time: {preview?.time}</p>
+                        <p>Date: {currentDate}</p>
+                        <p>Operator: {state?.selectedOperatorvalue}</p>
+                        <p>Brand: {state?.selectedBrandValue}</p>
+                        <p>Size: {state?.selectedSizeValue}</p>
+                        <p>Layer: {state?.selectedLayerValue}</p>
+                        <p>Color: {state?.selectedColorValue}</p>
+                        <button onClick={() => setIsModalOpen(false)}>Print</button>
+                      </div>
+                    )}
+                  </Modal>
+
+
                 </div>
-              </div>
-            </div>
-            <div>
-              <div>
-                <button className="btn btn-primary mx-2" onClick={handleSave}>
-                  Save
-                </button>
-                {/* <button className='btn btn-primary mx-2' onClick={createPdf}>SavePDF</button> */}
               </div>
             </div>
           </center>
@@ -440,5 +429,3 @@ const ProdTable = (props) => {
 };
 
 export default ProdTable;
-
-// improve the above code to create pdf file from table data and save it in the local D Drive of the computer and the pdf should contain the table data and other information like date and time and operator name, brand, size, layer and color

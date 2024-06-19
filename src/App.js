@@ -45,15 +45,12 @@ function App() {
           <Route exact path="/setLayerList/*" element={<SetLayerList />} />
           <Route exact path="/setColorList/*" element={<SetColorList />} />
           <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
-          {/* <Route path="*" element={<MatchAllRoute />} /> */}
+          
         </Routes>
-        {/* <SetBrand/> */}
+        
       </Router>
 
-      {/* <List/> */}
-      {/* <Setting/> */}
-      {/* <BSLC/> */}
-      {/* <ProdTable/> */}
+     
     </>
   );
 }

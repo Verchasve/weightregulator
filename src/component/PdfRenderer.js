@@ -3,8 +3,11 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { useLocation } from "react-router-dom";
 import "../App.css";
+import settings from "../settings";
+const PdfGenerator = ({ data ,  children }) => {
 
-const PdfGenerator = ({ children }) => {
+  const tableData = data;
+  
   const contentRef = useRef(null);
   const location = useLocation();
 
@@ -48,46 +51,52 @@ const PdfGenerator = ({ children }) => {
     }
 
     try {
-      const rows = Array.from(content.querySelectorAll("Table, thead tr, tbody tr"));
+      const rows = Array.from(content.querySelectorAll("tbody tr"));
       const totalRows = rows.length;
       const rowsPerPage = 49;
       const firstPageRows = 44;
 
       const pdf = new jsPDF("p", "mm", "a4");
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      
+
       const margin = 4;
 
       let currentPage = 1;
       let startRow = 0;
       let endRow = firstPageRows;
 
-     function addHeader (pdf, pageNumber){
-        pdf.setFont("helvetica", "bold");
-        pdf.text("MP & AD Enterprise", 72, 20);
-        pdf.setFont("helvetica", "normal");
-        const xOffset = 50;
+      function addHeader(pdf, pageNumber) {
+        
 
-        pdf.text(` ${currentDate}`, 40, 30);
-        pdf.text(`${currentTime}`, 40 - 50 + 2 * xOffset, 30);
-        pdf.text(
-          `Operator: ${selectedOperatorvalue}`,
-          40 - 10 + 2 * xOffset,
-          30
-        );
-        pdf.text(`Brand: ${selectedBrandValue}`, 40 - 10, 40);
-        pdf.text(`Size: ${selectedSizeValue}`, 40 - 15 + xOffset, 40);
-        pdf.text(`Layer: ${selectedLayerValue}`, 40 - 25 + 2 * xOffset, 40);
-        pdf.text(`Color: ${selectedColorValue}`, 40 - 35 + 3 * xOffset, 40);
-      };
+        if (pageNumber === 1) {
+          const xOffset = 50;
+
+     
+          pdf.setFont("helvetica", "bold");
+          pdf.text("MP & AD Enterprise", 72, 20);
+          pdf.setFont("helvetica", "normal");
+          
+
+          pdf.text(` ${currentDate}`, 40, 30);
+          pdf.text(`${currentTime}`, 40 - 50 + 2 * xOffset, 30);
+          pdf.text(
+            `Operator: ${selectedOperatorvalue}`,
+            40 - 10 + 2 * xOffset,
+            30
+          );
+          pdf.text(`Brand: ${selectedBrandValue}`, 40 - 10, 40);
+          pdf.text(`Size: ${selectedSizeValue}`, 40 - 15 + xOffset, 40);
+          pdf.text(`Layer: ${selectedLayerValue}`, 40 - 25 + 2 * xOffset, 40);
+          pdf.text(`Color: ${selectedColorValue}`, 40 - 35 + 3 * xOffset, 40);
+        }
+      }
 
       while (startRow < totalRows) {
         const pageContent = rows.slice(startRow, endRow);
         const pageElement = document.createElement("div");
         pageElement.innerHTML =
-          "<Table><tbody>" +
-          pageContent.map((row) => row.outerHTML).join("") +
-          "</tbody></Table>";
+          "<table class='pdf-table'><tbody>" + content.querySelector("thead").outerHTML +
+          "</thead><tbody>" + pageContent.map((row) => row.outerHTML).join("") + "</tbody></table>";
 
         document.body.appendChild(pageElement);
 
@@ -98,15 +107,16 @@ const PdfGenerator = ({ children }) => {
 
         const imgData = canvas.toDataURL("image/png");
         const imgProps = pdf.getImageProperties(imgData);
-        const imgWidth = pdfWidth - 8;
+        const imgWidth = pdfWidth - 2 * margin;
         const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
 
         if (currentPage > 1) {
           pdf.addPage();
         }
-       
+
         addHeader(pdf, currentPage);
-        pdf.addImage(imgData, "PNG", margin, 50, imgWidth, imgHeight);
+        const yOffset = currentPage === 1 ? 50 : 20;
+        pdf.addImage(imgData, "PNG", margin, yOffset, imgWidth, imgHeight);
 
         startRow = endRow;
         endRow = startRow + rowsPerPage;
@@ -114,6 +124,10 @@ const PdfGenerator = ({ children }) => {
       }
 
       pdf.save("sample.pdf");
+
+      handleSaveOPtion(tableData , location.state);
+
+
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -134,5 +148,56 @@ const PdfGenerator = ({ children }) => {
   );
 };
 
+const handleSaveOPtion = (tableData , state) => {
+    const savedTableData = [];
+    // Iterate through the tableData array and construct objects
+    tableData.forEach((row) => {
+      const rowData = {
+        ubin: row.ubin,
+        tankWeight: row.receivedMessage,
+        time: row.time,
+      };
+
+      savedTableData.push(rowData);
+    });
+
+    // Display the constructed object in the console
+    console.log("Saved table Data:", savedTableData);
+
+    const selectedOperatorValue = state?.selectedOperatorValue || "";
+    const selectedBrandValue = state?.selectedBrandValue || "";
+    const selectedSizeValue = state?.selectedSizeValue || "";
+    const selectedLayerValue = state?.selectedLayerValue || "";
+    const selectedColorValue = state?.selectedColorValue || "";
+
+    const data = [
+      {
+        operator: selectedOperatorValue,
+        color: selectedColorValue,
+        brand: selectedBrandValue,
+        size: selectedSizeValue,
+        layer: selectedLayerValue,
+        tanks: savedTableData,
+      },
+    ];
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    const apiUrl = `${settings.serviceHost}:${settings.servicePort}/setProductTableData`;
+    fetch(apiUrl, options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+};
+
+
+
+
 export default PdfGenerator;
 
+// Improve CSS of the following code such that the, gaps between the collums of the subsiquent pages should match with the gaps between the collums of the first page.

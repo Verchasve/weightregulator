@@ -41,3 +41,35 @@
 .rejected-row {
   color: red;
 }
+
+
+.pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 18px;
+}
+
+.pdf-table th, .pdf-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.pdf-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #f2f2f2;
+  color: black;
+}
+
+.pdf-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+ 
+}
+
+.pdf-table tbody tr:hover {
+  background-color: #ddd;
+  
+}
