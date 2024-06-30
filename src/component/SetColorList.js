@@ -94,21 +94,6 @@ function SetColorList() {
     setNewColor('');
   };
 
-  // const handleSavecolor = () => {
-  //   // Update the API with the entire colors list
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(colors),
-  //   };
-  //   const apiUrlcolor = `${Settings.serviceHost}:${Settings.servicePort}/setcolor`;
-  //   fetch(apiUrlcolor, options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
 
   return (
     <div>

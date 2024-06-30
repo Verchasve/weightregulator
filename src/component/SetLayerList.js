@@ -95,22 +95,6 @@ function SetLayerList() {
     setNewLayer('');
   };
 
-  // const handleSavelayer = () => {
-  //   // Update the API with the entire layers list
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(layers),
-  //   };
-  //   const apiUrllayer = `${Settings.serviceHost}:${Settings.servicePort}/setlayer`;
-  //   fetch(apiUrllayer, options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
-
   return (
     <div>
       <form className="container my-3" onSubmit={handleFormSubmit}>

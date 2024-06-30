@@ -105,15 +105,20 @@ const OperationPanel = ({ onSubmit , props}) => {
 
  
 
-  const handleBrandContinue = () => {
-    navigate('/prodTable', { 
+  const handleContinueToTable = () => {
+    if (!selectedOperatorvalue || !selectedBrandValue || !selectedSizeValue || !selectedColorValue || !selectedLayerValue) {
+      alert('Please select all the values before continuing.');
+      return;
+    }
+    navigate('/prodTable', {   
       state:  {
         selectedOperatorvalue,
         selectedBrandValue,
         selectedSizeValue,
         selectedColorValue,
         selectedLayerValue 
-      }})
+      }
+    })
   };
 
   
@@ -192,35 +197,10 @@ const OperationPanel = ({ onSubmit , props}) => {
       })
   }, [setAppState])
 
-
-
-
-  // change done
-  // const handleSubmit = () => {
-  //   onSubmit(operator?.text, brand?.text);
-  // };
-
-  // const handleChanges = (event) => {
-  //   console.log("Brand " + event.target.value);
-  //   props.history.push('/prodTable/' + event.target.value);
-  //   setBrandValue(event.target.value);
-  // };
-
-
   return (
 
     <>
-      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        <div className=''>
-          <a
-            className='navbar-brand title'
-            href='#'
-            style={{ color: 'white' }}
-          >
-            <h1>Select The Production Parameters</h1>
-          </a>
-        </div>
-      </nav>
+      
       <div >
         <div className='App'>
           <header className='App-header'>
@@ -375,7 +355,7 @@ const OperationPanel = ({ onSubmit , props}) => {
                         {/* <input className='mx-2' type='submit' value='Continue' id='bslcContkBtn' onClick= {() => navigate('/prodTable')} /> */}
 
                         <button className='my-2' onClick={() => navigate(-1)}>Go Back Home</button>
-                        <button className='my-2' onClick={handleBrandContinue}>submit</button>
+                        <button className='my-2' onClick={handleContinueToTable}>submit</button>
                       </div>
                     </div>
                   </center>

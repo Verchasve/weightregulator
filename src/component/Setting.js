@@ -21,36 +21,28 @@ export default function Setting() {
               type='submit'
               value='Set Header'
               name='hfpEntries'
-              //onClick="hfpEntries()"
-              //onClick={hfpEntries()}
+            
               id='headerBtn'
               onClick={() => navigate("/header")}
             />
-            {/* <button onClick={() => navigate("/header")}>Set Header </button> */}
-
+          
           </div>
           <div className='my-4'>
             <input
               type='submit'
               value='Set Footer'
               name='hfpEntries'
-              // onClick='hfpEntries()'
+             
               id='footerBtn'
               onClick={() => navigate("/footer")}
             />
           </div>
           <div className='my-4'>
-            {/* <input
-              type='submit'
-              value='Set Production Entries'
-              name='hfpEntries'
-              onClick='hfpEntries()'
-              id='productionEntriesBtn'
-            /> */}
+          
             <button onClick={() => navigate("/setProdEntries")}>Set Production Entries</button>
           </div>
           <div className='my-4'>
-            {/* <input type='submit' value='Back' name='hfpBack' id='hfpBackBtn' /> */}
+         
             <button onClick={() => navigate(-1)}>Back</button>
           </div>
         </div>

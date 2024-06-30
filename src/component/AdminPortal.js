@@ -26,10 +26,6 @@ const AdminPortal = () => {
                   name='admin-password'
                   id='admin-password'
                 />
-                {/* <input type="submit"
-                            value="Submit"
-                            id="submitPassword" 
-                            onClick={() => navigate("/adminServerPortal")}/> */}
                 <button className='mx-2' onClick={() => navigate('/adminServerPortal')}>
                   Submit
                 </button>

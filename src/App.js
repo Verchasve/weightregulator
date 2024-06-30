@@ -14,12 +14,12 @@ import SetProdEntries from "./component/SetProdEntries";
 import Correction from "./component/Correction";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-//import List from "./component/List";
 import SetBrandList from "./component/SetBrandList";
 import SetSizeList from "./component/SetSizeList";
 import SetLayerList from "./component/SetLayerList";
 import SetColorList from "./component/SetColorList";
 import SetOperatorList from "./component/SetOperatorList";
+import DataReport from "./component/DataReport";
 
 function App() {
 
@@ -45,6 +45,7 @@ function App() {
           <Route exact path="/setLayerList/*" element={<SetLayerList />} />
           <Route exact path="/setColorList/*" element={<SetColorList />} />
           <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
+          <Route exact path="/dataReport" element={<DataReport />} />
           
         </Routes>
         

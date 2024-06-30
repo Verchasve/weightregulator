@@ -199,5 +199,3 @@ const handleSaveOPtion = (tableData , state) => {
 
 
 export default PdfGenerator;
-
-// Improve CSS of the following code such that the, gaps between the collums of the subsiquent pages should match with the gaps between the collums of the first page.

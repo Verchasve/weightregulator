@@ -97,22 +97,6 @@ function SetSizeList() {
     setNewSize('');
   };
 
-  // const handleSavesize = () => {
-  //   // Update the API with the entire sizes list
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(sizes),
-  //   };
-  //   const apiUrlsize = `${Settings.serviceHost}:${Settings.servicePort}/setsize`;
-  //   fetch(apiUrlsize, options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
-
   return (
     <div>
       <form className="container my-3" onSubmit={handleFormSubmit}>

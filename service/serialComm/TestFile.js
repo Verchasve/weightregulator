@@ -17,7 +17,7 @@ const port = 4001; // Choose a port for your HTTP server
             }
             console.log(`Serial Connection Started....`);
             // Because there's no callback to write, write errors will be emitted on the port:
-            //    port.write('main screen turn on')
+           
         });
         
         
@@ -38,7 +38,7 @@ const port = 4001; // Choose a port for your HTTP server
                 serialPort.on('readable', function () {
                     const data = serialPort.read();
                     const decodedData = new TextDecoder().decode(data);
-                    // const finalDatas = collectScaletData(decodedData);
+                   
                      console.log(`Serial data.... ${decodedData}`);
                      sendDataToClient(decodedData);
         });

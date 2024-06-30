@@ -11,16 +11,11 @@ const Home = () => {
   return (
     <>
     <div className='App' style={{ widows: 'fit-content', alignContent: 'center', height: 'fit-content'  }}>
-      <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-        <div className='container-fluid title'>
-          <a className='navbar-brand title' href='#'>
-            <h1>MP&AD ENTERPRISES</h1>
-          </a>
-        </div>
-      </nav>
+     
       <div className='App' style={{ widows: 'initial' }}>
         <header className='App-header'>
-          <h1 style={{ color: 'yellow' }}>Welcome To Weight Controller</h1>
+        <h1 style={{ color: 'white' }}>MP&AD ENTERPRISES</h1>
+          <h1 style={{ color: 'yellow' }}>Weighing Registrator</h1>
           <img src={logo} className='App-logo' alt='logo' />
 
           <div>

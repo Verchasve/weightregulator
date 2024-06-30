@@ -147,7 +147,7 @@ export default function SetProdEntries() {
           <hr />
 
           <div className='my-3'>
-            {/* <input type='submit' value='Back' id='setProdEntriesBackBtn' /> */}
+         
             <button className='btn btn-primary col-md-1' onClick={() => navigate(-1)}>Back</button>
           </div>
         </div>

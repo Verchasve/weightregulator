@@ -97,21 +97,6 @@ function SetOperatorList() {
     setNewOperator('');
   };
 
-  // const handleSaveoperator = () => {
-  //   // Update the API with the entire operators list
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(operators),
-  //   };
-  //   const apiUrloperator = `${Settings.serviceHost}:${Settings.servicePort}/setoperator`;
-  //   fetch(apiUrloperator, options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
 
   return (
     <div>
@@ -152,9 +137,7 @@ function SetOperatorList() {
             </li>
           ))}
         </ul>
-        {/* <button className="mx-2" onClick={handleSaveoperator}>
-          Save
-        </button> */}
+
       </div>
     </div>
   );

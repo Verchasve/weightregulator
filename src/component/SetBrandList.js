@@ -94,22 +94,6 @@ function SetBrandList() {
     setNewBrand('');
   };
 
-  // const handleSaveBrand = () => {
-  //   // Update the API with the entire brands list
-  //   const options = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(brands),
-  //   };
-  //   const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;
-  //   fetch(apiUrlBrand, options)
-  //     .then((response) => response.json())
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
-
   return (
     <div>
       <form className="container my-3" onSubmit={handleFormSubmit}>

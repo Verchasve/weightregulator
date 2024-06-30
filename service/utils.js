@@ -35,7 +35,7 @@ const setProductBrands = async(data, db) => {
 
  if (data?.text){
   console.log( `Adding item : ${JSON.stringify(data)}`);
- //const brandNames = data.map(item => ({ text: item.text }));
+ 
  const brandNames = [{ text: data?.text }];
  await brandsCollection.insertMany(brandNames, (err, result) => {
    if (err) {
@@ -73,7 +73,7 @@ const setProductSizes = async(data, db) => {
  
   if (data?.text){
    console.log( `Adding item : ${JSON.stringify(data)}`);
-  //const brandNames = data.map(item => ({ text: item.text }));
+  
   const sizeNames = [{ text: data?.text }];
   await sizesCollection.insertMany(sizeNames, (err, result) => {
     if (err) {
@@ -111,7 +111,7 @@ const setProductColors = async(data, db) => {
  
   if (data?.text){
    console.log( `Adding item : ${JSON.stringify(data)}`);
-  //const colorNames = data.map(item => ({ text: item.text }));
+  
   const colorNames = [{ text: data?.text }];
   await colorsCollection.insertMany(colorNames, (err, result) => {
     if (err) {
@@ -151,7 +151,7 @@ const setProductLayers = async(data, db) => {
  
   if (data?.text){
    console.log( `Adding item : ${JSON.stringify(data)}`);
-  //const layerNames = data.map(item => ({ text: item.text }));
+  
   const layerNames = [{ text: data?.text }];
   await layersCollection.insertMany(layerNames, (err, result) => {
     if (err) {
@@ -191,7 +191,6 @@ const setProductOperators = async(data, db) => {
   const operatorsCollection = db.collection('operators');
   if (data?.text){
    console.log( `Adding item : ${JSON.stringify(data)}`);
-  //const operatorNames = data.map(item => ({ text: item.text }));
   const operatorNames = [{ text: data?.text }];
   await operatorsCollection.insertMany(operatorNames, (err, result) => {
     if (err) {
@@ -226,9 +225,6 @@ const setProductOperators = async(data, db) => {
   const collection = db.collection('productTableData');
   console.log( `Adding item : ${JSON.stringify(data)}`);
   if (data){
-  
-  //const operatorNames = data.map(item => ({ text: item.text }));
-  //c/onst tankData = [{ text: data }];
   await collection.insertMany(data, (err, result) => {
     if (err) {
       console.error(err);

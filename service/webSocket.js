@@ -16,8 +16,6 @@ const handlingSocketConnection = () => {
 
 const reConnection = () => {
 
-  // server.on('close', (code, reason) => {
-  //     console.log(`WebSocket connection closed with code ${code} and reason: ${reason}`);
       setTimeout(() => {
         console.log('Attempting to reconnect...');
         server.on('connection', (socket) => {
@@ -25,7 +23,6 @@ const reConnection = () => {
           socket.send('WebSocketServer Reconnected!');  
         });
       }, 2000);
-   // });
 
 }
 
@@ -57,22 +54,22 @@ const handlingSerialConnection = (socket) => {
       serialPortInstance.on('readable', function () {
         const data = serialPortInstance.read();
 
-       // console.log('Data.....', data)
+       
         if (data != null) {
           decodedData = new TextDecoder().decode(data);
 
           const latestData = collectScaletData(decodedData);
 
-          //console.log("latestData =",decodedData)
+         
           if (latestData !== undefined && latestData !== distinctVal) {
             distinctVal = latestData;
              
              console.log(`socket.... ${JSON.stringify(socket?._socket?._readableState?.closed)}`);
 
-            //console.log("odlDataValue = ", oldDataValue)
+          
 
             if (!socket?._socket?._readableState?.closed){
-              socket.send(`Serial : ${latestData}`);
+              socket.send(`${latestData}`);
             } 
             console.log(`Serial data.... ${latestData}`);
           }

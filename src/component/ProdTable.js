@@ -1,45 +1,27 @@
-//import  from 'react';
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, useLocation } from "react-router-dom"; 
-import "../App.css"; 
-import md5 from "md5"; 
-import PdfGenerator from "./PdfRenderer";
-import Modal from "react-modal"; 
-import Table from "react-bootstrap/Table";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../App.css";
+import md5 from "md5";
+import PdfGenerator from "./PdfRenderer";
+import Modal from "react-modal";
+import Table from "react-bootstrap/Table";
 
 const ProdTable = (props) => {
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
-
   const [socket, setSocket] = useState(null);
-  const [message, setMessage] = useState("");
   const [receivedMessage, setReceivedMessage] = useState("");
-  //const location = useLocation();
   const { state } = useLocation();
-
   const [serialNumber, setSerialNumber] = useState(1); // Initialize serial number
   const [ubin, setUbin] = useState(""); // Unique Batch Identification Number
-  //const [tankWeight, setTankWeight] = useState(''); // Tank Weight
   const [tableData, setTableData] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [pdfData, setPdfData] = useState([]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [preview, setPreview] = useState(null);
-
-  const style = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "300px",
-    border: "1px solid #ccc",
-    marginBottom: "10px",
-    maxWidth: "fit-content",
-  };
-
-  const items = Array.from({ length: 20 });
+  const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
+  const [buttonColor, setButtonColor] = useState("grey");
+  const [rejectedBtnClr, setRejectedBtnClr] = useState("grey");
 
   useEffect(() => {
     const updateDateTime = () => {
@@ -59,7 +41,14 @@ const ProdTable = (props) => {
     const socket = new WebSocket("ws://localhost:4001"); // Replace with your server address
     socket.onmessage = (event) => {
       setReceivedMessage(event.data);
-      console.log(event);
+      console.log(event.data);
+      if (event.data === "0.00Kg") {
+        setIsAddButtonDisabled(true); // Disable the Add button when weight is zero
+      } else {
+        setIsAddButtonDisabled(false); // Enable the Add button when weight is zero
+        setButtonColor("green"); // Change button color to green
+        setRejectedBtnClr("yellow");
+      }
     };
 
     // Set up event listeners
@@ -74,7 +63,6 @@ const ProdTable = (props) => {
 
     return () => {
       clearInterval(intervalId);
-      //socket.close();
     };
   }, []);
 
@@ -96,82 +84,49 @@ const ProdTable = (props) => {
     const hashedData = md5(combinedData);
     console.log("hashedData", hashedData);
 
-    // Extract the first six characters from the hashedData as the UBIN
-    const ubin = hashedData.substring(0, 6);
-
     // Set the generated UBIN
     setUbin(combinedData);
-    //setUbin(newUbin);
   };
 
-  const handleSearch = () => {
-    if (inputValue === ubin) {
-      alert(`UBIN: ${generateUbin().combinedData}`);
-    } else {
-      alert("Invalid UBIN");
+  // Add row to table when ADD button is clicked
+
+  const addRow = () => {
+    if (!isAddButtonDisabled) {
+      generateUbin();
+      const newRow = {
+        serialNumber: serialNumber,
+        ubin: Date.parse(new Date()),
+        receivedMessage: receivedMessage,
+        time: currentTime,
+      };
+      setTableData([...tableData, newRow]);
+      setSerialNumber(serialNumber + 1);
+      setReceivedMessage(receivedMessage);
+      setPreview(newRow);
+      setIsModalOpen(true);
+      setIsAddButtonDisabled(true);
+      setButtonColor("grey"); // Change button color to grey when clicked
     }
   };
 
-  const addRow = () => {
-    // Add row to table when ADD button is clicked
-    generateUbin();
-    const newRow = {
-      serialNumber: serialNumber,
-      ubin: Date.parse(new Date()),
-      receivedMessage: receivedMessage,
-      time: currentTime,
-    };
-    setTableData([...tableData, newRow]);
-    setSerialNumber(serialNumber + 1); // Increment serial number
-    setReceivedMessage(receivedMessage);
-     // Set the preview and open the modal
-     setPreview(newRow);
-     setIsModalOpen(true);
-  };
-
-  // // improve the following function such that if the value of the recievedMessage is 0.00 in tank weight screen, then the addRow function should not add the entry in the table if the value of recievedMessage is greatrer than 15.00 then only entry should get added in the table
-
-  // const addRow = () => {
-  //   // Check if the receivedMessage value is greater than 15.00
-  //   if (parseFloat(receivedMessage) > 15) {
-  //     // Add row to table when ADD button is clicked
-  //     generateUbin();
-  //     const newRow = {
-  //       serialNumber: serialNumber,
-  //       ubin: Date.parse(new Date()),
-  //       receivedMessage: receivedMessage,
-  //       time: currentTime,
-  //     };
-  //     setTableData([...tableData, newRow]);
-  //     setSerialNumber(serialNumber + 1); // Increment serial number
-  //     setReceivedMessage(receivedMessage);
-  //   } else if (parseFloat(receivedMessage) === 0.00) {
-  //     // Do not add an entry if the receivedMessage value is 0.00
-  //     alert("Tank weight must not be 0.00 to add a new row.");
-  //   } else {
-  //     alert("Tank weight must be greater than 15.00 to add a new row.");
-  //   }
-  // };
-
-  //
-
   const addRejectedRow = () => {
-    // Add row to table when ADD button is clicked
-    generateUbin();
-    const newRow = {
-      serialNumber: serialNumber,
-      ubin: "Rejected",
-      receivedMessage: receivedMessage,
-      time: "Rejected",
-      rejected: true, // This row is rejected
-    };
-    setTableData([...tableData, newRow]);
-    setSerialNumber(serialNumber + 1); // Increment serial number
-    setReceivedMessage(receivedMessage);
-
-     // Set the preview and open the modal
-     setPreview(newRow);
-     setIsModalOpen(true);
+    if (!isAddButtonDisabled) {
+      generateUbin();
+      const newRow = {
+        serialNumber: serialNumber,
+        ubin: "Rejected",
+        receivedMessage: receivedMessage,
+        time: "Rejected",
+        rejected: true,
+      };
+      setTableData([...tableData, newRow]);
+      setSerialNumber(serialNumber + 1);
+      setReceivedMessage(receivedMessage);
+      setPreview(newRow);
+      setIsModalOpen(true);
+      setIsAddButtonDisabled(true);
+      setRejectedBtnClr("grey"); // Change button color to red when clicked
+    }
   };
 
   return (
@@ -193,15 +148,13 @@ const ProdTable = (props) => {
             <div className="container my-3">
               <div className="weight-container">
                 <label for="RealTimeweightScreen" className="weightScreen">
-                  <input
+                 DRN : <input
+                    className="mx-3"
                     type="text"
-                    placeholder="Enter UBIN"
+                    placeholder="DRN"
                     value={inputValue}
-                    onChange={(e) => setInputValue(e.target.value)}
+                    disabled
                   />
-                  <button className="mx-3" onClick={handleSearch}>
-                    search
-                  </button>
 
                   <input
                     type="text"
@@ -222,24 +175,32 @@ const ProdTable = (props) => {
 
                 {/* <!-- Add button will turn Green every time whenb the weight get added and fed in the production table --> */}
                 <button
-                  className="primary addBtn mx-2"
+                  className={`btn ${
+                    buttonColor === "green" ? "btn-success" : "btn-secondary"
+                  } addBtn mx-2`}
                   id="ptAddBtn"
                   onClick={addRow}
+                  disabled={isAddButtonDisabled}
                 >
                   ADD
                 </button>
 
                 {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
                 <button
-                  className="danger reject mx-2"
+                  className={`btn ${
+                    rejectedBtnClr === "yellow" ? "btn-warning" : "btn-secondary"
+                  } addBtn mx-2`}
                   id="ptReject"
                   onClick={addRejectedRow}
+                  disabled={isAddButtonDisabled}
                 >
                   Reject
                 </button>
 
                 <button
-                  className="btn-primary mx-2"
+                  className={`btn ${
+                    buttonColor === "red" ? "btn-danger" : "btn-danger"
+                  } addBtn mx-2`}
                   onClick={() => navigate(-1)}
                 >
                   Finish{" "}
@@ -333,10 +294,7 @@ const ProdTable = (props) => {
                     boxSizing: "border-box",
                   }}
                 >
-                  <PdfGenerator
-                  
-                  data={tableData}
-                  >
+                  <PdfGenerator data={tableData}>
                     <Table
                       striped
                       bordered
@@ -381,28 +339,29 @@ const ProdTable = (props) => {
                   </PdfGenerator>
 
                   <Modal
-                   style={{
-                    overlay: {
-                      width: 'fit-content',
-                      height: 'fit-content',
-                      
-                    },
-                    content: {
-                      width: '300px',
-                      height: 'fit-content',
-                      backgroundColor: 'yellow',
-                      borderRadius: '10px',
-                      position: 'relative',
-                    }
-                  }}
-                  isOpen={isModalOpen}
-                  onRequestClose={() => setIsModalOpen(false)}
-                  contentLabel="Contact Preview"
+                    style={{
+                      overlay: {
+                        width: "fit-content",
+                        height: "fit-content",
+                        left: "70%",
+                        transform: "translateX(50%)",
+                        margin: "50px 0 0 100px",
+                      },
+                      content: {
+                        width: "300px",
+                        height: "fit-content",
+                        backgroundColor: "#f2f2f2",
+                        borderRadius: "10px",
+                      },
+                    }}
+                    isOpen={isModalOpen}
+                    onRequestClose={() => setIsModalOpen(false)}
+                    contentLabel="Contact Preview"
                   >
                     {preview && (
                       <div>
                         <h2>Print Preview</h2>
-                        
+
                         <p>UBIN: {preview?.ubin}</p>
                         <p>Tank Weight: {preview?.receivedMessage}</p>
                         <p>Time: {preview?.time}</p>
@@ -412,12 +371,12 @@ const ProdTable = (props) => {
                         <p>Size: {state?.selectedSizeValue}</p>
                         <p>Layer: {state?.selectedLayerValue}</p>
                         <p>Color: {state?.selectedColorValue}</p>
-                        <button onClick={() => setIsModalOpen(false)}>Print</button>
+                        <button onClick={() => setIsModalOpen(false)}>
+                          Print
+                        </button>
                       </div>
                     )}
                   </Modal>
-
-
                 </div>
               </div>
             </div>
