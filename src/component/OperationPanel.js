@@ -48,7 +48,7 @@ fetch(apiUrlLayer)
 
 
 
-const OperationPanel = ({ onSubmit , props}) => {
+const OperationPanel = ({ incrementDrnNumber }) => {
   const navigate = useNavigate()
   const ListLoading = withListLoading(List)
   //let operator, brand;
@@ -110,6 +110,7 @@ const OperationPanel = ({ onSubmit , props}) => {
       alert('Please select all the values before continuing.');
       return;
     }
+    incrementDrnNumber();
     navigate('/prodTable', {   
       state:  {
         selectedOperatorvalue,

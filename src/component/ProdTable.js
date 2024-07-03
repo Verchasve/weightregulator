@@ -6,7 +6,7 @@ import PdfGenerator from "./PdfRenderer";
 import Modal from "react-modal";
 import Table from "react-bootstrap/Table";
 
-const ProdTable = (props) => {
+const ProdTable = ({ drnNumber }) => {
   const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
@@ -42,7 +42,7 @@ const ProdTable = (props) => {
     socket.onmessage = (event) => {
       setReceivedMessage(event.data);
       console.log(event.data);
-      if (event.data === "0.00Kg") {
+      if (event.data >= "0.00Kg" && event.data <= "2.00Kg") {
         setIsAddButtonDisabled(true); // Disable the Add button when weight is zero
       } else {
         setIsAddButtonDisabled(false); // Enable the Add button when weight is zero
@@ -109,6 +109,8 @@ const ProdTable = (props) => {
     }
   };
 
+  // improve the following code such that 
+
   const addRejectedRow = () => {
     if (!isAddButtonDisabled) {
       generateUbin();
@@ -148,12 +150,12 @@ const ProdTable = (props) => {
             <div className="container my-3">
               <div className="weight-container">
                 <label for="RealTimeweightScreen" className="weightScreen">
-                 DRN : <input
+                 DRt No : <input
                     className="mx-3"
                     type="text"
                     placeholder="DRN"
-                    value={inputValue}
-                    disabled
+                    value={drnNumber}
+                    readOnly
                   />
 
                   <input

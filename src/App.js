@@ -1,5 +1,5 @@
 
-import React from "react";
+import React , { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
 
 import Home from "./component/Home";
@@ -20,20 +20,22 @@ import SetLayerList from "./component/SetLayerList";
 import SetColorList from "./component/SetColorList";
 import SetOperatorList from "./component/SetOperatorList";
 import DataReport from "./component/DataReport";
-
+import Configuration from "./component/Configuration";
 function App() {
+  const [drnNumber, setDrnNumber] = useState(0);
+  const incrementDrnNumber = () => {
+    setDrnNumber(prevDrnNumber => prevDrnNumber + 1);
+  };
 
   return (
     <>
-
-
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/about" element={<About />} />
-          <Route exact path="/operation" element={<OperationPanel />} />
+          <Route exact path="/operation" element={<OperationPanel incrementDrnNumber={incrementDrnNumber} />} />
           <Route exact path="/admin" element={<AdminPortal />} />
-          <Route exact path="/prodTable" element={<ProdTable />} />
+          <Route exact path="/prodTable" element={<ProdTable drnNumber={drnNumber}/>} />
           <Route exact path="/adminServerPortal" element={<AdminServerPortal />} />
           <Route exact path="/settingss" element={<Setting />} />
           <Route exact path="/setProdEntries" element={<SetProdEntries />} />
@@ -46,6 +48,7 @@ function App() {
           <Route exact path="/setColorList/*" element={<SetColorList />} />
           <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
           <Route exact path="/dataReport" element={<DataReport />} />
+          <Route exact path="/configuration" element={<Configuration />} />
           
         </Routes>
         

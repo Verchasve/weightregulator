@@ -79,6 +79,10 @@ export default function AdminServerPortal() {
                   <button  className="mx-2" onClick={() => navigate("/dataReport")}>
                     DataReport
                   </button>
+
+                  <button  className="mx-2" onClick={() => navigate("/configuration")}>
+                    Configuration
+                  </button>
               
               </div>
             </div>

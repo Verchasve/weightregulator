@@ -16,7 +16,7 @@ function DataReport() {
           </div>
         </nav>
         <div className="container my-3">
-          Enter DRN No{" "}
+          Enter DRt No{" "}
           <input className="mx-2" type="text" name="correction-ubin" id="correction-ubin" />
           <input
             type="submit"
