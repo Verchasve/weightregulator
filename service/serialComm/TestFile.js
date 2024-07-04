@@ -6,7 +6,7 @@ const port = 4001; // Choose a port for your HTTP server
 
 // Replace 'COM3' with the appropriate serial port for your system
         const serialPort = new SerialPort({
-            path: 'COM4',
+            path: 'COM7',
             baudRate: 9600,
             autoOpen: false
         }); 

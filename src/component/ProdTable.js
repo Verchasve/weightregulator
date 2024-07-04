@@ -22,8 +22,10 @@ const ProdTable = ({ drnNumber }) => {
   const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
   const [buttonColor, setButtonColor] = useState("grey");
   const [rejectedBtnClr, setRejectedBtnClr] = useState("grey");
+  const [trackZeroWt, setTrackZeroWt] = useState(false);
 
   useEffect(() => {
+
     const updateDateTime = () => {
       const now = new Date();
       const dateOptions = { year: "numeric", month: "long", day: "numeric" };
@@ -35,19 +37,29 @@ const ProdTable = ({ drnNumber }) => {
       setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
       setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
     };
-    // Change done 05-02-2024
+  }, [currentDate]);
 
-    // Connect to the WebSocket server
+
+
+  useEffect(() => {
     const socket = new WebSocket("ws://localhost:4001"); // Replace with your server address
     socket.onmessage = (event) => {
-      setReceivedMessage(event.data);
-      console.log(event.data);
-      if (event.data >= "0.00Kg" && event.data <= "2.00Kg") {
-        setIsAddButtonDisabled(true); // Disable the Add button when weight is zero
-      } else {
-        setIsAddButtonDisabled(false); // Enable the Add button when weight is zero
-        setButtonColor("green"); // Change button color to green
-        setRejectedBtnClr("yellow");
+      try {
+        const numericWeight = parseFloat(event.data.replace("Kg", "")); // Remove 'Kg' and convert to float
+        console.log(`trackZeroWt - ${trackZeroWt} ::  ${numericWeight}`);
+        if (numericWeight >= 0 && numericWeight <= 2) {
+          setIsAddButtonDisabled(true);
+          setTrackZeroWt((prevTrackZeroWt) => !prevTrackZeroWt);
+        } else if (trackZeroWt) {
+          setIsAddButtonDisabled(false);
+          setButtonColor("green");
+          setRejectedBtnClr("yellow");
+          setTrackZeroWt((prevTrackZeroWt) => !prevTrackZeroWt);
+        } //else {
+          setReceivedMessage(event.data);
+        //}
+      } catch (error) {
+        console.error(`Cannot convert ${event.data} to a float`);
       }
     };
 
@@ -60,7 +72,6 @@ const ProdTable = ({ drnNumber }) => {
     setSocket(socket);
 
     const intervalId = setInterval(updateDateTime, 1000);
-
     return () => {
       clearInterval(intervalId);
     };
@@ -109,7 +120,7 @@ const ProdTable = ({ drnNumber }) => {
     }
   };
 
-  // improve the following code such that 
+  // improve the following code such that
 
   const addRejectedRow = () => {
     if (!isAddButtonDisabled) {
@@ -150,14 +161,14 @@ const ProdTable = ({ drnNumber }) => {
             <div className="container my-3">
               <div className="weight-container">
                 <label for="RealTimeweightScreen" className="weightScreen">
-                 DRt No : <input
+                  DRt No :{" "}
+                  <input
                     className="mx-3"
                     type="text"
                     placeholder="DRN"
                     value={drnNumber}
                     readOnly
                   />
-
                   <input
                     type="text"
                     name="weight-screen"
@@ -190,7 +201,9 @@ const ProdTable = ({ drnNumber }) => {
                 {/* <!-- By clicking on the Reject Button, The entries will turn red in the production table --> */}
                 <button
                   className={`btn ${
-                    rejectedBtnClr === "yellow" ? "btn-warning" : "btn-secondary"
+                    rejectedBtnClr === "yellow"
+                      ? "btn-warning"
+                      : "btn-secondary"
                   } addBtn mx-2`}
                   id="ptReject"
                   onClick={addRejectedRow}
@@ -363,7 +376,6 @@ const ProdTable = ({ drnNumber }) => {
                     {preview && (
                       <div>
                         <h2>Print Preview</h2>
-
                         <p>UBIN: {preview?.ubin}</p>
                         <p>Tank Weight: {preview?.receivedMessage}</p>
                         <p>Time: {preview?.time}</p>
@@ -374,7 +386,7 @@ const ProdTable = ({ drnNumber }) => {
                         <p>Layer: {state?.selectedLayerValue}</p>
                         <p>Color: {state?.selectedColorValue}</p>
                         <button onClick={() => setIsModalOpen(false)}>
-                          Print
+                          QR Code
                         </button>
                       </div>
                     )}
@@ -390,3 +402,9 @@ const ProdTable = ({ drnNumber }) => {
 };
 
 export default ProdTable;
+
+// As the user clicks on the Add button, the entry get added in the table and the colour of of the button changes to grey
+//and the button is disabled, Improve the following code such that colour of the button should remain grey and
+//remain disabled if the value of the weight fluctuates ascending or descending. the problem with the folllowing code
+//is that the button get enabled and turns green when the when the weight fluctuates in ascending or descending direction.
+//for example if the 23.00 value of weight is added in the table and the colour of the add button turns to grey then the add button turns green if the value of the weight fluctuates to 23.40 or 22.50in ascending or descending direction. improve the following code such that it Add button should remain disabled if the value of the weight fluctuates ascending or descending.
