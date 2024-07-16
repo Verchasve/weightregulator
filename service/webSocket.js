@@ -5,7 +5,7 @@ const server = new WebSocket.Server({ port: 4001 });
 
 const handlingSocketConnection = () => {
   server.on('connection', (socket) => {
-    console.log('Client connected -> ' + socket._socket?._readableState?.closed);
+    console.log('Client is closed -> ' + socket._socket?._readableState?.closed);
     socket.send('WebSocketServer!');
 
     if (!socket._socket?._readableState?.closed) {
@@ -23,9 +23,7 @@ const reConnection = () => {
           socket.send('WebSocketServer Reconnected!');  
         });
       }, 2000);
-
-}
-
+};
 
 
 const handlingSerialConnection = (socket) => {
@@ -35,15 +33,11 @@ const handlingSerialConnection = (socket) => {
     let decodedData, distinctVal = '';
     const serialPortInstance = startSerialConnection();
 
-    if (isConnected) {
-      //serialPortInstance.close();
-    }
-
     if (serialPortInstance) {
       serialPortInstance.open(function (err) {
         if (err) {
           if (err.message === 'Port is already open') {
-            // serialPortInstance.close();
+            serialPortInstance.close();
           }
           console.log('Error opening port: ', err.message);
         }
@@ -53,28 +47,20 @@ const handlingSerialConnection = (socket) => {
 
       serialPortInstance.on('readable', function () {
         const data = serialPortInstance.read();
-
-       
         if (data != null) {
           decodedData = new TextDecoder().decode(data);
-
           const latestData = collectScaletData(decodedData);
-
          
           if (latestData !== undefined && latestData !== distinctVal) {
-            distinctVal = latestData;
-             
-             console.log(`socket.... ${JSON.stringify(socket?._socket?._readableState?.closed)}`);
-
-          
-
+             distinctVal = latestData;
             if (!socket?._socket?._readableState?.closed){
-              socket.send(`${latestData}`);
+              socket.send(`${distinctVal}`);
             } 
-            console.log(`Serial data.... ${latestData}`);
+            console.log(`Serial data.... ${distinctVal}`);
           }
         }
       });
+
     }
   } catch (error) {
     console.log(error);

@@ -6,51 +6,27 @@ let finalData = "";
 let serialPortInstance;
 
 const startSerialConnection = () => {
-
+    // const savedPortValue = localStorage.getItem('portValue');
+    // if (!savedPortValue) {
+    //     console.error('No port value saved in local storage');
+    //     return null;
+    //   }
     if (!serialPortInstance){
-
         serialPortInstance = new SerialPort({
             path: 'COM7',
             baudRate: 9600,
             autoOpen: true
-        }); 
-        // serialPortInstance.open(function (err) {
-        //     if (err) {
-        //         return console.log('Error opening port: ', err.message)
-        //     }
-        //     console.log(`Serial Connection Started....`);
-        //     // Because there's no callback to write, write errors will be emitted on the port:
-        //     //    port.write('main screen turn on')
-        // });
-        
-        
-        
-        //  // Initialize an empty array to collect data
-        //  serialPortInstance.on('readable', function () {
-        //     const data = serialPortInstance.read();
-        //     const decodedData = new TextDecoder().decode(data);
-        //     // const finalDatas = collectScaletData(decodedData);
-        //      console.log(`Serial data.... ${finalData}`);
-        //     return decodedData;
-        // });
+        });
     }
     return serialPortInstance;
-
 };
-
-
-
-
-
 
 const getWeightData = (str) => {
     let newReading = "";
     const regex = /[^0-9.\sKg]/g;
     const match = str.replace(regex, "");
     const data =  match.split(",");
-
-    // oldDataValue
-    console.log( "oldData001...", match)
+    // console.log( "oldData001...", match)
 
     const distinctVal =  [...new Set(data)];
         const valuesArray = distinctVal[0].split('\n');
@@ -58,17 +34,14 @@ const getWeightData = (str) => {
         if (valuesArray.length > 1 ){
         // Get the last value in the array
         const lastValue = valuesArray[valuesArray.length - 2].trim(); 
-        
-        
         // Trim to remove leading and trailing spaces
         if (newReading != lastValue){
-            newReading = lastValue; 
-            //comsole.log(lastValue)       
+            newReading = lastValue;        
             return newReading;
         }  
     }
-
 };
+
 let buffStr = [];
 const collectScaletData = (data) => {
     try {
@@ -77,8 +50,7 @@ const collectScaletData = (data) => {
         if (joinedStr.startsWith('S') && joinedStr.endsWith('g')) {
             const finStr = joinedStr;
             finalData = getWeightData(finStr); 
-            if (finalData){
-                //console.log(`final - ${finalData}`);
+            if (finalData){ 
                 return finalData;
             }
            
@@ -94,5 +66,3 @@ module.exports = {
     startSerialConnection,
     collectScaletData,
 }
-
-//   node serialComm/serialTestFile.js

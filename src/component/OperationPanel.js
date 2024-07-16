@@ -107,8 +107,7 @@ const OperationPanel = ({ incrementDrnNumber }) => {
 
   const handleContinueToTable = () => {
     if (!selectedOperatorvalue || !selectedBrandValue || !selectedSizeValue || !selectedColorValue || !selectedLayerValue) {
-      alert('Please select all the values before continuing.');
-      return;
+      return alert('Please select all the values before continuing.');
     }
     incrementDrnNumber();
     navigate('/prodTable', {   

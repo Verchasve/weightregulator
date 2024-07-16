@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "../App.css";
 import md5 from "md5";
@@ -16,18 +16,19 @@ const ProdTable = ({ drnNumber }) => {
   const [serialNumber, setSerialNumber] = useState(1); // Initialize serial number
   const [ubin, setUbin] = useState(""); // Unique Batch Identification Number
   const [tableData, setTableData] = useState([]);
-  const [inputValue, setInputValue] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [preview, setPreview] = useState(null);
   const [isAddButtonDisabled, setIsAddButtonDisabled] = useState(false);
   const [buttonColor, setButtonColor] = useState("grey");
   const [rejectedBtnClr, setRejectedBtnClr] = useState("grey");
-  const [trackZeroWt, setTrackZeroWt] = useState(false);
+  const [connectionStatus, setConnectionStatus] = useState("disconnected"); // New state for connection status
+  
 
-  useEffect(() => {
+ 
 
+  useEffect(() => {  
     const updateDateTime = () => {
-      const now = new Date();
+      const now = new Date(); // New state for connection status
       const dateOptions = { year: "numeric", month: "long", day: "numeric" };
       const timeOptions = {
         hour: "numeric",
@@ -36,46 +37,123 @@ const ProdTable = ({ drnNumber }) => {
       };
       setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
       setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+      
     };
-  }, [currentDate]);
-
-
-
-  useEffect(() => {
-    const socket = new WebSocket("ws://localhost:4001"); // Replace with your server address
-    socket.onmessage = (event) => {
-      try {
-        const numericWeight = parseFloat(event.data.replace("Kg", "")); // Remove 'Kg' and convert to float
-        console.log(`trackZeroWt - ${trackZeroWt} ::  ${numericWeight}`);
-        if (numericWeight >= 0 && numericWeight <= 2) {
-          setIsAddButtonDisabled(true);
-          setTrackZeroWt((prevTrackZeroWt) => !prevTrackZeroWt);
-        } else if (trackZeroWt) {
-          setIsAddButtonDisabled(false);
-          setButtonColor("green");
-          setRejectedBtnClr("yellow");
-          setTrackZeroWt((prevTrackZeroWt) => !prevTrackZeroWt);
-        } //else {
-          setReceivedMessage(event.data);
-        //}
-      } catch (error) {
-        console.error(`Cannot convert ${event.data} to a float`);
-      }
-    };
-
-    // Set up event listeners
-    socket.onopen = () => {
-      console.log("Connected to WebSocket server");
-    };
-
-    // Save the socket instance in the state
-    setSocket(socket);
-
     const intervalId = setInterval(updateDateTime, 1000);
     return () => {
       clearInterval(intervalId);
+      
     };
   }, []);
+
+
+
+  // useEffect(() => {
+  //   const savedDrnNumber = localStorage.getItem('drnNumber');
+  //   if (savedDrnNumber) {
+  //     setSerialNumber(parseInt(savedDrnNumber, 10));
+  //   } else {
+  //     localStorage.setItem('drnNumber', 0);
+  //   }
+  //   
+  // }, []);
+ 
+ 
+  // const connectToServer = () => {
+    // if (socket) {
+    //   socket.close(); // Close any existing socket before creating a new one
+    // }
+
+  //   const newSocket = new WebSocket("ws://localhost:4001");
+  //   let check = false;
+  //   newSocket.onopen = () => {
+  //     console.log("Connected to WebSocket server");
+  //     setConnectionStatus("connected");
+  //     setReceivedMessage("connected");
+  //   };
+
+  //   newSocket.onmessage = (event) => {
+  //     if (event.data.includes("Kg")) {
+  //       setReceivedMessage(event.data);
+  //       const weight = parseFloat(event.data.replace("Kg", ""));
+  //       if (weight >= 0.0 && weight <= 2.0) {
+  //         setIsAddButtonDisabled(true);
+  //         check = true;
+  //       } else {
+  //         if (check) {
+  //           setIsAddButtonDisabled(false);
+  //           setButtonColor("green");
+  //           setRejectedBtnClr("yellow");
+  //           check = false;
+  //         }
+  //       }
+  //     } else {
+  //       setReceivedMessage("0.00Kg");
+  //     }
+  //   };
+
+  //   newSocket.onclose = () => {
+  //     console.log("Disconnected from WebSocket server");
+  //     setConnectionStatus("disconnected");
+  //     setReceivedMessage("Disconnected");
+  //   };
+
+  //   setSocket(newSocket);
+  // };
+
+  const [isSocketOpen, setIsSocketOpen] = useState(false);
+
+  const connectToServer = () => {
+    const socket = new WebSocket("ws://localhost:4001");
+    let check = false;
+
+    socket.onopen = () => {
+      console.log("Connected to WebSocket server");
+      setIsSocketOpen(true);
+      setConnectionStatus("connected");
+      setReceivedMessage("connected");
+    };
+
+    socket.onmessage = (event) => {
+      if (event.data.includes("Kg")) {
+        setReceivedMessage(event.data);
+        const weight = parseFloat(event.data.replace("Kg", ""));
+        if (weight >= 0.0 && weight <= 2.0) {
+          setIsAddButtonDisabled(true);
+          check = true;
+        } else {
+          if (check) {
+            setIsAddButtonDisabled(false);
+            setButtonColor("green");
+            setRejectedBtnClr("yellow");
+            check = false;
+          }
+        }
+      } else {
+        setReceivedMessage("Connected waiting...."); 
+      }
+    };
+
+    setSocket(socket);
+  };
+
+ 
+// Improve the following code such that change the state of the socket from null to open when reconnecting to the server by calling connectToServer() function after disconnecting from the server by call of disconnectToServer() function
+  
+  const disconnectToServer = () => {
+    if (socket) {
+      socket.close(); 
+      setIsSocketOpen(false);
+      
+      socket.onclose = () => {
+        console.log("Disconnected from WebSocket server");
+        setConnectionStatus("disconnected");
+        setReceivedMessage("Disconnected");
+      };
+
+      setSocket(null);
+    }
+  };
 
   // change done 05-02-2024 generate ubin code
 
@@ -112,14 +190,25 @@ const ProdTable = ({ drnNumber }) => {
       };
       setTableData([...tableData, newRow]);
       setSerialNumber(serialNumber + 1);
+      
       setReceivedMessage(receivedMessage);
       setPreview(newRow);
       setIsModalOpen(true);
       setIsAddButtonDisabled(true);
       setButtonColor("grey"); // Change button color to grey when clicked
+
     }
   };
 
+  const addDrn = () => {
+      const newRow = {
+        serialNumber: serialNumber
+      };
+     
+      setSerialNumber(serialNumber + 1);
+      localStorage.setItem('drnNumber', serialNumber + 1);
+    
+  };
   // improve the following code such that
 
   const addRejectedRow = () => {
@@ -141,7 +230,7 @@ const ProdTable = ({ drnNumber }) => {
       setRejectedBtnClr("grey"); // Change button color to red when clicked
     }
   };
-
+    
   return (
     <>
       <div
@@ -151,10 +240,40 @@ const ProdTable = ({ drnNumber }) => {
         <body>
           <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid title">
-              <a className="navbar-brand title" href="#">
+              <p className="navbar-brand title" href="#">
                 <h1>WELCOME TO MP&AD ENTERPRISES</h1>
-              </a>
+              </p>
             </div>
+
+            <button
+              className={`btn ${
+                buttonColor === "blue" ? "btn-primary" : "btn-primary"
+              } addBtn mx-2`}
+              onClick={connectToServer}
+            >
+              Connect
+            </button>
+
+            <button
+              className={`btn ${
+                buttonColor === "blue" ? "btn-primary" : "btn-primary"
+              } addBtn mx-2`}
+              onClick={disconnectToServer}
+            >
+              DisConnect
+            </button>
+
+
+            <input
+              type="text"
+              className={` btn ${
+                connectionStatus === "connected" ? "btn-success" : "btn-danger"
+              }`}
+              value={
+                connectionStatus === "connected" ? "Connected" : "Disconnected"
+              }
+              readOnly
+            />
           </nav>
 
           <center>
@@ -212,14 +331,14 @@ const ProdTable = ({ drnNumber }) => {
                   Reject
                 </button>
 
-                <button
+                {/* <button
                   className={`btn ${
                     buttonColor === "red" ? "btn-danger" : "btn-danger"
                   } addBtn mx-2`}
                   onClick={() => navigate(-1)}
                 >
                   Finish{" "}
-                </button>
+                </button> */}
               </div>
 
               <div className="my-3">
@@ -309,7 +428,7 @@ const ProdTable = ({ drnNumber }) => {
                     boxSizing: "border-box",
                   }}
                 >
-                  <PdfGenerator data={tableData}>
+                  <PdfGenerator data={tableData} drnNumber={drnNumber}>
                     <Table
                       striped
                       bordered
@@ -376,6 +495,7 @@ const ProdTable = ({ drnNumber }) => {
                     {preview && (
                       <div>
                         <h2>Print Preview</h2>
+                        <p>DRT Number: {drnNumber}</p>
                         <p>UBIN: {preview?.ubin}</p>
                         <p>Tank Weight: {preview?.receivedMessage}</p>
                         <p>Time: {preview?.time}</p>
@@ -395,6 +515,15 @@ const ProdTable = ({ drnNumber }) => {
               </div>
             </div>
           </center>
+
+          <button
+            className={`btn ${
+              buttonColor === "red" ? "btn-danger" : "btn-danger"
+            } addBtn mx-2`}
+            onClick={() => navigate(-1)}
+          >
+            Finish{" "}
+          </button>
         </body>
       </div>
     </>
@@ -403,8 +532,141 @@ const ProdTable = ({ drnNumber }) => {
 
 export default ProdTable;
 
-// As the user clicks on the Add button, the entry get added in the table and the colour of of the button changes to grey
-//and the button is disabled, Improve the following code such that colour of the button should remain grey and
-//remain disabled if the value of the weight fluctuates ascending or descending. the problem with the folllowing code
-//is that the button get enabled and turns green when the when the weight fluctuates in ascending or descending direction.
-//for example if the 23.00 value of weight is added in the table and the colour of the add button turns to grey then the add button turns green if the value of the weight fluctuates to 23.40 or 22.50in ascending or descending direction. improve the following code such that it Add button should remain disabled if the value of the weight fluctuates ascending or descending.
+//improve the folllowing code such that it should reconnect with the webSocket server by clicking on the connect button next time, once when it is disconnected by the user, by clicking on the disconnect button 
+
+
+
+// useEffect(() => {
+
+//   const updateDateTime = () => {
+//     const now = new Date();
+//     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+//     const timeOptions = {
+//       hour: "numeric",
+//       minute: "numeric",
+//       second: "numeric",
+//     };
+//     setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
+//     setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+//   };
+// }, [currentDate, currentTime]);
+
+// useEffect(() => {
+//   const updateDateTime = () => {
+//     const now = new Date();
+//     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+//     const timeOptions = {
+//       hour: "numeric",
+//       minute: "numeric",
+//       second: "numeric",
+//     };
+//     setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
+//     setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+//   };
+//   const socket = new WebSocket("ws://localhost:4001"); // Replace with your server address
+//   socket.onmessage = (event) => {
+//     try {
+//       const numericWeight = parseFloat(event.data);
+//       if (Number.isNaN(numericWeight)) {
+//         console.error(`Cannot convert ${event.data} to a number`);
+//       } else {
+//         console.log(`trackZeroWt - ${trackZeroWt} ::  ${numericWeight.toFixed(2)}`);
+//         if (numericWeight >= 0 && numericWeight <= 2) {
+//           setIsAddButtonDisabled(true);
+//           setTrackZeroWt((prevTrackZeroWt) => prevTrackZeroWt);
+//         } else if (trackZeroWt) {
+//           setIsAddButtonDisabled(false);
+//         } else {
+//           setButtonColor("green");
+//           setRejectedBtnClr("yellow");
+//           setReceivedMessage(numericWeight.toFixed(2));
+//         }
+//       }
+//     } catch (error) {
+//       console.error(`Cannot convert ${event.data} to a number`);
+//     }
+//   };
+
+//   // Set up event listeners
+//   socket.onopen = () => {
+//     console.log("Connected to WebSocket server");
+//   };
+
+//   // Save the socket instance in the state
+//   setSocket(socket);
+
+//   const intervalId = setInterval(updateDateTime, 1000);
+//   return () => {
+//     clearInterval(intervalId);
+//   };
+// }, [
+//   currentDate,
+//   currentTime,
+//   trackZeroWt,
+//   isAddButtonDisabled,
+//   buttonColor,
+//   rejectedBtnClr,
+// ]);
+
+
+
+
+
+// useEffect(() => {
+   
+//   const updateDateTime = () => {
+//     const now = new Date(); // New state for connection status
+//     const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+//     const timeOptions = {
+//       hour: "numeric",
+//       minute: "numeric",
+//       second: "numeric",
+//     };
+//     setCurrentDate(now.toLocaleDateString(undefined, dateOptions));
+//     setCurrentTime(now.toLocaleTimeString(undefined, timeOptions));
+    
+//   };
+//   // Connect to the WebSocket server
+//   /*const socket = new WebSocket("ws://localhost:4001");
+//   let check = false;
+//   socket.onmessage = (event) => {
+//     if (event.data.includes("Kg")) {
+//       setReceivedMessage(event.data);
+//       const weight = parseFloat(event.data.replace("Kg", ""));
+//       if (weight >= 0.0 && weight <= 2.0) {
+//         setIsAddButtonDisabled(true);
+//         check = true;
+//       } else {
+//         if (check) {
+//           setIsAddButtonDisabled(false);
+//           setButtonColor("green");
+//           setRejectedBtnClr("yellow");
+//           check = false;
+//         }
+//       }
+//     } else {
+//       setReceivedMessage("0.00Kg");
+//     }
+//   };
+
+//   // Set up event listeners
+//   socket.onopen = () => {
+//     console.log("Connected to WebSocket server");
+//     setConnectionStatus("connected");
+//   };
+
+//   socket.onclose = () => {
+//     console.log("Disconnected from WebSocket server");
+//     setConnectionStatus("disconnected");
+//   };
+
+//   // Save the socket instance in the state
+//   setSocket(socket);
+//   */
+//   const intervalId = setInterval(updateDateTime, 1000);
+//   return () => {
+//     clearInterval(intervalId);
+//     //socket.close();
+//   };
+// }, []);
+

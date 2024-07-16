@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sender": "node serialComm/serialScaleGen.js",
-    "socket": "node webSocket.js",
-    "sample": "node serialComm/TestFile.js"
+    "test": "echo \"Error: no test specified\" && exit 1", 
+    "socket": "node webSocket.js" 
   },
   "keywords": [],
   "author": "",

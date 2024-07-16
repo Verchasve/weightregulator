@@ -1,13 +1,10 @@
-
-import React , { useState } from "react";
+import React , { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, } from "react-router-dom";
-
 import Home from "./component/Home";
 import About from "./component/About";
 import AdminPortal from "./component/AdminPortal"
 import OperationPanel from "./component/OperationPanel";
 import ProdTable from "./component/ProdTable";
-
 import AdminServerPortal from "./component/AdminServerPortal";
 import Setting from "./component/Setting";
 import SetProdEntries from "./component/SetProdEntries";
@@ -21,10 +18,21 @@ import SetColorList from "./component/SetColorList";
 import SetOperatorList from "./component/SetOperatorList";
 import DataReport from "./component/DataReport";
 import Configuration from "./component/Configuration";
+import Port from "./component/Port";
+
+
 function App() {
   const [drnNumber, setDrnNumber] = useState(0);
+  useEffect(() => {
+    const savedDrnNumber = localStorage.getItem('drnNumber');
+    if (savedDrnNumber) {
+      setDrnNumber(parseInt(savedDrnNumber, 10));
+    }
+  }, []);
   const incrementDrnNumber = () => {
-    setDrnNumber(prevDrnNumber => prevDrnNumber + 1);
+    const newDrnNumber = drnNumber + 1;
+    setDrnNumber(newDrnNumber);
+    localStorage.setItem('drnNumber', newDrnNumber);
   };
 
   return (
@@ -49,6 +57,8 @@ function App() {
           <Route exact path="/setOperatorList/*" element={<SetOperatorList />} />
           <Route exact path="/dataReport" element={<DataReport />} />
           <Route exact path="/configuration" element={<Configuration />} />
+          <Route exact path="/port" element={<Port />} />
+         
           
         </Routes>
         

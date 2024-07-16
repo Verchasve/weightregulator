@@ -4,13 +4,10 @@ import html2canvas from "html2canvas";
 import { useLocation } from "react-router-dom";
 import "../App.css";
 import settings from "../settings";
-const PdfGenerator = ({ data ,  children }) => {
-
+const PdfGenerator = ({ data, children, drnNumber }) => {
   const tableData = data;
-  
   const contentRef = useRef(null);
   const location = useLocation();
-
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
 
@@ -66,16 +63,14 @@ const PdfGenerator = ({ data ,  children }) => {
       let endRow = firstPageRows;
 
       function addHeader(pdf, pageNumber) {
-        
-
         if (pageNumber === 1) {
           const xOffset = 50;
-
-     
+          pdf.text(`DRt No, ${drnNumber}`, 10, 10);
           pdf.setFont("helvetica", "bold");
+
           pdf.text("MP & AD Enterprise", 72, 20);
+
           pdf.setFont("helvetica", "normal");
-          
 
           pdf.text(` ${currentDate}`, 40, 30);
           pdf.text(`${currentTime}`, 40 - 50 + 2 * xOffset, 30);
@@ -95,8 +90,11 @@ const PdfGenerator = ({ data ,  children }) => {
         const pageContent = rows.slice(startRow, endRow);
         const pageElement = document.createElement("div");
         pageElement.innerHTML =
-          "<table class='pdf-table'><tbody>" + content.querySelector("thead").outerHTML +
-          "</thead><tbody>" + pageContent.map((row) => row.outerHTML).join("") + "</tbody></table>";
+          "<table class='pdf-table'><tbody>" +
+          content.querySelector("thead").outerHTML +
+          "</thead><tbody>" +
+          pageContent.map((row) => row.outerHTML).join("") +
+          "</tbody></table>";
 
         document.body.appendChild(pageElement);
 
@@ -114,7 +112,7 @@ const PdfGenerator = ({ data ,  children }) => {
           pdf.addPage();
         }
 
-        addHeader(pdf, currentPage);
+        addHeader(pdf, currentPage, drnNumber || "");
         const yOffset = currentPage === 1 ? 50 : 20;
         pdf.addImage(imgData, "PNG", margin, yOffset, imgWidth, imgHeight);
 
@@ -125,9 +123,7 @@ const PdfGenerator = ({ data ,  children }) => {
 
       pdf.save("sample.pdf");
 
-      handleSaveOPtion(tableData , location.state);
-
-
+      handleSaveOPtion(tableData, location.state, drnNumber);
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -138,7 +134,7 @@ const PdfGenerator = ({ data ,  children }) => {
       <div>
         <h1>PDF Generator</h1>
       </div>
-      <button onClick={generatePdf}>Generate PDF</button>
+      <button onClick={() => generatePdf()}>Generate PDF</button>
       <br />
       <br />
       <div className="content">
@@ -148,54 +144,52 @@ const PdfGenerator = ({ data ,  children }) => {
   );
 };
 
-const handleSaveOPtion = (tableData , state) => {
-    const savedTableData = [];
-    // Iterate through the tableData array and construct objects
-    tableData.forEach((row) => {
-      const rowData = {
-        ubin: row.ubin,
-        tankWeight: row.receivedMessage,
-        time: row.time,
-      };
-
-      savedTableData.push(rowData);
-    });
-
-    // Display the constructed object in the console
-    console.log("Saved table Data:", savedTableData);
-
-    const selectedOperatorValue = state?.selectedOperatorValue || "";
-    const selectedBrandValue = state?.selectedBrandValue || "";
-    const selectedSizeValue = state?.selectedSizeValue || "";
-    const selectedLayerValue = state?.selectedLayerValue || "";
-    const selectedColorValue = state?.selectedColorValue || "";
-
-    const data = [
-      {
-        operator: selectedOperatorValue,
-        color: selectedColorValue,
-        brand: selectedBrandValue,
-        size: selectedSizeValue,
-        layer: selectedLayerValue,
-        tanks: savedTableData,
-      },
-    ];
-
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
+const handleSaveOPtion = (tableData, state, drnNumber) => {
+  const savedTableData = [];
+  // Iterate through the tableData array and construct objects
+  tableData.forEach((row) => {
+    const rowData = {
+      ubin: row.ubin,
+      tankWeight: row.receivedMessage,
+      time: row.time,
     };
-    const apiUrl = `${settings.serviceHost}:${settings.servicePort}/setProductTableData`;
-    fetch(apiUrl, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+
+    savedTableData.push(rowData);
+  });
+
+  // Display the constructed object in the console
+  console.log("Saved table Data:", savedTableData);
+
+  const selectedOperatorValue = state?.selectedOperatorValue || "";
+  const selectedBrandValue = state?.selectedBrandValue || "";
+  const selectedSizeValue = state?.selectedSizeValue || "";
+  const selectedLayerValue = state?.selectedLayerValue || "";
+  const selectedColorValue = state?.selectedColorValue || "";
+
+  const data = [
+    {
+      operator: selectedOperatorValue,
+      color: selectedColorValue,
+      brand: selectedBrandValue,
+      size: selectedSizeValue,
+      layer: selectedLayerValue,
+      tanks: savedTableData,
+      drnNumber: drnNumber,
+    },
+  ];
+
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  const apiUrl = `${settings.serviceHost}:${settings.servicePort}/setProductTableData`;
+  fetch(apiUrl, options)
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
 };
-
-
-
 
 export default PdfGenerator;

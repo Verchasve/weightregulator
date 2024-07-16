@@ -42,6 +42,10 @@ export default function Setting() {
             <button onClick={() => navigate("/setProdEntries")}>Set Production Entries</button>
           </div>
           <div className='my-4'>
+          
+            <button onClick={() => navigate("/port")}>Set Port</button>
+          </div>
+          <div className='my-4'>
          
             <button onClick={() => navigate(-1)}>Back</button>
           </div>
