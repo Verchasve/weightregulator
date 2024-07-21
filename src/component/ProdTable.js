@@ -101,6 +101,8 @@ const ProdTable = ({ drnNumber }) => {
   //   setSocket(newSocket);
   // };
 
+  // improve the following code such that 
+
   const [isSocketOpen, setIsSocketOpen] = useState(false);
 
   const connectToServer = () => {
@@ -112,6 +114,7 @@ const ProdTable = ({ drnNumber }) => {
       setIsSocketOpen(true);
       setConnectionStatus("connected");
       setReceivedMessage("connected");
+      setSocket(socket);
     };
 
     socket.onmessage = (event) => {
@@ -134,7 +137,7 @@ const ProdTable = ({ drnNumber }) => {
       }
     };
 
-    setSocket(socket);
+    
   };
 
  
@@ -246,18 +249,14 @@ const ProdTable = ({ drnNumber }) => {
             </div>
 
             <button
-              className={`btn ${
-                buttonColor === "blue" ? "btn-primary" : "btn-primary"
-              } addBtn mx-2`}
+              className="btn btn-primary addBtn mx-2"
               onClick={connectToServer}
             >
               Connect
             </button>
 
             <button
-              className={`btn ${
-                buttonColor === "blue" ? "btn-primary" : "btn-primary"
-              } addBtn mx-2`}
+              className="btn btn-primary addBtn mx-2"
               onClick={disconnectToServer}
             >
               DisConnect
@@ -313,6 +312,14 @@ const ProdTable = ({ drnNumber }) => {
                   id="ptAddBtn"
                   onClick={addRow}
                   disabled={isAddButtonDisabled}
+                  style={{
+                    height: "2em",
+                    fontSize: "2em",
+                    fontWeight: "bolder",
+                    textAlign: "center",
+                    borderRadius: ".3em"
+                  }}
+                 
                 >
                   ADD
                 </button>

@@ -65,7 +65,7 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
       function addHeader(pdf, pageNumber) {
         if (pageNumber === 1) {
           const xOffset = 50;
-          pdf.text(`DRt No, ${drnNumber}`, 10, 10);
+          pdf.text(`DRt No: ${drnNumber}`, 10, 10);
           pdf.setFont("helvetica", "bold");
 
           pdf.text("MP & AD Enterprise", 72, 20);
@@ -134,7 +134,12 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
       <div>
         <h1>PDF Generator</h1>
       </div>
-      <button onClick={() => generatePdf()}>Generate PDF</button>
+      <button
+       className="btn btn-dark"
+        onClick={() => generatePdf()}
+      >
+        Generate PDF
+      </button>
       <br />
       <br />
       <div className="content">
