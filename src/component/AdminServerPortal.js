@@ -63,24 +63,24 @@ export default function AdminServerPortal() {
               </div>
               <div className="container">
                
-                  <button className="mx-2" onClick={() => navigate("/settingss")}>
+                  <button className="btn btn-dark mx-2" onClick={() => navigate("/settingss")}>
                     Settings
                   </button>
                
               
-                  <button className="mx-2" onClick={() => navigate("/correction")}>
+                  <button className="btn btn-dark mx-2" onClick={() => navigate("/correction")}>
                     Correction
                   </button>
                
               
-                  <button className="mx-2" onClick={() => navigate(-1)}>Back</button>
+                  <button className="btn btn-dark mx-2" onClick={() => navigate(-1)}>Back</button>
                
                
-                  <button  className="mx-2" onClick={() => navigate("/dataReport")}>
+                  <button  className="btn btn-dark mx-2" onClick={() => navigate("/dataReport")}>
                     DataReport
                   </button>
 
-                  <button  className="mx-2" onClick={() => navigate("/configuration")}>
+                  <button  className="btn btn-dark mx-2" onClick={() => navigate("/configuration")}>
                     Configuration
                   </button>
               

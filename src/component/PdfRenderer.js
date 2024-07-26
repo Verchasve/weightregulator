@@ -132,12 +132,9 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
   return (
     <div>
       <div>
-        <h1>PDF Generator</h1>
+        <h1>Production Table</h1>
       </div>
-      <button
-       className="btn btn-dark"
-        onClick={() => generatePdf()}
-      >
+      <button className="btn btn-dark" onClick={() => generatePdf()}>
         Generate PDF
       </button>
       <br />

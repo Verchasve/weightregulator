@@ -29,6 +29,7 @@ export default function Setting() {
           </div>
           <div className='my-4'>
             <input
+            className='btn btn-primary'
               type='submit'
               value='Set Footer'
               name='hfpEntries'

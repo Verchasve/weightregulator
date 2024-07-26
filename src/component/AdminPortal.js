@@ -26,10 +26,10 @@ const AdminPortal = () => {
                   name='admin-password'
                   id='admin-password'
                 />
-                <button className='mx-2' onClick={() => navigate('/adminServerPortal')}>
+                <button className='btn btn-dark mx-2' onClick={() => navigate('/adminServerPortal')}>
                   Submit
                 </button>
-                <button onClick={() => navigate(-1)}>Go Back Home</button>
+                <button className='btn btn-dark mx-2' onClick={() => navigate(-1)}>Go Back Home</button>
               </label>
             </div>
           </body>

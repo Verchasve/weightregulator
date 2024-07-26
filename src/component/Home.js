@@ -25,14 +25,14 @@ const Home = () => {
           <img src={logo} className='App-logo' alt='logo' />
 
           <div>
-            <button className='my-2' onClick={() => navigate('/operation')}>
-              Navigate to Operator Panel
+            <button className='btn btn-lg btn-light my-2' onClick={() => navigate('/operation')}>
+              Operator Panel
             </button>
           </div>
 
           <div>
-            <button onClick={() => navigate('/admin')}>
-              Navigate to Admin Panel
+            <button className='btn btn-lg btn-light' onClick={() => navigate('/admin')}>
+            Admin Panel
             </button>
           </div>
         </header>

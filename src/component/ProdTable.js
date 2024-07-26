@@ -249,14 +249,14 @@ const ProdTable = ({ drnNumber }) => {
             </div>
 
             <button
-              className="btn btn-primary addBtn mx-2"
+              className="btn btn-outline-success addBtn mx-2"
               onClick={connectToServer}
             >
               Connect
             </button>
 
             <button
-              className="btn btn-primary addBtn mx-2"
+              className="btn btn-outline-danger addBtn mx-2"
               onClick={disconnectToServer}
             >
               DisConnect
@@ -484,7 +484,8 @@ const ProdTable = ({ drnNumber }) => {
                       overlay: {
                         width: "fit-content",
                         height: "fit-content",
-                        left: "70%",
+                        top: "5%",
+                        left: "60.5%",
                         transform: "translateX(50%)",
                         margin: "50px 0 0 100px",
                       },
