@@ -1,6 +1,4 @@
-npm run stop
-
+pwd
 cd service
-
+pwd
 npm run stop
-npm run socket

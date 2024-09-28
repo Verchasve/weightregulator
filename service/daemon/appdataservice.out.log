@@ -1,0 +1,453 @@
+index.js started as a separate process
+webSocket.js started as a separate process
+Server is running on Port: http://localhost:4000
+Connection with MongoDB was successful
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Error opening port:  Port is opening
+Client disconnected
+Serial port closed due to client disconnection
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Serial Connection Started....
+Client connected
+Checking for new serial port instance...true
+socket.readyState  2nd-> 1
+Client disconnected
+Serial port closed due to client disconnection
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Serial Connection Started....
+Client disconnected
+Serial port closed due to client disconnection
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Serial Connection Started....
+index.js exited with code 4294967295
+index.js started as a separate process
+webSocket.js started as a separate process
+Server is running on Port: http://localhost:4000
+Connection with MongoDB was successful
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Error opening port:  Port is opening
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 2.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 9.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 18.60Kg
+socket.readyState  3rd-> 1
+Serial data.... 25.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 19.60Kg
+socket.readyState  3rd-> 1
+Serial data.... 14.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 18.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.60Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.60Kg
+socket.readyState  3rd-> 1
+Serial data.... 17.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 6.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.70Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 1.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 6.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 15.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.80Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 25.40Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 10.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 1.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+Adding item : [{"operator":"","color":"Color 2","brand":"brand 2","size":"Size 2","layer":"Layer 2","tanks":[{"ubin":1727542099000,"tankWeight":"23.00Kg","time":"10:18:19 pm"},{"ubin":1727542105000,"tankWeight":"23.20Kg","time":"10:18:25 pm"}],"drnNumber":8}]
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+Client disconnected
+Serial port closed due to client disconnection
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Serial Connection Started....
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+Client disconnected
+Serial port closed due to client disconnection
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Serial Connection Started....
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+socket.readyState  3rd-> 3
+index.js exited with code 4294967295
+index.js started as a separate process
+webSocket.js started as a separate process
+Server is running on Port: http://localhost:4000
+Connection with MongoDB was successful
+Client connected
+Checking for new serial port instance...false
+socket.readyState  2nd-> 1
+Error opening port:  Port is opening
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.40Kg
+socket.readyState  3rd-> 1
+Serial data.... 2.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 6.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 12.70Kg
+socket.readyState  3rd-> 1
+Serial data.... 19.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.80Kg
+socket.readyState  3rd-> 1
+Serial data.... 24.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.40Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 16.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 5.80Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.70Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.30Kg
+socket.readyState  3rd-> 1
+Serial data.... 0.50Kg
+socket.readyState  3rd-> 1
+Serial data.... 1.80Kg
+socket.readyState  3rd-> 1
+Serial data.... 5.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 13.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 19.90Kg
+socket.readyState  3rd-> 1
+Serial data.... 22.40Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.20Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.10Kg
+socket.readyState  3rd-> 1
+Serial data.... 23.00Kg

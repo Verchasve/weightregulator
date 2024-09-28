@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1", 
-    "socket": "node webSocket.js" 
+    "stop": "node stop.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "socket": "node webSocket.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "mongoose": "^6.9.2",
     "nodemon": "^3.1.0",
     "serialport": "^12.0.0",
+    "socket.io-client": "^4.7.5",
     "ws": "^8.14.2"
   }
 }

@@ -1,0 +1,12 @@
+2024-09-28 13:36:14 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 13:36:14 - Started 10672
+2024-09-28 13:38:36 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 13:38:36 - Started 8028
+2024-09-28 21:48:48 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 21:48:49 - Started 10744
+2024-09-28 21:53:34 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 21:53:34 - Started 20192
+2024-09-28 21:55:51 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 21:55:51 - Started 11356
+2024-09-28 21:56:15 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\app.js --scriptoptions= --log "wmDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 21:56:15 - Started 1368

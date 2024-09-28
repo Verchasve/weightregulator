@@ -20,8 +20,10 @@ import DataReport from "./component/DataReport";
 import Configuration from "./component/Configuration";
 import Port from "./component/Port";
 
+import { invoke } from '@tauri-apps/api';
 
 function App() {
+
   const [drnNumber, setDrnNumber] = useState(0);
   useEffect(() => {
     const savedDrnNumber = localStorage.getItem('drnNumber');
@@ -34,6 +36,13 @@ function App() {
     setDrnNumber(newDrnNumber);
     localStorage.setItem('drnNumber', newDrnNumber);
   };
+
+  invoke('greet', { name: 'World' })
+  // `invoke` returns a Promise
+  .then((response) => console.log(response))
+
+
+
 
   return (
     <>

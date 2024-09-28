@@ -2,6 +2,7 @@
   "name": "weight-controller",
   "version": "0.1.0",
   "private": true,
+  "main": "build/electron.js",
   "browser": {
     "fs": false,
     "path": false,
@@ -9,13 +10,17 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.3.8",
+    "@tauri-apps/api": "^1.6.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.3",
+    "cross-env": "^7.0.3",
     "jspdf": "^2.5.1",
     "md5": "^2.3.0",
+    "node-windows": "^1.0.0-beta.8",
+    "punycode": "^2.3.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.4",
     "react-data-export": "^0.6.0",
@@ -32,11 +37,26 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
+    "tauri": "tauri",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sender": "node src/component/ProdTable.js"
+    "electron-build": "electron-builder",
+    "release": "npm run react-build && electron-builder --publish=always",
+    "projectbuild": "npm run react-build && npm run electron-build",
+    "startDev": "concurrently \"cross-env BROWSER=none npm run start\" \"wait-on http://localhost:3000 && electron .\"",
+    "test1": "electron ."
+  },
+  "pkg": {
+    "scripts": "server.js",
+    "assets": [
+      "node_modules/@serialport/bindings-cpp/**/*.node",
+      "build/**/*"
+    ],
+    "targets": [
+      "node14-win-x64"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +75,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.6.2"
   }
 }

@@ -379,4 +379,3 @@ router.route("/getSerialData").get(jsonParser, async function (req, res) {
 app.listen(Settings.port, function () {
   console.log("Server is running on Port: " + serviceURL);
 });
-//

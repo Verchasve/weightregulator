@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+mongoose.set('strictQuery', false); // or true to suppress the warning
 const UserSchema = new mongoose.Schema({
   Fname: {
     type: String,

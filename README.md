@@ -84,3 +84,4 @@ https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/
 https://www.mongodb.com/try/download/compass
 
 ### to run weight Code on Screen run PS D:\abhishekReact\weightregulator\service> npm run socket
+### Build command (serve -s build)
