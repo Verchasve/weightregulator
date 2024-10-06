@@ -1,6 +1,6 @@
 
-const { SerialPort } = require('serialport');
-const { PacketLengthParser } = require('@serialport/parser-packet-length');
+import { SerialPort } from 'serialport';
+import { PacketLengthParser } from '@serialport/parser-packet-length';
 
 let finalData = "";
 let serialPortInstance;
@@ -43,7 +43,7 @@ const getWeightData = (str) => {
 };
 
 let buffStr = [];
-const collectScaletData = (data) => {
+const collectScaleData = (data) => {
     try {
         buffStr.push(data);
         const joinedStr = buffStr.join("");
@@ -61,8 +61,8 @@ const collectScaletData = (data) => {
     
 };
 
-
-module.exports = {
+const serialScaleGen = {
     startSerialConnection,
-    collectScaletData,
+    collectScaleData
 }
+export default serialScaleGen;

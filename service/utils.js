@@ -1,4 +1,4 @@
-const { ObjectId } = require("mongodb");
+import { ObjectId } from "mongodb";
 
 const setProductHeader = (data, db) => { 
     const productsCollection = db.collection('products');
@@ -239,14 +239,12 @@ const setProductOperators = async(data, db) => {
   return true;
  };
   
-
-
-module.exports = {
+ const utils = {
   setProductBrands,
   setProductSizes,
   setProductColors,
   setProductLayers,
-  setProductHeader ,
+  setProductHeader,
   setProductOperators,
   removeProductHeader,
   removeProductBrands,
@@ -255,13 +253,6 @@ module.exports = {
   removeProductLayers,
   removeProductOperators,
   setProductTableData
-}
- 
+};
 
-
-
-
-
-
-
-
+export default utils;

@@ -1,46 +1,59 @@
-const express = require("express");
+import express, { Router } from "express";
+import pkg from 'body-parser';
+import cors from "cors";
+import mongoDB from 'mongoose';
+import serialScaleGen from "./serialComm/serialScaleGen.js";
+import { host, port, mongoUri } from "./Settings.js";
+import utils from "./utils.js";
+
+import localStorage from "./localDb.js";
+
+
+const { json, urlencoded } = pkg;
+const { connect, connection: _connection } = mongoDB;
 const app = express();
-const cors = require("cors");
-const mongoose = require("mongoose");
-const Users = require("../service/db/users");
-const Settings = require("../service/Settings");
-const { setProductHeader,
-  setProductBrands,
-  setProductLayers,
-  setProductColors,
-  setProductOperators,
-  setProductSizes,
-  removeProductHeader,
-  removeProductBrands,
-  removeProductSizes,
-  removeProductLayers,
-  removeProductColors,
-  removeProductOperators , 
-  setProductTableData} = require("./utils");
-
-const { startSerialConnection, collectScaletData } = require("./serialComm/serialScaleGen");
-
 app.use(cors());
+const jsonParser = json() 
 
-const bodyParser = require('body-parser')
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
+const serviceURL = `${host}:${port}`;
 
-const serviceURL = `${Settings.host}:${Settings.port}`;
-
-const router = express.Router();
-mongoose.connect(Settings.mongoUri, { useUnifiedTopology: true, useNewUrlParser: true });
-const connection = mongoose.connection;
+const router = Router();
+connect(mongoUri, { useUnifiedTopology: true, useNewUrlParser: true });
+const connection = _connection;
 
 connection.once("open", function () {
   console.log("Connection with MongoDB was successful");
 });
+
+// initializing Local Database storage
+localStorage.initLocalDBStorage();
+
+app.use(express.json());
 app.use("/", router);
 
-router.route("/getData").get(async function (req, res) {
-  const users = await Users.find({});
+router.route("/getAllData").get(jsonParser , async function (req, res) {
   try {
-    res.send(users);
+    console.log('Get All Data');
+   const allProducts = await localStorage.getAllItems('products'); 
+    res.send(allProducts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.route("/getData/{name}").get(jsonParser, async function (req, res) {
+  try {
+   const allProducts = await localStorage.getAllItems('products'); 
+    res.send(allProducts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.route("/setData").post(jsonParser , async function (req, res) {
+  try {
+    const result = await localStorage.addNewItems('products', req?.body);
+    res.send(result);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -50,7 +63,7 @@ router.route("/getData").get(async function (req, res) {
 // header entries code
 router.route("/setHeader").post(jsonParser, async function (req, res) {
   try {
-    const check = setProductHeader(req?.body, connection);
+    const check = utils.setProductHeader(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Data added"));
     } else {
@@ -78,7 +91,7 @@ router.route("/getHeader").get(jsonParser, async function (req, res) {
 
 router.route("/deleteHeader").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductHeader(req?.body, connection);
+    const check = await utils.removeProductHeader(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Data delete"));
     } else {
@@ -93,7 +106,7 @@ router.route("/deleteHeader").delete(jsonParser, async function (req, res) {
 // brand parameters 
 router.route("/setBrand").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductBrands(req?.body, connection);
+    const check = await utils.setProductBrands(req?.body, connection);
     console.log(`Brand Added Check : ${check}`);
     if (check) {
       res.send(JSON.stringify("Brands added"));
@@ -123,7 +136,7 @@ router.route("/getBrand").get(jsonParser, async function (req, res) {
 
 router.route("/deleteBrand").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductBrands(req?.body, connection);
+    const check = await utils.removeProductBrands(req?.body, connection);
     console.log(`deleteBrand  : ${check}`);
     if (check) {
       res.send(JSON.stringify("Data delete"));
@@ -139,7 +152,7 @@ router.route("/deleteBrand").delete(jsonParser, async function (req, res) {
 // size parameters 
 router.route("/setSize").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductSizes(req?.body, connection);
+    const check = await utils.setProductSizes(req?.body, connection);
     console.log(`Size Added Check: $(check)`)
     if (check) {
       res.send(JSON.stringify("Sizes added"));
@@ -168,7 +181,7 @@ router.route("/getSize").get(jsonParser, async function (req, res) {
 });
 router.route("/deleteSize").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductSizes(req?.body, connection);
+    const check = await utils.removeProductSizes(req?.body, connection);
     console.log(`deleteSize  : ${check}`);
     if (check) {
       res.send(JSON.stringify("Data delete"));
@@ -186,7 +199,7 @@ router.route("/deleteSize").delete(jsonParser, async function (req, res) {
 
 router.route("/setColor").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductColors(req?.body, connection);
+    const check = await utils.setProductColors(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Colors added"));
     } else {
@@ -214,7 +227,7 @@ router.route("/getColor").get(jsonParser, async function (req, res) {
 
 router.route("/deleteColor").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductColors(req?.body, connection);
+    const check = await utils.removeProductColors(req?.body, connection);
     console.log(`deleteColor  : ${check}`);
     if (check) {
       res.send(JSON.stringify("Data delete"));
@@ -230,7 +243,7 @@ router.route("/deleteColor").delete(jsonParser, async function (req, res) {
 // layer parameters  
 router.route("/setLayer").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductLayers(req?.body, connection);
+    const check = await utils.setProductLayers(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Layers added"));
     } else {
@@ -258,7 +271,7 @@ router.route("/getLayer").get(jsonParser, async function (req, res) {
 
 router.route("/deleteLayer").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductLayers(req?.body, connection);
+    const check = await utils.removeProductLayers(req?.body, connection);
     console.log(`deleteLayer  : ${check}`);
     if (check) {
       res.send(JSON.stringify("Data delete"));
@@ -275,7 +288,7 @@ router.route("/deleteLayer").delete(jsonParser, async function (req, res) {
 
 router.route("/setOperator").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductOperators(req?.body, connection);
+    const check = await utils.setProductOperators(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Operators added"));
     } else {
@@ -303,7 +316,7 @@ router.route("/getOperator").get(jsonParser, async function (req, res) {
 
 router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
   try {
-    const check = await removeProductOperators(req?.body, connection);
+    const check = await utils.removeProductOperators(req?.body, connection);
     console.log(`deleteOperator  : ${check}`);
     if (check) {
       res.send(JSON.stringify("Data delete"));
@@ -318,7 +331,7 @@ router.route("/deleteOperator").delete(jsonParser, async function (req, res) {
 
 router.route("/setProductTableData").post(jsonParser, async function (req, res) {
   try {
-    const check = await setProductTableData(req?.body, connection);
+    const check = await utils.setProductTableData(req?.body, connection);
     if (check) {
       res.send(JSON.stringify("Operators added"));
     } else {
@@ -330,53 +343,7 @@ router.route("/setProductTableData").post(jsonParser, async function (req, res) 
 });
 
 
-
-// serial connection data code
-let isConnected = false;
-router.route("/getSerialData").get(jsonParser, async function (req, res) {
-  try {
-
-    const serialPortInstance =  startSerialConnection();
-
-    if (isConnected === true){
-      serialPortInstance.close();
-    }
-      let decodedData ,distinctVal = "";
-      res.setHeader('Content-Type', 'text/event-stream');
-      res.setHeader('Cache-Control', 'no-cache');
-      res.setHeader('Connection', 'keep-alive'); 
-      if (serialPortInstance){
-        serialPortInstance.open(function (err) {
-          if (err) {
-              return console.log('Error opening port: ', err.message)
-          }
-          isConnected = true;
-          console.log(`Serial Connection Started in index.js....`); 
-      });
-  
-        // Initialize an empty array to collect data
-        serialPortInstance.on('readable', function () {
-            const data = serialPortInstance.read(); 
-            if (data != null){
-              decodedData = new TextDecoder().decode(data);
-              const latestData = collectScaletData(decodedData);
-              //console.log(`Serial data1.... ${decodedData}`);
-              if (latestData != undefined && latestData != distinctVal){
-                console.log(`Serial data.... ${latestData}`); 
-                distinctVal =  latestData;
-                res.write(distinctVal); 
-                //console.log("DisVal:", distinctVal);
-              } 
-            }
-          
-        }); 
-      }
-  } catch (error) {
-    res.status(500).send(error);
-  }
-});
-
-app.listen(Settings.port, function () {
+app.listen(port, function () {
   console.log("Server is running on Port: " + serviceURL);
 });
 //
