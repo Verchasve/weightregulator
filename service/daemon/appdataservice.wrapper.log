@@ -64,3 +64,205 @@
 2024-09-28 22:19:42 - Finished appdataservice.exe
 2024-09-28 22:19:43 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
 2024-09-28 22:19:43 - Started 3848
+2024-09-28 22:59:39 - Stopping appdataservice.exe
+2024-09-28 22:59:39 - ProcessKill 3848
+2024-09-28 22:59:39 - Found child process: 2524 Name: conhost.exe
+2024-09-28 22:59:39 - Found child process: 8868 Name: node.exe
+2024-09-28 22:59:39 - Stopping process 2524
+2024-09-28 22:59:39 - Send SIGINT 2524
+2024-09-28 22:59:39 - SIGINT to 2524 failed - Killing as fallback
+2024-09-28 22:59:39 - Found child process: 21448 Name: node.exe
+2024-09-28 22:59:39 - Found child process: 16244 Name: node.exe
+2024-09-28 22:59:39 - Found child process: 13168 Name: conhost.exe
+2024-09-28 22:59:39 - Stopping process 13168
+2024-09-28 22:59:39 - Send SIGINT 13168
+2024-09-28 22:59:39 - SIGINT to 13168 failed - Killing as fallback
+2024-09-28 22:59:39 - Stopping process 21448
+2024-09-28 22:59:39 - Send SIGINT 21448
+2024-09-28 22:59:39 - SIGINT to 21448 failed - Killing as fallback
+2024-09-28 22:59:40 - Found child process: 3812 Name: conhost.exe
+2024-09-28 22:59:40 - Stopping process 3812
+2024-09-28 22:59:40 - Send SIGINT 3812
+2024-09-28 22:59:40 - SIGINT to 3812 failed - Killing as fallback
+2024-09-28 22:59:40 - Stopping process 16244
+2024-09-28 22:59:40 - Send SIGINT 16244
+2024-09-28 22:59:40 - SIGINT to 16244 failed - Killing as fallback
+2024-09-28 22:59:40 - Stopping process 8868
+2024-09-28 22:59:40 - Send SIGINT 8868
+2024-09-28 22:59:40 - SIGINT to 8868 failed - Killing as fallback
+2024-09-28 22:59:40 - Stopping process 3848
+2024-09-28 22:59:40 - Send SIGINT 3848
+2024-09-28 22:59:40 - SIGINT to 3848 failed - Killing as fallback
+2024-09-28 22:59:40 - Finished appdataservice.exe
+2024-09-28 22:59:41 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 22:59:41 - Started 17660
+2024-09-28 23:01:20 - Stopping appdataservice.exe
+2024-09-28 23:01:20 - ProcessKill 17660
+2024-09-28 23:01:20 - Found child process: 18264 Name: conhost.exe
+2024-09-28 23:01:20 - Found child process: 21680 Name: node.exe
+2024-09-28 23:01:20 - Stopping process 18264
+2024-09-28 23:01:20 - Send SIGINT 18264
+2024-09-28 23:01:20 - SIGINT to 18264 failed - Killing as fallback
+2024-09-28 23:01:20 - Found child process: 17992 Name: node.exe
+2024-09-28 23:01:20 - Found child process: 17284 Name: node.exe
+2024-09-28 23:01:20 - Found child process: 13856 Name: conhost.exe
+2024-09-28 23:01:20 - Stopping process 13856
+2024-09-28 23:01:20 - Send SIGINT 13856
+2024-09-28 23:01:20 - SIGINT to 13856 failed - Killing as fallback
+2024-09-28 23:01:20 - Stopping process 17992
+2024-09-28 23:01:20 - Send SIGINT 17992
+2024-09-28 23:01:20 - SIGINT to 17992 failed - Killing as fallback
+2024-09-28 23:01:20 - Found child process: 19276 Name: conhost.exe
+2024-09-28 23:01:20 - Stopping process 19276
+2024-09-28 23:01:20 - Send SIGINT 19276
+2024-09-28 23:01:20 - SIGINT to 19276 failed - Killing as fallback
+2024-09-28 23:01:20 - Stopping process 17284
+2024-09-28 23:01:20 - Send SIGINT 17284
+2024-09-28 23:01:20 - SIGINT to 17284 failed - Killing as fallback
+2024-09-28 23:01:20 - Stopping process 21680
+2024-09-28 23:01:20 - Send SIGINT 21680
+2024-09-28 23:01:20 - SIGINT to 21680 failed - Killing as fallback
+2024-09-28 23:01:20 - Stopping process 17660
+2024-09-28 23:01:20 - Send SIGINT 17660
+2024-09-28 23:01:20 - SIGINT to 17660 failed - Killing as fallback
+2024-09-28 23:01:20 - Finished appdataservice.exe
+2024-09-28 23:01:21 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-28 23:01:21 - Started 14964
+2024-09-29 18:09:49 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-29 18:09:49 - Started 6244
+2024-09-30 13:29:04 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-30 13:29:04 - Started 6524
+2024-09-30 17:15:51 - Stopping appdataservice.exe
+2024-09-30 17:15:51 - ProcessKill 6524
+2024-09-30 17:15:51 - Found child process: 6588 Name: conhost.exe
+2024-09-30 17:15:51 - Found child process: 6708 Name: node.exe
+2024-09-30 17:15:51 - Stopping process 6588
+2024-09-30 17:15:51 - Send SIGINT 6588
+2024-09-30 17:15:51 - SIGINT to 6588 failed - Killing as fallback
+2024-09-30 17:15:51 - Found child process: 6184 Name: node.exe
+2024-09-30 17:15:51 - Found child process: 7276 Name: node.exe
+2024-09-30 17:15:51 - Found child process: 7136 Name: conhost.exe
+2024-09-30 17:15:51 - Stopping process 7136
+2024-09-30 17:15:51 - Send SIGINT 7136
+2024-09-30 17:15:51 - SIGINT to 7136 failed - Killing as fallback
+2024-09-30 17:15:51 - Stopping process 6184
+2024-09-30 17:15:51 - Send SIGINT 6184
+2024-09-30 17:15:51 - SIGINT to 6184 failed - Killing as fallback
+2024-09-30 17:15:51 - Found child process: 6404 Name: conhost.exe
+2024-09-30 17:15:51 - Stopping process 6404
+2024-09-30 17:15:51 - Send SIGINT 6404
+2024-09-30 17:15:51 - SIGINT to 6404 failed - Killing as fallback
+2024-09-30 17:15:51 - Stopping process 7276
+2024-09-30 17:15:51 - Send SIGINT 7276
+2024-09-30 17:15:51 - SIGINT to 7276 failed - Killing as fallback
+2024-09-30 17:15:51 - Stopping process 6708
+2024-09-30 17:15:51 - Send SIGINT 6708
+2024-09-30 17:15:51 - SIGINT to 6708 failed - Killing as fallback
+2024-09-30 17:15:51 - Stopping process 6524
+2024-09-30 17:15:51 - Send SIGINT 6524
+2024-09-30 17:15:51 - SIGINT to 6524 failed - Killing as fallback
+2024-09-30 17:15:51 - Finished appdataservice.exe
+2024-09-30 17:15:52 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-30 17:15:52 - Started 18436
+2024-09-30 17:16:18 - Stopping appdataservice.exe
+2024-09-30 17:16:18 - ProcessKill 18436
+2024-09-30 17:16:18 - Found child process: 14252 Name: conhost.exe
+2024-09-30 17:16:18 - Found child process: 18744 Name: node.exe
+2024-09-30 17:16:18 - Stopping process 14252
+2024-09-30 17:16:18 - Send SIGINT 14252
+2024-09-30 17:16:18 - SIGINT to 14252 failed - Killing as fallback
+2024-09-30 17:16:18 - Found child process: 12584 Name: node.exe
+2024-09-30 17:16:18 - Found child process: 13152 Name: node.exe
+2024-09-30 17:16:19 - Found child process: 4116 Name: conhost.exe
+2024-09-30 17:16:19 - Stopping process 4116
+2024-09-30 17:16:19 - Send SIGINT 4116
+2024-09-30 17:16:19 - SIGINT to 4116 failed - Killing as fallback
+2024-09-30 17:16:19 - Stopping process 12584
+2024-09-30 17:16:19 - Send SIGINT 12584
+2024-09-30 17:16:19 - SIGINT to 12584 failed - Killing as fallback
+2024-09-30 17:16:19 - Found child process: 6852 Name: conhost.exe
+2024-09-30 17:16:19 - Stopping process 6852
+2024-09-30 17:16:19 - Send SIGINT 6852
+2024-09-30 17:16:19 - SIGINT to 6852 failed - Killing as fallback
+2024-09-30 17:16:19 - Stopping process 13152
+2024-09-30 17:16:19 - Send SIGINT 13152
+2024-09-30 17:16:19 - SIGINT to 13152 failed - Killing as fallback
+2024-09-30 17:16:19 - Stopping process 18744
+2024-09-30 17:16:19 - Send SIGINT 18744
+2024-09-30 17:16:19 - SIGINT to 18744 failed - Killing as fallback
+2024-09-30 17:16:19 - Stopping process 18436
+2024-09-30 17:16:19 - Send SIGINT 18436
+2024-09-30 17:16:19 - SIGINT to 18436 failed - Killing as fallback
+2024-09-30 17:16:19 - Finished appdataservice.exe
+2024-09-30 17:16:20 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-30 17:16:20 - Started 12916
+2024-09-30 17:17:04 - Stopping appdataservice.exe
+2024-09-30 17:17:04 - ProcessKill 12916
+2024-09-30 17:17:04 - Found child process: 18660 Name: conhost.exe
+2024-09-30 17:17:04 - Found child process: 6468 Name: node.exe
+2024-09-30 17:17:04 - Stopping process 18660
+2024-09-30 17:17:04 - Send SIGINT 18660
+2024-09-30 17:17:04 - SIGINT to 18660 failed - Killing as fallback
+2024-09-30 17:17:04 - Found child process: 12520 Name: node.exe
+2024-09-30 17:17:04 - Found child process: 11572 Name: node.exe
+2024-09-30 17:17:04 - Found child process: 8936 Name: conhost.exe
+2024-09-30 17:17:04 - Stopping process 8936
+2024-09-30 17:17:04 - Send SIGINT 8936
+2024-09-30 17:17:04 - SIGINT to 8936 failed - Killing as fallback
+2024-09-30 17:17:04 - Stopping process 12520
+2024-09-30 17:17:04 - Send SIGINT 12520
+2024-09-30 17:17:04 - SIGINT to 12520 failed - Killing as fallback
+2024-09-30 17:17:04 - Found child process: 11552 Name: conhost.exe
+2024-09-30 17:17:04 - Stopping process 11552
+2024-09-30 17:17:04 - Send SIGINT 11552
+2024-09-30 17:17:04 - SIGINT to 11552 failed - Killing as fallback
+2024-09-30 17:17:04 - Stopping process 11572
+2024-09-30 17:17:04 - Send SIGINT 11572
+2024-09-30 17:17:04 - SIGINT to 11572 failed - Killing as fallback
+2024-09-30 17:17:04 - Stopping process 6468
+2024-09-30 17:17:04 - Send SIGINT 6468
+2024-09-30 17:17:04 - SIGINT to 6468 failed - Killing as fallback
+2024-09-30 17:17:04 - Stopping process 12916
+2024-09-30 17:17:04 - Send SIGINT 12916
+2024-09-30 17:17:04 - SIGINT to 12916 failed - Killing as fallback
+2024-09-30 17:17:04 - Finished appdataservice.exe
+2024-09-30 17:17:05 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-30 17:17:05 - Started 2044
+2024-09-30 17:19:47 - Stopping appdataservice.exe
+2024-09-30 17:19:47 - ProcessKill 2044
+2024-09-30 17:19:47 - Found child process: 1384 Name: conhost.exe
+2024-09-30 17:19:47 - Found child process: 14520 Name: node.exe
+2024-09-30 17:19:47 - Stopping process 1384
+2024-09-30 17:19:47 - Send SIGINT 1384
+2024-09-30 17:19:47 - SIGINT to 1384 failed - Killing as fallback
+2024-09-30 17:19:47 - Found child process: 18800 Name: node.exe
+2024-09-30 17:19:47 - Found child process: 7572 Name: node.exe
+2024-09-30 17:19:48 - Found child process: 14372 Name: conhost.exe
+2024-09-30 17:19:48 - Stopping process 14372
+2024-09-30 17:19:48 - Send SIGINT 14372
+2024-09-30 17:19:48 - SIGINT to 14372 failed - Killing as fallback
+2024-09-30 17:19:48 - Stopping process 18800
+2024-09-30 17:19:48 - Send SIGINT 18800
+2024-09-30 17:19:48 - SIGINT to 18800 failed - Killing as fallback
+2024-09-30 17:19:48 - Found child process: 6404 Name: conhost.exe
+2024-09-30 17:19:48 - Stopping process 6404
+2024-09-30 17:19:48 - Send SIGINT 6404
+2024-09-30 17:19:48 - SIGINT to 6404 failed - Killing as fallback
+2024-09-30 17:19:48 - Stopping process 7572
+2024-09-30 17:19:48 - Send SIGINT 7572
+2024-09-30 17:19:48 - SIGINT to 7572 failed - Killing as fallback
+2024-09-30 17:19:48 - Stopping process 14520
+2024-09-30 17:19:48 - Send SIGINT 14520
+2024-09-30 17:19:48 - SIGINT to 14520 failed - Killing as fallback
+2024-09-30 17:19:48 - Stopping process 2044
+2024-09-30 17:19:48 - Send SIGINT 2044
+2024-09-30 17:19:48 - SIGINT to 2044 failed - Killing as fallback
+2024-09-30 17:19:48 - Finished appdataservice.exe
+2024-09-30 17:19:49 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-09-30 17:19:49 - Started 3748
+2024-10-01 08:34:46 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-01 08:34:46 - Started 6320
+2024-10-05 18:49:36 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-05 18:49:36 - Started 5884
+2024-10-06 13:22:49 - Starting C:\Program Files\nodejs\node.exe  --harmony --max_old_space_size=4096 D:\ProjectFiles\abhishekReact\weightregulator\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\master.js --scriptoptions= --log "appDataService wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2024-10-06 13:22:49 - Started 6000
