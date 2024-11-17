@@ -86,3 +86,5 @@ https://www.mongodb.com/try/download/compass
 ### to run weight Code on Screen run PS D:\abhishekReact\weightregulator\service> npm run socket
 
  ### database commond === node index.js
+
+ ### cd src-tauri and run the commond npm run tauri build 
