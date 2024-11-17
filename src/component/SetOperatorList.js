@@ -86,15 +86,15 @@ function SetOperatorList() {
     fetch(apiUrlOperator, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(`Deleted Check : ${response}`);
+        const updatedOperators =  response ? operators.filter((data) => data?.id !== id) : operators;
+        console.log(`Update list : ${JSON.stringify(updatedOperators)}`);
+        setOperators(updatedOperators);
+
       })
       .catch((err) => {
         console.error(err);
       });
-    const updatedOperators = operators.filter((data) => data?._id !== id);
-    console.log(`Update list : ${JSON.stringify(updatedOperators)}`);
-    setOperators(updatedOperators);
-    setNewOperator('');
+      setNewOperator('');
   };
 
 
@@ -126,11 +126,11 @@ function SetOperatorList() {
           }}
         >
           {operators.map((data) => (
-            <li key={data._id}>
+            <li key={data.id}>
               {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
-                onClick={() => handleOperatorDelete(data._id)}
+                onClick={() => handleOperatorDelete(data.id)}
               >
                 <span className="fa fa-trash"> </span> Delete{' '}
               </button>

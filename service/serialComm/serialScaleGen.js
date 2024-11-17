@@ -1,25 +1,42 @@
 
 import { SerialPort } from 'serialport';
 import { PacketLengthParser } from '@serialport/parser-packet-length';
+import localStorage from "../localDb.js";
 
 let finalData = "";
-let serialPortInstance;
+let serialPortInstance; 
 
-const startSerialConnection = () => {
-    // const savedPortValue = localStorage.getItem('portValue');
-    // if (!savedPortValue) {
-    //     console.error('No port value saved in local storage');
-    //     return null;
-    //   }
-    if (!serialPortInstance){
-        serialPortInstance = new SerialPort({
-            path: 'COM7',
-            baudRate: 9600,
-            autoOpen: true
-        });
-    }
-    return serialPortInstance;
+const getPortSettings = async() => {
+
+    const existingPortSettingsSize  = await localStorage.findItemByName('portSettings', 'port'); 
+    const port = (existingPortSettingsSize) ? existingPortSettingsSize.port : 'COM7';
+    const baudRate = (existingPortSettingsSize) ? existingPortSettingsSize.baudrate : 9600;
+    return { port, baudRate };
+
 };
+
+const startSerialConnection = async () => {
+  const ports = await SerialPort.list();
+  const { port , baudRate } = await getPortSettings();
+  const comPort = ports.find(item => item.path === port) || ports[0];
+  
+
+  if (!comPort) {
+    throw new Error('No serial port found');``
+  }
+
+  if (!serialPortInstance) {
+    serialPortInstance = new SerialPort({
+      path: comPort.path,
+      baudRate: baudRate,
+      autoOpen: true,
+    });
+  }
+
+  return serialPortInstance;
+};
+
+
 
 const getWeightData = (str) => {
     let newReading = "";
@@ -43,7 +60,7 @@ const getWeightData = (str) => {
 };
 
 let buffStr = [];
-const collectScaleData = (data) => {
+const collectScaletData = (data) => {
     try {
         buffStr.push(data);
         const joinedStr = buffStr.join("");
@@ -57,12 +74,16 @@ const collectScaleData = (data) => {
         }
     } catch (err) {
         console.error(err);
-    }
-    
+    }  
 };
 
-const serialScaleGen = {
+
+const  serialScaleGen = {
     startSerialConnection,
-    collectScaleData
-}
+    collectScaletData,
+};
+
 export default serialScaleGen;
+
+ 
+//export default serialScaleGen;

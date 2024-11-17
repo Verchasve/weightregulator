@@ -44,10 +44,11 @@ function SetSizeList() {
     fetch(apiUrlSize, options)
       .then((response) => response.json())
       .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-
-
+      .catch((err) => {
+        console.error(err); 
+      });
   };
+
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -86,15 +87,14 @@ function SetSizeList() {
     fetch(apiUrlSize, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(`Deleted Check : ${response}`);
+        const updatedSizes = response?  sizes.filter((data) => data?.id !== id) : sizes;
+        console.log(`Update list : ${JSON.stringify(updatedSizes)}`);
+        setSizes(updatedSizes);
+        setNewSize('');
       })
       .catch((err) => {
         console.error(err);
       });
-    const updatedSizes = sizes.filter((data) => data?._id !== id);
-    console.log(`Update list : ${JSON.stringify(updatedSizes)}`);
-    setSizes(updatedSizes);
-    setNewSize('');
   };
 
   return (
@@ -125,11 +125,11 @@ function SetSizeList() {
           }}
         >
           {sizes.map((data) => (
-            <li key={data._id}>
+            <li key={data.id}>
               {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
-                onClick={() => handleSizeDelete(data._id)}
+                onClick={() => handleSizeDelete(data.id)}
               >
                 <span className="fa fa-trash"> </span> Delete{' '}
               </button>

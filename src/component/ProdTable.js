@@ -23,9 +23,6 @@ const ProdTable = ({ drnNumber }) => {
   const [rejectedBtnClr, setRejectedBtnClr] = useState("grey");
   const [connectionStatus, setConnectionStatus] = useState("disconnected"); // New state for connection status
   
-
- 
-
   useEffect(() => {  
     const updateDateTime = () => {
       const now = new Date(); // New state for connection status
@@ -45,63 +42,6 @@ const ProdTable = ({ drnNumber }) => {
       
     };
   }, []);
-
-
-
-  // useEffect(() => {
-  //   const savedDrnNumber = localStorage.getItem('drnNumber');
-  //   if (savedDrnNumber) {
-  //     setSerialNumber(parseInt(savedDrnNumber, 10));
-  //   } else {
-  //     localStorage.setItem('drnNumber', 0);
-  //   }
-  //   
-  // }, []);
- 
- 
-  // const connectToServer = () => {
-    // if (socket) {
-    //   socket.close(); // Close any existing socket before creating a new one
-    // }
-
-  //   const newSocket = new WebSocket("ws://localhost:4001");
-  //   let check = false;
-  //   newSocket.onopen = () => {
-  //     console.log("Connected to WebSocket server");
-  //     setConnectionStatus("connected");
-  //     setReceivedMessage("connected");
-  //   };
-
-  //   newSocket.onmessage = (event) => {
-  //     if (event.data.includes("Kg")) {
-  //       setReceivedMessage(event.data);
-  //       const weight = parseFloat(event.data.replace("Kg", ""));
-  //       if (weight >= 0.0 && weight <= 2.0) {
-  //         setIsAddButtonDisabled(true);
-  //         check = true;
-  //       } else {
-  //         if (check) {
-  //           setIsAddButtonDisabled(false);
-  //           setButtonColor("green");
-  //           setRejectedBtnClr("yellow");
-  //           check = false;
-  //         }
-  //       }
-  //     } else {
-  //       setReceivedMessage("0.00Kg");
-  //     }
-  //   };
-
-  //   newSocket.onclose = () => {
-  //     console.log("Disconnected from WebSocket server");
-  //     setConnectionStatus("disconnected");
-  //     setReceivedMessage("Disconnected");
-  //   };
-
-  //   setSocket(newSocket);
-  // };
-
-  // improve the following code such that 
 
   const [isSocketOpen, setIsSocketOpen] = useState(false);
 
@@ -162,7 +102,7 @@ const ProdTable = ({ drnNumber }) => {
 
   const generateUbin = () => {
     // Generate UBIN based on selected values and current data/time
-    const selectedOperatorValue = state?.selectedOperatorvalue || "";
+    const selectedOperatorValue = state?.selectedOperatorValue || "";
     const selectedBrandValue = state?.selectedBrandValue || "";
     const selectedSizeValue = state?.selectedSizeValue || "";
     const selectedLayerValue = state?.selectedLayerValue || "";
@@ -353,7 +293,7 @@ const ProdTable = ({ drnNumber }) => {
                   <input
                     className="mx-2"
                     type="text"
-                    value={state?.selectedOperatorValue || ""}
+                    value={`Operator : ${state?.selectedOperatorvalue || ""}`}
                     id="print-op-name"
                     placeholder="Operator"
                     disabled
@@ -391,7 +331,7 @@ const ProdTable = ({ drnNumber }) => {
                 <input
                   className="mx-2"
                   type="text"
-                  value={state?.selectedBrandValue || ""}
+                  value={`Brand : ${state?.selectedBrandValue || ""}`}
                   id="print-brand"
                   placeholder="Brand"
                   disabled
@@ -399,7 +339,7 @@ const ProdTable = ({ drnNumber }) => {
                 <input
                   className="mx-2"
                   type="text"
-                  value={state?.selectedSizeValue || ""}
+                  value={ `Size : ${state?.selectedSizeValue || ""}`}
                   id="print-size"
                   placeholder="Size"
                   disabled
@@ -407,7 +347,7 @@ const ProdTable = ({ drnNumber }) => {
                 <input
                   className="mx-2"
                   type="text"
-                  value={state?.selectedLayerValue || ""}
+                  value={`Layer : ${state?.selectedLayerValue || ""}`}
                   id="print-layer"
                   placeholder="Layer"
                   disabled
@@ -415,7 +355,7 @@ const ProdTable = ({ drnNumber }) => {
                 <input
                   className="mx-2"
                   type="text"
-                  value={state?.selectedColorValue || ""}
+                  value={`Color : ${state?.selectedColorValue || ""}`}
                   id="print-color"
                   placeholder="Colour"
                   disabled

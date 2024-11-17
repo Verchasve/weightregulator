@@ -1,16 +1,80 @@
 {
   "products": [
     {
-      "id": "1x-83y3uosU7SRLFJMC1N",
-      "text": "Product 1"
+      "id": "Jcgn1LenBM5Eo5dDA_LRX",
+      "companyName": "MP&AD Enterprises1",
+      "phone": "09451163931",
+      "address": "plot no 1524,awas vikas 3, kalyanpur, kanpur."
     },
     {
-      "id": "yyLXzBstVLhe6G_rZTBtB",
-      "text": "Product 2"
+      "id": "6gtDyv5kd7vN80V18t833",
+      "companyName": "MP&AD Enterprises",
+      "phone": "09451163931",
+      "address": "plot no 1524,awas vikas 3, kalyanpur, kanpur."
     }
   ],
-  "brands": [],
-  "operators": [],
-  "colors": [],
-  "layers": []
+  "brands": [
+    {
+      "id": 1730595597071,
+      "text": "asd"
+    },
+    {
+      "id": 1730595612377,
+      "text": "huntyuin"
+    },
+    {
+      "id": 1730813372159,
+      "text": "Microteck"
+    }
+  ],
+  "operators": [
+    {
+      "id": 1730598643177,
+      "text": "name1"
+    },
+    {
+      "id": 1730813405071,
+      "text": "Rakesh"
+    }
+  ],
+  "colors": [
+    {
+      "id": 1730598514515,
+      "text": "orange"
+    },
+    {
+      "id": 1730598562586,
+      "text": "red"
+    },
+    {
+      "id": 1730813391751,
+      "text": "Grey"
+    }
+  ],
+  "layers": [
+    {
+      "id": 1730597795627,
+      "text": "q3"
+    },
+    {
+      "id": 1730813383727,
+      "text": "Layer23"
+    }
+  ],
+  "sizes": [
+    {
+      "id": 1730597604278,
+      "text": "19"
+    },
+    {
+      "id": 1730597926282,
+      "text": "56"
+    }
+  ],
+  "portSettings": [
+    {
+      "port": "COM4",
+      "baudrate": "9600"
+    }
+  ]
 }

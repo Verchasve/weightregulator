@@ -19,7 +19,6 @@ function SetBrandList() {
       .then(function (response) {
         const ls = response?.data;
         setBrands(ls || []);
-        console.log(`List of Brands : ${JSON.stringify(ls)}`);
       })
       .catch(function (error) {
         console.log(error);
@@ -39,8 +38,7 @@ function SetBrandList() {
     };
     const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/setBrand`;
     fetch(apiUrlBrand, options)
-      .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => response.json()) 
       .catch((err) => console.error(err));
 
 
@@ -69,8 +67,7 @@ function SetBrandList() {
       .catch((err) => console.error(err));
   };
 
-  const handleBrandDelete = (id) => {
-
+  const handleBrandDelete = (id) => { 
     // Update the API with the updated brands list
     const options = {
       method: 'DELETE',
@@ -83,15 +80,15 @@ function SetBrandList() {
     fetch(apiUrlBrand, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(`Deleted Check : ${response}`);
+        const updatedBrands = response ? brands.filter((data) => data?.id !== id) : brands;
+        console.log(`Update list : ${JSON.stringify(updatedBrands)}`);
+        setBrands(updatedBrands);
+        setNewBrand('');
       })
       .catch((err) => {
         console.error(err);
       });
-    const updatedBrands = brands.filter((data) => data?._id !== id);
-    console.log(`Update list : ${JSON.stringify(updatedBrands)}`);
-    setBrands(updatedBrands);
-    setNewBrand('');
+  
   };
 
   return (
@@ -122,11 +119,11 @@ function SetBrandList() {
           }}
         >
           {brands.map((data) => (
-            <li key={data._id}>
+            <li key={data.id}>
               {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
-                onClick={() => handleBrandDelete(data._id)}
+                onClick={() => handleBrandDelete(data.id)}
               >
                 <span className="fa fa-trash"> </span> Delete{' '}
               </button>

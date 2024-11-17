@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^3.3.8",
+    "@tauri-apps/api": "^2.1.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -27,6 +28,7 @@
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "tempa-xlsx": "^0.8.20",
+    "vue-cli-plugin-tauri": "^1.0.0",
     "web-vitals": "^2.1.4",
     "websocket": "^1.0.34",
     "xlsx": "^0.18.5"
@@ -36,7 +38,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sender": "node src/component/ProdTable.js"
+    "sender": "node src/component/ProdTable.js",
+    "tauri": "tauri"
   },
   "eslintConfig": {
     "extends": [
@@ -55,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.1.0"
   }
 }

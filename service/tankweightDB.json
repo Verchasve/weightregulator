@@ -1,0 +1,1095 @@
+{
+  "tankData": [
+    {
+      "operator": "",
+      "color": "red",
+      "brand": "huntyuin",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730690508000,
+          "tankWeight": "",
+          "time": "08:51:48"
+        }
+      ],
+      "drnNumber": 7,
+      "id": "oN8wq1Gec_9e9Xy7jlFmr"
+    },
+    {
+      "operator": "",
+      "color": "red",
+      "brand": "huntyuin",
+      "size": "56",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730782153000,
+          "tankWeight": "36.40Kg",
+          "time": "10:19:12"
+        },
+        {
+          "ubin": 1730782156000,
+          "tankWeight": "71.80Kg",
+          "time": "10:19:15"
+        },
+        {
+          "ubin": 1730782158000,
+          "tankWeight": "72.10Kg",
+          "time": "10:19:17"
+        },
+        {
+          "ubin": 1730782160000,
+          "tankWeight": "76.30Kg",
+          "time": "10:19:19"
+        },
+        {
+          "ubin": 1730782163000,
+          "tankWeight": "79.20Kg",
+          "time": "10:19:22"
+        }
+      ],
+      "drnNumber": 15,
+      "id": "enyOcI5JsFLSR2pFqU0AP"
+    },
+    {
+      "operator": "",
+      "color": "orange",
+      "brand": "asd",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730782303000,
+          "tankWeight": "103.40Kg",
+          "time": "10:21:43"
+        },
+        {
+          "ubin": 1730782306000,
+          "tankWeight": "109.20Kg",
+          "time": "10:21:46"
+        },
+        {
+          "ubin": 1730782309000,
+          "tankWeight": "99.70Kg",
+          "time": "10:21:48"
+        },
+        {
+          "ubin": 1730782311000,
+          "tankWeight": "91.70Kg",
+          "time": "10:21:51"
+        }
+      ],
+      "drnNumber": 16,
+      "id": "v4oHqsT5MV55MnbQZsLIG"
+    },
+    {
+      "operator": "",
+      "color": "orange",
+      "brand": "asd",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730799118000,
+          "tankWeight": "63.10Kg",
+          "time": "15:01:58"
+        },
+        {
+          "ubin": 1730799126000,
+          "tankWeight": "49.60Kg",
+          "time": "15:02:06"
+        }
+      ],
+      "drnNumber": 27,
+      "id": "C0xa5NkXDN0Tgc9DX8VuH"
+    },
+    {
+      "operator": "",
+      "color": "orange",
+      "brand": "asd",
+      "size": "56",
+      "layer": "q3",
+      "tanks": [],
+      "drnNumber": 31,
+      "id": "xDvi2UbS7oDoQdzzMW_P0"
+    },
+    {
+      "operator": "",
+      "color": "orange",
+      "brand": "asd",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730808706000,
+          "tankWeight": "",
+          "time": "17:41:45"
+        }
+      ],
+      "drnNumber": 32,
+      "id": "UHkGNnJSp2pWRU-g7a7qt"
+    },
+    {
+      "operator": "name1",
+      "color": "orange",
+      "brand": "asd",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730809354000,
+          "tankWeight": "",
+          "time": "17:52:33"
+        }
+      ],
+      "drnNumber": 33,
+      "id": "9oFuH5VrfNlV3vMCUOUx-"
+    },
+    {
+      "operator": "name1",
+      "color": "red",
+      "brand": "huntyuin",
+      "size": "56",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730812746000,
+          "tankWeight": "79.70Kg",
+          "time": "18:49:05"
+        },
+        {
+          "ubin": 1730812750000,
+          "tankWeight": "114.20Kg",
+          "time": "18:49:09"
+        }
+      ],
+      "drnNumber": 37,
+      "id": "QI2TESOw3zH1GaZtDRogY"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "afEzGRj2YIgambLg8Yp67"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "H8RuLjU4GFNnFIFmCC9UB"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "xQamsgqKA2dZw8nDuR2t6"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        },
+        {
+          "ubin": 1730814605000,
+          "tankWeight": "77.80Kg",
+          "time": "19:20:04"
+        },
+        {
+          "ubin": 1730814612000,
+          "tankWeight": "73.60Kg",
+          "time": "19:20:11"
+        },
+        {
+          "ubin": 1730814616000,
+          "tankWeight": "17.90Kg",
+          "time": "19:20:15"
+        },
+        {
+          "ubin": 1730814624000,
+          "tankWeight": "81.00Kg",
+          "time": "19:20:23"
+        },
+        {
+          "ubin": 1730814631000,
+          "tankWeight": "27.60Kg",
+          "time": "19:20:30"
+        },
+        {
+          "ubin": 1730814635000,
+          "tankWeight": "7.40Kg",
+          "time": "19:20:35"
+        },
+        {
+          "ubin": 1730814643000,
+          "tankWeight": "17.20Kg",
+          "time": "19:20:43"
+        },
+        {
+          "ubin": 1730814647000,
+          "tankWeight": "16.60Kg",
+          "time": "19:20:46"
+        },
+        {
+          "ubin": 1730814649000,
+          "tankWeight": "2.60Kg",
+          "time": "19:20:48"
+        },
+        {
+          "ubin": 1730814652000,
+          "tankWeight": "16.50Kg",
+          "time": "19:20:51"
+        },
+        {
+          "ubin": 1730814657000,
+          "tankWeight": "30.90Kg",
+          "time": "19:20:56"
+        },
+        {
+          "ubin": 1730814659000,
+          "tankWeight": "4.60Kg",
+          "time": "19:20:59"
+        },
+        {
+          "ubin": 1730814665000,
+          "tankWeight": "27.90Kg",
+          "time": "19:21:05"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "9TZpCNqaXILJK61fpKQIZ"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        },
+        {
+          "ubin": 1730814605000,
+          "tankWeight": "77.80Kg",
+          "time": "19:20:04"
+        },
+        {
+          "ubin": 1730814612000,
+          "tankWeight": "73.60Kg",
+          "time": "19:20:11"
+        },
+        {
+          "ubin": 1730814616000,
+          "tankWeight": "17.90Kg",
+          "time": "19:20:15"
+        },
+        {
+          "ubin": 1730814624000,
+          "tankWeight": "81.00Kg",
+          "time": "19:20:23"
+        },
+        {
+          "ubin": 1730814631000,
+          "tankWeight": "27.60Kg",
+          "time": "19:20:30"
+        },
+        {
+          "ubin": 1730814635000,
+          "tankWeight": "7.40Kg",
+          "time": "19:20:35"
+        },
+        {
+          "ubin": 1730814643000,
+          "tankWeight": "17.20Kg",
+          "time": "19:20:43"
+        },
+        {
+          "ubin": 1730814647000,
+          "tankWeight": "16.60Kg",
+          "time": "19:20:46"
+        },
+        {
+          "ubin": 1730814649000,
+          "tankWeight": "2.60Kg",
+          "time": "19:20:48"
+        },
+        {
+          "ubin": 1730814652000,
+          "tankWeight": "16.50Kg",
+          "time": "19:20:51"
+        },
+        {
+          "ubin": 1730814657000,
+          "tankWeight": "30.90Kg",
+          "time": "19:20:56"
+        },
+        {
+          "ubin": 1730814659000,
+          "tankWeight": "4.60Kg",
+          "time": "19:20:59"
+        },
+        {
+          "ubin": 1730814665000,
+          "tankWeight": "27.90Kg",
+          "time": "19:21:05"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "tsDAOVv4oJKbLXPjfjuoQ"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        },
+        {
+          "ubin": 1730814605000,
+          "tankWeight": "77.80Kg",
+          "time": "19:20:04"
+        },
+        {
+          "ubin": 1730814612000,
+          "tankWeight": "73.60Kg",
+          "time": "19:20:11"
+        },
+        {
+          "ubin": 1730814616000,
+          "tankWeight": "17.90Kg",
+          "time": "19:20:15"
+        },
+        {
+          "ubin": 1730814624000,
+          "tankWeight": "81.00Kg",
+          "time": "19:20:23"
+        },
+        {
+          "ubin": 1730814631000,
+          "tankWeight": "27.60Kg",
+          "time": "19:20:30"
+        },
+        {
+          "ubin": 1730814635000,
+          "tankWeight": "7.40Kg",
+          "time": "19:20:35"
+        },
+        {
+          "ubin": 1730814643000,
+          "tankWeight": "17.20Kg",
+          "time": "19:20:43"
+        },
+        {
+          "ubin": 1730814647000,
+          "tankWeight": "16.60Kg",
+          "time": "19:20:46"
+        },
+        {
+          "ubin": 1730814649000,
+          "tankWeight": "2.60Kg",
+          "time": "19:20:48"
+        },
+        {
+          "ubin": 1730814652000,
+          "tankWeight": "16.50Kg",
+          "time": "19:20:51"
+        },
+        {
+          "ubin": 1730814657000,
+          "tankWeight": "30.90Kg",
+          "time": "19:20:56"
+        },
+        {
+          "ubin": 1730814659000,
+          "tankWeight": "4.60Kg",
+          "time": "19:20:59"
+        },
+        {
+          "ubin": 1730814665000,
+          "tankWeight": "27.90Kg",
+          "time": "19:21:05"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "jdYeFDLbdDugofr7Mswkz"
+    },
+    {
+      "operator": "Rakesh",
+      "color": "Grey",
+      "brand": "Microteck",
+      "size": "56",
+      "layer": "Layer23",
+      "tanks": [
+        {
+          "ubin": 1730813489000,
+          "tankWeight": "23.20Kg",
+          "time": "19:01:28"
+        },
+        {
+          "ubin": 1730813513000,
+          "tankWeight": "18.50Kg",
+          "time": "19:01:52"
+        },
+        {
+          "ubin": 1730813520000,
+          "tankWeight": "23.90Kg",
+          "time": "19:01:59"
+        },
+        {
+          "ubin": 1730813526000,
+          "tankWeight": "26.10Kg",
+          "time": "19:02:05"
+        },
+        {
+          "ubin": 1730813533000,
+          "tankWeight": "37.50Kg",
+          "time": "19:02:13"
+        },
+        {
+          "ubin": 1730813537000,
+          "tankWeight": "39.10Kg",
+          "time": "19:02:17"
+        },
+        {
+          "ubin": "Rejected",
+          "tankWeight": "38.30Kg",
+          "time": "Rejected"
+        },
+        {
+          "ubin": 1730813547000,
+          "tankWeight": "47.00Kg",
+          "time": "19:02:26"
+        },
+        {
+          "ubin": 1730814605000,
+          "tankWeight": "77.80Kg",
+          "time": "19:20:04"
+        },
+        {
+          "ubin": 1730814612000,
+          "tankWeight": "73.60Kg",
+          "time": "19:20:11"
+        },
+        {
+          "ubin": 1730814616000,
+          "tankWeight": "17.90Kg",
+          "time": "19:20:15"
+        },
+        {
+          "ubin": 1730814624000,
+          "tankWeight": "81.00Kg",
+          "time": "19:20:23"
+        },
+        {
+          "ubin": 1730814631000,
+          "tankWeight": "27.60Kg",
+          "time": "19:20:30"
+        },
+        {
+          "ubin": 1730814635000,
+          "tankWeight": "7.40Kg",
+          "time": "19:20:35"
+        },
+        {
+          "ubin": 1730814643000,
+          "tankWeight": "17.20Kg",
+          "time": "19:20:43"
+        },
+        {
+          "ubin": 1730814647000,
+          "tankWeight": "16.60Kg",
+          "time": "19:20:46"
+        },
+        {
+          "ubin": 1730814649000,
+          "tankWeight": "2.60Kg",
+          "time": "19:20:48"
+        },
+        {
+          "ubin": 1730814652000,
+          "tankWeight": "16.50Kg",
+          "time": "19:20:51"
+        },
+        {
+          "ubin": 1730814657000,
+          "tankWeight": "30.90Kg",
+          "time": "19:20:56"
+        },
+        {
+          "ubin": 1730814659000,
+          "tankWeight": "4.60Kg",
+          "time": "19:20:59"
+        },
+        {
+          "ubin": 1730814665000,
+          "tankWeight": "27.90Kg",
+          "time": "19:21:05"
+        }
+      ],
+      "drnNumber": 39,
+      "id": "BTY83Df6-3K1ZfYBO4sYV"
+    },
+    {
+      "operator": "name1",
+      "color": "orange",
+      "brand": "asd",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1730816319000,
+          "tankWeight": "60.30Kg",
+          "time": "19:48:38"
+        },
+        {
+          "ubin": 1730816321000,
+          "tankWeight": "65.70Kg",
+          "time": "19:48:41"
+        },
+        {
+          "ubin": 1730816323000,
+          "tankWeight": "83.00Kg",
+          "time": "19:48:43"
+        },
+        {
+          "ubin": 1730816326000,
+          "tankWeight": "88.30Kg",
+          "time": "19:48:45"
+        },
+        {
+          "ubin": 1730816328000,
+          "tankWeight": "94.00Kg",
+          "time": "19:48:47"
+        },
+        {
+          "ubin": 1730816330000,
+          "tankWeight": "101.70Kg",
+          "time": "19:48:49"
+        },
+        {
+          "ubin": 1730816333000,
+          "tankWeight": "99.30Kg",
+          "time": "19:48:53"
+        },
+        {
+          "ubin": 1730816336000,
+          "tankWeight": "91.40Kg",
+          "time": "19:48:55"
+        },
+        {
+          "ubin": 1730816339000,
+          "tankWeight": "89.00Kg",
+          "time": "19:48:59"
+        },
+        {
+          "ubin": 1730816342000,
+          "tankWeight": "80.70Kg",
+          "time": "19:49:02"
+        },
+        {
+          "ubin": 1730816345000,
+          "tankWeight": "102.40Kg",
+          "time": "19:49:04"
+        },
+        {
+          "ubin": 1730816347000,
+          "tankWeight": "104.70Kg",
+          "time": "19:49:07"
+        },
+        {
+          "ubin": 1730816350000,
+          "tankWeight": "103.80Kg",
+          "time": "19:49:09"
+        },
+        {
+          "ubin": 1730816354000,
+          "tankWeight": "64.20Kg",
+          "time": "19:49:13"
+        },
+        {
+          "ubin": 1730816356000,
+          "tankWeight": "88.00Kg",
+          "time": "19:49:15"
+        },
+        {
+          "ubin": 1730816358000,
+          "tankWeight": "87.90Kg",
+          "time": "19:49:17"
+        },
+        {
+          "ubin": 1730816360000,
+          "tankWeight": "104.10Kg",
+          "time": "19:49:19"
+        },
+        {
+          "ubin": 1730816362000,
+          "tankWeight": "121.30Kg",
+          "time": "19:49:21"
+        },
+        {
+          "ubin": 1730816365000,
+          "tankWeight": "98.90Kg",
+          "time": "19:49:24"
+        },
+        {
+          "ubin": 1730816367000,
+          "tankWeight": "106.90Kg",
+          "time": "19:49:27"
+        },
+        {
+          "ubin": 1730816374000,
+          "tankWeight": "93.80Kg",
+          "time": "19:49:33"
+        },
+        {
+          "ubin": 1730816376000,
+          "tankWeight": "110.90Kg",
+          "time": "19:49:36"
+        },
+        {
+          "ubin": 1730816379000,
+          "tankWeight": "106.60Kg",
+          "time": "19:49:38"
+        },
+        {
+          "ubin": 1730816382000,
+          "tankWeight": "112.70Kg",
+          "time": "19:49:41"
+        },
+        {
+          "ubin": 1730816386000,
+          "tankWeight": "62.10Kg",
+          "time": "19:49:45"
+        },
+        {
+          "ubin": 1730816388000,
+          "tankWeight": "95.00Kg",
+          "time": "19:49:48"
+        },
+        {
+          "ubin": 1730816391000,
+          "tankWeight": "98.50Kg",
+          "time": "19:49:50"
+        },
+        {
+          "ubin": 1730816393000,
+          "tankWeight": "117.70Kg",
+          "time": "19:49:53"
+        },
+        {
+          "ubin": 1730816395000,
+          "tankWeight": "56.30Kg",
+          "time": "19:49:55"
+        },
+        {
+          "ubin": 1730816397000,
+          "tankWeight": "118.20Kg",
+          "time": "19:49:57"
+        },
+        {
+          "ubin": 1730816400000,
+          "tankWeight": "116.80Kg",
+          "time": "19:49:59"
+        },
+        {
+          "ubin": 1730816418000,
+          "tankWeight": "135.60Kg",
+          "time": "19:50:17"
+        },
+        {
+          "ubin": 1730816421000,
+          "tankWeight": "140.80Kg",
+          "time": "19:50:21"
+        },
+        {
+          "ubin": 1730816423000,
+          "tankWeight": "148.70Kg",
+          "time": "19:50:23"
+        },
+        {
+          "ubin": 1730816426000,
+          "tankWeight": "130.50Kg",
+          "time": "19:50:25"
+        },
+        {
+          "ubin": 1730816428000,
+          "tankWeight": "127.70Kg",
+          "time": "19:50:28"
+        },
+        {
+          "ubin": 1730816431000,
+          "tankWeight": "103.30Kg",
+          "time": "19:50:31"
+        },
+        {
+          "ubin": 1730816435000,
+          "tankWeight": "110.70Kg",
+          "time": "19:50:35"
+        },
+        {
+          "ubin": 1730816439000,
+          "tankWeight": "95.80Kg",
+          "time": "19:50:38"
+        },
+        {
+          "ubin": 1730816441000,
+          "tankWeight": "106.30Kg",
+          "time": "19:50:41"
+        },
+        {
+          "ubin": 1730816444000,
+          "tankWeight": "142.80Kg",
+          "time": "19:50:43"
+        },
+        {
+          "ubin": 1730816446000,
+          "tankWeight": "115.80Kg",
+          "time": "19:50:46"
+        },
+        {
+          "ubin": 1730816449000,
+          "tankWeight": "135.40Kg",
+          "time": "19:50:49"
+        },
+        {
+          "ubin": 1730816453000,
+          "tankWeight": "107.70Kg",
+          "time": "19:50:52"
+        },
+        {
+          "ubin": 1730816455000,
+          "tankWeight": "131.10Kg",
+          "time": "19:50:54"
+        },
+        {
+          "ubin": 1730816457000,
+          "tankWeight": "84.70Kg",
+          "time": "19:50:57"
+        },
+        {
+          "ubin": 1730816460000,
+          "tankWeight": "144.60Kg",
+          "time": "19:50:59"
+        },
+        {
+          "ubin": 1730816464000,
+          "tankWeight": "75.00Kg",
+          "time": "19:51:03"
+        }
+      ],
+      "drnNumber": 40,
+      "id": "yX1Qbu8OLzpvspjPA3fcA"
+    },
+    {
+      "operator": "name1",
+      "color": "orange",
+      "brand": "huntyuin",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1731299699000,
+          "tankWeight": "112.50Kg",
+          "time": "10:04:59 am"
+        },
+        {
+          "ubin": 1731299702000,
+          "tankWeight": "98.10Kg",
+          "time": "10:05:01 am"
+        },
+        {
+          "ubin": 1731299704000,
+          "tankWeight": "83.30Kg",
+          "time": "10:05:04 am"
+        },
+        {
+          "ubin": 1731299707000,
+          "tankWeight": "87.30Kg",
+          "time": "10:05:07 am"
+        },
+        {
+          "ubin": 1731299709000,
+          "tankWeight": "87.00Kg",
+          "time": "10:05:09 am"
+        },
+        {
+          "ubin": 1731299711000,
+          "tankWeight": "83.90Kg",
+          "time": "10:05:11 am"
+        },
+        {
+          "ubin": 1731299713000,
+          "tankWeight": "83.20Kg",
+          "time": "10:05:13 am"
+        },
+        {
+          "ubin": 1731299715000,
+          "tankWeight": "75.80Kg",
+          "time": "10:05:15 am"
+        },
+        {
+          "ubin": 1731299717000,
+          "tankWeight": "74.10Kg",
+          "time": "10:05:17 am"
+        }
+      ],
+      "drnNumber": 23,
+      "id": "mS5p3U-2cC723_tRYSlxk"
+    }
+  ]
+}

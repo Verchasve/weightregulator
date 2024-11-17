@@ -13,10 +13,10 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
 
   const {
     selectedBrandValue,
-    selectedSizeValue,
-    selectedLayerValue,
     selectedColorValue,
+    selectedLayerValue,
     selectedOperatorvalue,
+    selectedSizeValue,
   } = location.state;
 
   useEffect(() => {
@@ -123,7 +123,7 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
 
       pdf.save("sample.pdf");
 
-      handleSaveOPtion(tableData, location.state, drnNumber);
+      handleSaveOption(tableData, location.state, drnNumber);
     } catch (error) {
       console.error("Error generating PDF:", error);
     }
@@ -131,22 +131,23 @@ const PdfGenerator = ({ data, children, drnNumber }) => {
 
   return (
     <div>
-      <div>
+      <div >
         <h1>Production Table</h1>
       </div>
-      <button className="btn btn-dark" onClick={() => generatePdf()}>
+      <button className="btn btn-dark" onClick={() => generatePdf()}  
+              style={{ position: 'sticky', top: 0 }}>
         Generate PDF
       </button>
       <br />
       <br />
-      <div className="content">
+      <div className="content">s
         <div ref={contentRef}>{children}</div>
       </div>
     </div>
   );
 };
 
-const handleSaveOPtion = (tableData, state, drnNumber) => {
+const handleSaveOption = (tableData, state, drnNumber) => {
   const savedTableData = [];
   // Iterate through the tableData array and construct objects
   tableData.forEach((row) => {
@@ -159,10 +160,7 @@ const handleSaveOPtion = (tableData, state, drnNumber) => {
     savedTableData.push(rowData);
   });
 
-  // Display the constructed object in the console
-  console.log("Saved table Data:", savedTableData);
-
-  const selectedOperatorValue = state?.selectedOperatorValue || "";
+  const selectedOperatorValue = state?.selectedOperatorvalue || "";
   const selectedBrandValue = state?.selectedBrandValue || "";
   const selectedSizeValue = state?.selectedSizeValue || "";
   const selectedLayerValue = state?.selectedLayerValue || "";

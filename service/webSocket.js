@@ -1,7 +1,8 @@
-const WebSocket = require('ws');
-const { startSerialConnection, collectScaletData } = require('./serialComm/serialScaleGen');
-
-const server = new WebSocket.Server({ port: 4001 });
+//const WebSocket = require('ws');
+import WebSocket, { WebSocketServer } from 'ws'
+//const { startSerialConnection, collectScaletData } = require('./serialComm/serialScaleGen');
+import serialScaleGen from './serialComm/serialScaleGen.js';
+const server = new WebSocketServer({ port: 4001 });
 let isConnected = false;
 let decodedData, distinctVal = '';
 let serialPortInstance ;
@@ -42,7 +43,7 @@ const handlingSerialConnection = async(socket) => {
   try {
     console.log('Checking for new serial port instance...' + isConnected);
     if (!isConnected){ 
-      serialPortInstance = startSerialConnection();
+      serialPortInstance = await serialScaleGen.startSerialConnection();
     }
   
     if (serialPortInstance) {
@@ -65,14 +66,14 @@ const handlingSerialConnection = async(socket) => {
         const data = serialPortInstance.read();
         if (data != null) {
           decodedData = new TextDecoder().decode(data);
-          const latestData = collectScaletData(decodedData);
+          const latestData = serialScaleGen.collectScaletData(decodedData);
 
         if (latestData !== undefined && latestData !== distinctVal) {
          distinctVal = latestData;
 
         if (!socket?._socket?._readableState?.closed && socket.readyState === WebSocket.OPEN) {
         //console.log(`Serial data.... ${data}`); 
-          //socket.send(`${distinctVal}`);
+          socket.send(`${distinctVal}`);
         }
 
         }
@@ -85,22 +86,25 @@ const handlingSerialConnection = async(socket) => {
   }
 }
 
-
-if (require.main === module) {
+ 
+//if (import.meta.url === `file://${process.argv[1]}`) {
+  console.log('Socket server running on port 4001');
   server.on('connection', (socket) => {
+    console.log('Client connected');
+    socket.send('WebSocketServer!');
     handlingSocketConnection(socket);
   });
-}
+//}
 
 
 
 // // problrm with this code is that when connect button is clicked first time, the state of the socket.readyState) in console.log('socket.readyState  3rdnd-> ' + socket.readyState) remain 1. But when the disconnect button is clicked, and then after connect button is clicked again, the state of the socket.readyState in console.log('socket.readyState  3rdnd-> ' + socket.readyState) turn to 3. fix the follwing code such that state of socket.readyState should remain 1
 
 
-// const WebSocket = require('ws');
-// const { startSerialConnection, collectScaletData } = require('./serialComm/serialScaleGen');
+// import { Server, OPEN } from 'ws';
+// import { startSerialConnection, collectScaletData } from './serialComm/serialScaleGen.js';
 
-// const server = new WebSocket.Server({ port: 4001 });
+// const server = new Server({ port: 4001 });
 // let isConnected = false;
 // let decodedData, distinctVal = '';
 // let serialPortInstance;
@@ -175,7 +179,7 @@ if (require.main === module) {
 //           if (latestData !== undefined && latestData !== distinctVal) {
 //             distinctVal = latestData;
 //             console.log('socket.readyState  3rd-> ' + socket.readyState);
-//             if (socket.readyState === WebSocket.OPEN) {
+//             if (socket.readyState === OPEN) {
 //               console.log(`Serial data.... ${distinctVal}`);
 //               socket.send(`${distinctVal}`);
 //             }
@@ -195,4 +199,4 @@ if (require.main === module) {
 
 
 
-// //code 3
+// // //code 3

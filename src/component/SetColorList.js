@@ -83,15 +83,15 @@ function SetColorList() {
     fetch(apiUrlColor, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(`Deleted Check : ${response}`);
+        const updatedColors = response ? colors.filter((data) => data?.id !== id) : colors;
+        console.log(`Update list : ${JSON.stringify(updatedColors)}`);
+        setColors(updatedColors);
+        setNewColor('');
       })
       .catch((err) => {
         console.error(err);
       });
-    const updatedColors = colors.filter((data) => data?._id !== id);
-    console.log(`Update list : ${JSON.stringify(updatedColors)}`);
-    setColors(updatedColors);
-    setNewColor('');
+
   };
 
 
@@ -123,11 +123,11 @@ function SetColorList() {
           }}
         >
           {colors.map((data) => (
-            <li key={data._id}>
+            <li key={data.id}>
               {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
-                onClick={() => handleColorDelete(data._id)}
+                onClick={() => handleColorDelete(data.id)}
               >
                 <span className="fa fa-trash"> </span> Delete{' '}
               </button>

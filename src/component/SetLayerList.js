@@ -84,15 +84,14 @@ function SetLayerList() {
     fetch(apiUrlLayer, options)
       .then((response) => response.json())
       .then((response) => {
-        console.log(`Deleted Check : ${response}`);
+        const updatedLayers = response ? layers.filter((data) => data?.id !== id) : layers;
+        console.log(`Update list : ${JSON.stringify(updatedLayers)}`);
+        setLayers(updatedLayers);
+        setNewLayer('');
       })
       .catch((err) => {
         console.error(err);
       });
-    const updatedLayers = layers.filter((data) => data?._id !== id);
-    console.log(`Update list : ${JSON.stringify(updatedLayers)}`);
-    setLayers(updatedLayers);
-    setNewLayer('');
   };
 
   return (
@@ -124,11 +123,11 @@ function SetLayerList() {
           }}
         >
           {layers.map((data) => (
-            <li key={data._id}>
+            <li key={data.id}>
               {data.text}
               <button
                 className="btn btn-block btn-danger my-2 mx-2"
-                onClick={() => handleLayerDelete(data._id)}
+                onClick={() => handleLayerDelete(data.id)}
               >
                 <span className="fa fa-trash"> </span> Delete{' '}
               </button>

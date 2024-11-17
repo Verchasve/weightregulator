@@ -19,7 +19,7 @@ import SetOperatorList from "./component/SetOperatorList";
 import DataReport from "./component/DataReport";
 import Configuration from "./component/Configuration";
 import Port from "./component/Port";
-
+import { invoke } from '@tauri-apps/api';
 
 function App() {
   const [drnNumber, setDrnNumber] = useState(0);
@@ -34,6 +34,11 @@ function App() {
     setDrnNumber(newDrnNumber);
     localStorage.setItem('drnNumber', newDrnNumber);
   };
+
+    // You will see "Hello, World!" printed in the console!
+    invoke('greet', { name: 'World' })
+    // `invoke` returns a Promise
+    .then((response) => console.log(response))
 
   return (
     <>

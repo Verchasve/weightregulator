@@ -129,15 +129,7 @@ const OperationPanel = ({ incrementDrnNumber }) => {
       .catch((error) => console.error("Error fetching operators:", error));
   }, [setAppState]);
 
-  // useEffect(() => {
-  //   setAppState({ loading: true })
-  //   const apiUrlBrand = `${Settings.serviceHost}:${Settings.servicePort}/getBrand`
-  //   fetch(apiUrlBrand)
-  //     .then(res => res.json())
-  //     .then(users => {
-  //       setAppState({ loading: false, users: users })
-  //     })
-  // }, [setAppState])
+ 
 
   useEffect(() => {
     setAppState({ loading: true });
