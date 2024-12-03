@@ -1090,6 +1090,52 @@
       ],
       "drnNumber": 23,
       "id": "mS5p3U-2cC723_tRYSlxk"
+    },
+    {
+      "operator": "name1",
+      "color": "red",
+      "brand": "huntyuin",
+      "size": "19",
+      "layer": "q3",
+      "tanks": [
+        {
+          "ubin": 1732783630000,
+          "tankWeight": "54.00Kg",
+          "time": "2:17:10 pm"
+        },
+        {
+          "ubin": 1732783654000,
+          "tankWeight": "22.60Kg",
+          "time": "2:17:34 pm"
+        },
+        {
+          "ubin": 1732783660000,
+          "tankWeight": "24.90Kg",
+          "time": "2:17:39 pm"
+        },
+        {
+          "ubin": 1732783664000,
+          "tankWeight": "21.70Kg",
+          "time": "2:17:44 pm"
+        },
+        {
+          "ubin": 1732783668000,
+          "tankWeight": "22.50Kg",
+          "time": "2:17:48 pm"
+        },
+        {
+          "ubin": 1732783676000,
+          "tankWeight": "21.00Kg",
+          "time": "2:17:56 pm"
+        },
+        {
+          "ubin": 1732783705000,
+          "tankWeight": "22.80Kg",
+          "time": "2:18:25 pm"
+        }
+      ],
+      "drnNumber": 9,
+      "id": "4f8UKZMgbkVV_tZUexQRB"
     }
   ]
 }

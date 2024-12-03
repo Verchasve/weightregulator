@@ -19,7 +19,7 @@ import SetOperatorList from "./component/SetOperatorList";
 import DataReport from "./component/DataReport";
 import Configuration from "./component/Configuration";
 import Port from "./component/Port";
-import { invoke } from '@tauri-apps/api';
+//import { invoke } from '@tauri-apps/api/tauri';
 
 function App() {
   const [drnNumber, setDrnNumber] = useState(0);
@@ -35,10 +35,29 @@ function App() {
     localStorage.setItem('drnNumber', newDrnNumber);
   };
 
-    // You will see "Hello, World!" printed in the console!
-    invoke('greet', { name: 'World' })
-    // `invoke` returns a Promise
-    .then((response) => console.log(response))
+    // //You will see "Hello, World!" printed in the console!
+    // invoke('greet', { name: 'World' })
+    // // `invoke` returns a Promise
+    // .then((response) => console.log(response))
+    // .catch((error) => console.error('Error invoking Tauri command:', error))
+
+    useEffect(() => {
+      fetch('/api/greet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name: 'World' }),
+      })
+        .then((response) => response.json())
+        .then((data) => console.log(data.message)) // Assuming the response has a `message` field
+        .catch((error) => console.error('Error:', error));
+    }, []);
+    
+
+
+
+
 
   return (
     <>
@@ -75,4 +94,6 @@ function App() {
 }
 
 export default App;
+
+
 
