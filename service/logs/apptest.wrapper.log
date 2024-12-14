@@ -1,0 +1,92 @@
+2024-12-09 23:07:11 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\node --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst true --maxretries 3
+2024-12-09 23:07:11 - Started 16516
+2024-12-09 23:12:33 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\node --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst true --maxretries 3
+2024-12-09 23:12:33 - Started 13388
+2024-12-14 18:04:34 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\index.js --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 18:04:34 - Started 13224
+2024-12-14 22:33:21 - Stopping apptest.exe
+2024-12-14 22:33:21 - ProcessKill 13224
+2024-12-14 22:33:21 - Found child process: 18732 Name: conhost.exe
+2024-12-14 22:33:21 - Found child process: 7596 Name: node.exe
+2024-12-14 22:33:21 - Stopping process 18732
+2024-12-14 22:33:21 - Send SIGINT 18732
+2024-12-14 22:33:21 - SIGINT to 18732 failed - Killing as fallback
+2024-12-14 22:33:21 - Stopping process 7596
+2024-12-14 22:33:21 - Send SIGINT 7596
+2024-12-14 22:33:21 - SIGINT to 7596 failed - Killing as fallback
+2024-12-14 22:33:21 - Stopping process 13224
+2024-12-14 22:33:21 - Send SIGINT 13224
+2024-12-14 22:33:21 - SIGINT to 13224 failed - Killing as fallback
+2024-12-14 22:33:21 - Finished apptest.exe
+2024-12-14 22:34:45 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file "D:\ProjectFiles\abhishekReact\weightregulator\service\index.js && webSocket.js" --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 22:34:45 - Started 14892
+2024-12-14 22:35:26 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file "D:\ProjectFiles\abhishekReact\weightregulator\service\index.js && webSocket.js" --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 22:35:26 - Started 8288
+2024-12-14 22:37:58 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file "D:\ProjectFiles\abhishekReact\weightregulator\service\index.js && npm run socket" --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 22:37:58 - Started 17912
+2024-12-14 22:41:31 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\index.js --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 22:41:31 - Started 20504
+2024-12-14 23:00:08 - Stopping apptest.exe
+2024-12-14 23:00:08 - ProcessKill 20504
+2024-12-14 23:00:08 - Found child process: 11036 Name: conhost.exe
+2024-12-14 23:00:08 - Found child process: 12540 Name: node.exe
+2024-12-14 23:00:08 - Stopping process 11036
+2024-12-14 23:00:08 - Send SIGINT 11036
+2024-12-14 23:00:08 - SIGINT to 11036 failed - Killing as fallback
+2024-12-14 23:00:08 - Stopping process 12540
+2024-12-14 23:00:08 - Send SIGINT 12540
+2024-12-14 23:00:08 - SIGINT to 12540 failed - Killing as fallback
+2024-12-14 23:00:08 - Stopping process 20504
+2024-12-14 23:00:08 - Send SIGINT 20504
+2024-12-14 23:00:08 - SIGINT to 20504 failed - Killing as fallback
+2024-12-14 23:00:08 - Finished apptest.exe
+2024-12-14 23:03:16 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\webSocket.js --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 23:03:16 - Started 19256
+2024-12-14 23:27:12 - Stopping apptest.exe
+2024-12-14 23:27:12 - ProcessKill 19256
+2024-12-14 23:27:12 - Found child process: 9884 Name: conhost.exe
+2024-12-14 23:27:12 - Found child process: 11300 Name: node.exe
+2024-12-14 23:27:12 - Stopping process 9884
+2024-12-14 23:27:12 - Send SIGINT 9884
+2024-12-14 23:27:12 - SIGINT to 9884 failed - Killing as fallback
+2024-12-14 23:27:12 - Stopping process 11300
+2024-12-14 23:27:12 - Send SIGINT 11300
+2024-12-14 23:27:12 - SIGINT to 11300 failed - Killing as fallback
+2024-12-14 23:27:12 - Stopping process 19256
+2024-12-14 23:27:12 - Send SIGINT 19256
+2024-12-14 23:27:12 - SIGINT to 19256 failed - Killing as fallback
+2024-12-14 23:27:12 - Finished apptest.exe
+2024-12-14 23:29:09 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\index.js --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 23:29:09 - Started 20404
+2024-12-14 23:32:38 - Stopping apptest.exe
+2024-12-14 23:32:38 - ProcessKill 20404
+2024-12-14 23:32:38 - Found child process: 9720 Name: conhost.exe
+2024-12-14 23:32:38 - Found child process: 19960 Name: node.exe
+2024-12-14 23:32:38 - Stopping process 9720
+2024-12-14 23:32:38 - Send SIGINT 9720
+2024-12-14 23:32:38 - SIGINT to 9720 failed - Killing as fallback
+2024-12-14 23:32:38 - Stopping process 19960
+2024-12-14 23:32:38 - Send SIGINT 19960
+2024-12-14 23:32:38 - SIGINT to 19960 failed - Killing as fallback
+2024-12-14 23:32:38 - Stopping process 20404
+2024-12-14 23:32:38 - Send SIGINT 20404
+2024-12-14 23:32:38 - SIGINT to 20404 failed - Killing as fallback
+2024-12-14 23:32:38 - Finished apptest.exe
+2024-12-14 23:33:15 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file "D:\ProjectFiles\abhishekReact\weightregulator\service\npm run socket" --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 23:33:15 - Started 832
+2024-12-14 23:36:43 - Starting C:\Program Files\nodejs\node.exe  --harmony D:\ProjectFiles\abhishekReact\weightregulator\service\node_modules\node-windows\lib\wrapper.js --file D:\ProjectFiles\abhishekReact\weightregulator\service\webSocket.js --scriptoptions= --log "AppTest wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined --maxretries 3
+2024-12-14 23:36:43 - Started 17168
+2024-12-14 23:50:56 - Stopping apptest.exe
+2024-12-14 23:50:56 - ProcessKill 17168
+2024-12-14 23:50:56 - Found child process: 13708 Name: conhost.exe
+2024-12-14 23:50:56 - Found child process: 16100 Name: node.exe
+2024-12-14 23:50:56 - Stopping process 13708
+2024-12-14 23:50:56 - Send SIGINT 13708
+2024-12-14 23:50:56 - SIGINT to 13708 failed - Killing as fallback
+2024-12-14 23:50:56 - Stopping process 16100
+2024-12-14 23:50:56 - Send SIGINT 16100
+2024-12-14 23:50:56 - SIGINT to 16100 failed - Killing as fallback
+2024-12-14 23:50:56 - Stopping process 17168
+2024-12-14 23:50:56 - Send SIGINT 17168
+2024-12-14 23:50:56 - SIGINT to 17168 failed - Killing as fallback
+2024-12-14 23:50:56 - Finished apptest.exe
