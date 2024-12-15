@@ -2,12 +2,12 @@ import express, { Router } from "express";
 import pkg from 'body-parser';
 import cors from "cors";
 import mongoDB from 'mongoose';
-import serialScaleGen from "./serialComm/serialScaleGen.js";
 import { host, port, mongoUri } from "./Settings.js";
 import utils from "./utils.js";
 import localStorage from "./localDb.js";
+import { startWebSocketServer } from "./webSocket.js";
 
-const { json, urlencoded } = pkg;
+const { json } = pkg;
 const { connect, connection: _connection } = mongoDB;
 const app = express();
 app.use(cors());
@@ -339,4 +339,5 @@ router.route("/getPortBaudRate").get(jsonParser, async function (req, res) {
 
 app.listen(port, function () {
   console.log("Server is running on Port: " + serviceURL);
+  startWebSocketServer();
 });
