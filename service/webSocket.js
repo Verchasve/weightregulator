@@ -86,117 +86,15 @@ const handlingSerialConnection = async(socket) => {
   }
 }
 
- 
-//if (import.meta.url === `file://${process.argv[1]}`) {
+const startWebSocketServer = () => { 
   console.log('Socket server running on port 4001');
+  
   server.on('connection', (socket) => {
     console.log('Client connected');
     socket.send('WebSocketServer!');
     handlingSocketConnection(socket);
   });
-//}
+  };
 
+  export { startWebSocketServer };
 
-
-// // problrm with this code is that when connect button is clicked first time, the state of the socket.readyState) in console.log('socket.readyState  3rdnd-> ' + socket.readyState) remain 1. But when the disconnect button is clicked, and then after connect button is clicked again, the state of the socket.readyState in console.log('socket.readyState  3rdnd-> ' + socket.readyState) turn to 3. fix the follwing code such that state of socket.readyState should remain 1
-
-
-// import { Server, OPEN } from 'ws';
-// import { startSerialConnection, collectScaletData } from './serialComm/serialScaleGen.js';
-
-// const server = new Server({ port: 4001 });
-// let isConnected = false;
-// let decodedData, distinctVal = '';
-// let serialPortInstance;
-
-// const handlingSocketConnection = () => {
-//   server.on('connection', (socket) => {
-//     console.log('Client connected');
-//     socket.send('WebSocketServer!');
-
-//     socket.on('close', () => {
-//       console.log('Client disconnected');
-//       isConnected = false;
-//       if (serialPortInstance && serialPortInstance.isOpen) {
-//         serialPortInstance.close(() => {
-//           console.log('Serial port closed due to client disconnection');
-//         });
-//       }
-//     });
-
-
-    
-//     socket.on('error', (error) => {
-//       console.log('WebSocket error:', error);
-//       socket.close();
-//       attemptReconnection();
-//     });
-
-//     handlingSerialConnection(socket);
-//   });
-
-//   server.on('error', (error) => {
-//     console.log('WebSocket server error:', error);
-//     // Attempt reconnection after a delay
-//     attemptReconnection();
-//   });
-
-// };
-
-// const attemptReconnection = () => {
-//   setTimeout(() => {
-//     console.log('Attempting to reconnect...');
-//     handlingSocketConnection();
-//   }, 2000);
-// };
-
-// const handlingSerialConnection = (socket) => {
-//   try {
-//     console.log('Checking for new serial port instance...' + isConnected);
-//     if (!isConnected) {
-//       serialPortInstance = startSerialConnection();
-//     }
-
-//     if (serialPortInstance) {
-//       console.log('socket.readyState  2nd-> ' + socket.readyState);
-//       if (!isConnected) {
-//         serialPortInstance.open((err) => {
-//           if (err) {
-//             console.log('Error opening port: ', err.message);
-//             return;
-//           }
-//           isConnected = true;
-//           console.log('Serial Connection Started....');
-//         });
-//       }
-
-//       serialPortInstance.on('readable', () => {
-//         const data = serialPortInstance.read();
-//         if (data != null) {
-//           decodedData = new TextDecoder().decode(data);
-//           const latestData = collectScaletData(decodedData);
-
-//           if (latestData !== undefined && latestData !== distinctVal) {
-//             distinctVal = latestData;
-//             console.log('socket.readyState  3rd-> ' + socket.readyState);
-//             if (socket.readyState === OPEN) {
-//               console.log(`Serial data.... ${distinctVal}`);
-//               socket.send(`${distinctVal}`);
-//             }
-//           }
-//         }
-//       });
-
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// if (require.main === module) {
-//   handlingSocketConnection();
-// }
-
-
-
-// // //code 3
